@@ -4,13 +4,14 @@ onready var movable = false
 onready var tween = Tween.new()
 onready var grid_pos = Vector2(0,0)
 onready var is_destroyed = false
+onready var invencible = false
 
 onready var type = ""
 
 signal destroyed
 
 func destroy():
-	if (is_destroyed):
+	if (is_destroyed or invencible):
 		return
 	is_destroyed = true
 	if(tween.is_active()):

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tile_rock.png-117c371f8aa9b36214c1e5cae8e4244f.stex"
+path="res://.import/tile_trap.png-af86abb18196024fe8138bbcee10240f.stex"
 
 [deps]
 
-source_file="res://assets/tile/tile_rock.png"
-source_md5="96f5677a2c21028ca1d088a61fbdb257"
+source_file="res://assets/tile/tile_trap.png"
+source_md5="b640a8c46e145e07f54f736149acb97c"
 
-dest_files=[ "res://.import/tile_rock.png-117c371f8aa9b36214c1e5cae8e4244f.stex" ]
-dest_md5="7105cbbb91371a7cc653428c1a604c35"
+dest_files=[ "res://.import/tile_trap.png-af86abb18196024fe8138bbcee10240f.stex" ]
+dest_md5="acf24716af957cdf8c1e0ebf044b110a"
 
 [params]
 

@@ -3,6 +3,13 @@ extends Node2D
 onready var player = null
 onready var gridmap = {}
 onready var traps = {}
+onready var starting_y = 0
+
+signal won
+signal lost
+
+func start_game():
+	player.fall(starting_y)
 
 func set_grid(stage):
 	var grid = global.STAGES[stage].instance()
@@ -30,11 +37,13 @@ func set_grid(stage):
 					stone.grid_pos = Vector2(x,y)
 				if (name == "Player"):
 					player = global.ACTORS["Player"].instance()
-					player.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
-					player.z_index = y*10 + 1
 					add_child(player)
+					player.position = Vector2(x*global.TILE_SIZE.x, -500)
+					player.z_index = y*10 + 1
 					gridmap[Vector2(x,y)] = player
 					player.grid_pos = Vector2(x,y)
+					player.falling = true
+					starting_y = y*global.TILE_SIZE.y
 				if (name == "Turret"):
 					var turret = global.ACTORS["Turret"].instance()
 					turret.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
@@ -107,6 +116,7 @@ func _on_player_move(vec2):
 	
 	if (traps.has(to)):
 		player.destroy()
+		emit_signal("lost")
 
 func sendGridToServer():
 	var regex = RegEx.new()
