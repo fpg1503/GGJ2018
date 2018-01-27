@@ -2,9 +2,10 @@ extends Node
 
 var RestClient = preload("res://RestClient.gd")
 
+var is_prod = true
+
 var prod_base = 'http://ggj2018.eastus.cloudapp.azure.com'
 var local_base = 'http://localhost:3000'
-var is_prod = false
 var base_url = prod_base if is_prod else local_base
 var client = RestClient.new()
 
@@ -27,12 +28,11 @@ func _ready():
 func fetch_levels():
 	var url = base_url + '/levels'
 	_last_request = GET_LEVELS
-	return client.request(url)
+	return client.get(url)
 	
 func fetch_level(level):
 	var url = base_url + '/levels/' + str(level)
 	_last_request = GET_LEVEL_INFO
-	client._stringify_headers({"Content-Type": "application/json"})
 	return client.get(url)
 	
 func save_level(level, map, user, parent):
@@ -47,23 +47,9 @@ func save_level(level, map, user, parent):
 	
 func request_completed(error, result_code, response_code, headers, result):
 	if _last_request == GET_LEVELS:
-		if result:
-			emit_signal('levels', result)
-		else:
-			# TODO: Handle errors!
-			pass
+		emit_signal('levels', error, result)
 	elif _last_request == GET_LEVEL_INFO:
-		if result:
-			var level = result['level']
-			var map = result['map']
-			var map_id = result['_id']
-			emit_signal('level_fetched', level, map, map_id)
-		else:
-			# TODO: Handle errors!
-			pass
+		# TODO: Handle malformed JSON responses!
+		emit_signal('level_fetched', error, result.level, result.map, result._id)
 	elif _last_request == SAVE_LEVEL:
-		if result:
-			emit_signal('level_saved')
-		else:
-			# TODO: Handle errors!
-			pass
+		emit_signal('level_saved', error)

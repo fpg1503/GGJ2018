@@ -13,14 +13,11 @@ func set_state(new_state):
 		$Grid.set_grid("stage1")
 	state = new_state
 
-func level_fetched(level, grid_info, map_id):
+func level_fetched(error, level, grid_info, map_id):
 	print('Successfully fetched level ' + str(level))
 	self.map_id = map_id
 	for item in grid_info:
-		var x = item['x']
-		var y = item['y']
-		var type = item['type']
-		$Grid.insert(type, x, y)
+		$Grid.insert(item.type, item.x, item.y)
 	$Grid.start_game()
 	
 func sendGridToServer():
@@ -65,7 +62,8 @@ func _ready():
 	
 	$Grid.set_grid("stage1")
 	$Grid.start_game()
-	
+
+	Server.fetch_level(1)
 	Server.connect('level_fetched', self, 'level_fetched')
 	
 	state = GAME_STATE.PLAYING
