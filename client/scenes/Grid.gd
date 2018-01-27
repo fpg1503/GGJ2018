@@ -14,11 +14,12 @@ func start_game():
 
 func insert(type, x, y):
 	if global.ACTORS.has(type):
+		var dic_to_add = traps if type == 'Trap' else gridmap
 		var element = global.ACTORS[type].instance()
 		element.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
 		element.z_index = y*10
 		add_child(element)
-		gridmap[Vector2(x,y)] = element
+		dic_to_add[Vector2(x,y)] = element
 		element.grid_pos = Vector2(x,y)
 		if type == 'Player':
 			element.position = Vector2(x*global.TILE_SIZE.x, -500)
