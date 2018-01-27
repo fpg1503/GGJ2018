@@ -1,10 +1,12 @@
 extends Node
 
+var RestClient = preload("res://RestClient.gd")
+
 var prod_base = 'http://ggj2018.eastus.cloudapp.azure.com'
 var local_base = 'http://localhost:3000'
-var is_prod = true
+var is_prod = false
 var base_url = prod_base if is_prod else local_base
-var client = HTTPRequest.new()
+var client = RestClient.new()
 
 var _last_request = null
 
@@ -30,19 +32,15 @@ func fetch_levels():
 func fetch_level(level):
 	var url = base_url + '/levels/' + str(level)
 	_last_request = GET_LEVEL_INFO
-	return client.request(url)
+	client._stringify_headers({"Content-Type": "application/json"})
+	return client.get(url)
 	
 func save_level(level, map):
 	var url = base_url + '/levels/' + str(level)
-	var body = to_json(map)
-	print(body)
 	_last_request = SAVE_LEVEL
-	return client.request(url, ["Content-Type: application/json"], true, HTTPClient.METHOD_POST, body)
+	return client.post(url, map)
 	
-func request_completed(result_code, response_code, headers, body):
-	var json_string = body.get_string_from_utf8()
-	var json = JSON.parse(json_string)
-	var result = json.result
+func request_completed(error, result_code, response_code, headers, result):
 	if _last_request == GET_LEVELS:
 		if result:
 			emit_signal('levels', result)
