@@ -3,31 +3,30 @@ extends Node2D
 onready var player = null
 onready var gridmap = {}
 
-func set_grid(stage):
-	var grid = global.STAGES[stage].instance()
-	print(grid)
-	var ts = grid.tile_set
-	
-	for x in range(global.MAP_SIZE.x):
-		for y in range(global.MAP_SIZE.y):
-			var cell = grid.get_cell(x, y)
-			if (cell > -1):
-				var name = ts.tile_get_name(cell)
-				if (name == "Box"):
-					var box = global.ACTORS["Box"].instance()
-					box.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
-					box.z_index = y
-					add_child(box)
-					gridmap[Vector2(x,y)] = box
-					box.grid_pos = Vector2(x,y)
-				if (name == "Player"):
-					player = global.ACTORS["Player"].instance()
-					player.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
-					player.z_index = y
-					add_child(player)
-					gridmap[Vector2(x,y)] = player
-					player.grid_pos = Vector2(x,y)
+func my_set_grid(grid_info):
+	print(grid_info)
+	for item in grid_info['map']:
+		var x = item['x']
+		var y = item['y']
+		if (item['type'] == "Box"):
+			var box = global.ACTORS["Box"].instance()
+			box.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
+			box.z_index = y
+			add_child(box)
+			gridmap[Vector2(x,y)] = box
+			box.grid_pos = Vector2(x,y)
+		if (item['type'] == "Player"):
+			player = global.ACTORS["Player"].instance()
+			player.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
+			player.z_index = y
+			add_child(player)
+			gridmap[Vector2(x,y)] = player
+			player.grid_pos = Vector2(x,y)
 	player.connect("move", self, "_on_player_move")
+	
+func set_grid(stage):
+	pass
+
 
 func check_movable(from, to):
 	var next = to - from
@@ -56,5 +55,6 @@ func _on_player_move(vec2):
 	player.move_to_tile(to)
 
 func _ready():
+	Server.connect('response', self, 'my_set_grid')
 #	$Player.connect("move", self, "_on_player_move")
 	pass

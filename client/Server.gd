@@ -1,7 +1,9 @@
 extends Node
 
-var url = 'http://ggj2018.eastus.cloudapp.azure.com'
+var url = 'http://ggj2018.eastus.cloudapp.azure.com/levels/1'
 var client = HTTPRequest.new()
+
+signal response
 
 func _ready():
 	print('oieee')

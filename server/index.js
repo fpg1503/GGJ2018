@@ -20,8 +20,14 @@ app.get('/levels', (req, res) => {
 app.get('/levels/:id', (req, res) => {
   res.json({
     level: req.params.id,
-    name: 'foo',
-    map: 'TODO'
+    name: 'First',
+    map: [
+      {x: 6, y: 4, type: 'Player'},
+      {x: 0, y: 4, type: 'Box'},
+      {x: 6, y: 1, type: 'Box'},
+      {x: 7, y: 6, type: 'Box'},
+      {x: 9, y: 4, type: 'Box'}
+    ]
   })
 })
 
