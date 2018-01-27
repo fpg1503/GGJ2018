@@ -3,9 +3,9 @@ extends Node2D
 onready var player = null
 onready var gridmap = {}
 
-func my_set_grid(grid_info):
-	print(grid_info)
-	for item in grid_info['map']:
+func level_fetched(level, grid_info):
+	print('Successfully fetched level ' + str(level))
+	for item in grid_info:
 		var x = item['x']
 		var y = item['y']
 		if (item['type'] == "Box"):
@@ -61,6 +61,7 @@ func sendGridToServer():
 	var regex = RegEx.new()
 	regex.compile("\\/([^./]*)\\.tscn$")
 
+	var map = []
 	for child in get_children():
 		var position = child.get_position()
 		var x = position.x / global.TILE_SIZE.x
@@ -68,9 +69,11 @@ func sendGridToServer():
 		var filename = child.get_filename()
 		var result = regex.search(filename)
 		if result:
-			print('{"x":'+str(x) + ',"y":' + str(y) + ',"type":"' + str(result.get_strings()[1]) + '"}')
+			var type = result.get_strings()[1]
+			map.append({'x': x, 'y': y, 'type': type})
+			
+	Server.save_level(1, map)
 
 func _ready():
-	Server.connect('response', self, 'my_set_grid')
-#	$Player.connect("move", self, "_on_player_move")
+	Server.connect('level_fetched', self, 'level_fetched')
 	pass
