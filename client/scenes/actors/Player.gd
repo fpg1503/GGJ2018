@@ -7,6 +7,8 @@ onready var falling = false
 onready var raising = false
 onready var left = true
 
+onready var end = false
+
 func fall(y):
 	invencible = true
 	falling = true
@@ -17,10 +19,13 @@ func fall(y):
 	tweenIntro.start()
 
 func _on_tween_completed(obj, prop):
+	if (end):
+		return
 	invencible = false
 	falling = false
 	raising = false
 	if(is_destroyed):
+		end = true
 		get_parent().emit_signal("lost")
 
 func _on_destroyed():

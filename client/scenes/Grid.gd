@@ -9,8 +9,21 @@ onready var starting_y = 0
 signal won
 signal lost
 
+func kill_player():
+	player.destroy()
+
 func start_game():
 	player.fall(starting_y)
+
+func reset_grid():
+	var keys = gridmap.keys()
+	for i in range(keys.size()):
+		gridmap[keys[i]].queue_free()
+	keys = traps.keys()
+	for i in range(keys.size()):
+		traps[keys[i]].queue_free()
+	gridmap.clear()
+	traps.clear()
 
 func insert(type, x, y):
 	if global.ACTORS.has(type):
@@ -32,6 +45,8 @@ func insert(type, x, y):
 		print('Unsupoorted element: ' + type)
 
 func set_grid(stage):
+	reset_grid()
+	
 	var grid = global.STAGES[stage].instance()
 	print(grid)
 	var ts = grid.tile_set
