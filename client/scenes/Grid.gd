@@ -23,6 +23,7 @@ func my_set_grid(grid_info):
 			gridmap[Vector2(x,y)] = player
 			player.grid_pos = Vector2(x,y)
 	player.connect("move", self, "_on_player_move")
+	sendGridToServer()
 	
 func set_grid(stage):
 	pass
@@ -48,11 +49,26 @@ func _on_player_move(vec2):
 			gridmap.erase(to)
 		else:
 			return
+	print('--------------')
+	sendGridToServer()
 	
 	gridmap.erase(from)
 	gridmap[to] = player
 	player.z_index = to.y + 1
 	player.move_to_tile(to)
+
+func sendGridToServer():
+	var regex = RegEx.new()
+	regex.compile("\\/([^./]*)\\.tscn$")
+
+	for child in get_children():
+		var position = child.get_position()
+		var x = position.x / global.TILE_SIZE.x
+		var y = position.y / global.TILE_SIZE.y
+		var filename = child.get_filename()
+		var result = regex.search(filename)
+		if result:
+			print('{"x":'+str(x) + ',"y":' + str(y) + ',"type":"' + str(result.get_strings()[1]) + '"}')
 
 func _ready():
 	Server.connect('response', self, 'my_set_grid')
