@@ -18,7 +18,7 @@ func fall(y):
 	
 	tweenIntro.start()
 
-func _on_tween_completed(obj, prop):
+func _child_on_tween_completed(obj, prop):
 	if (end):
 		return
 	invencible = false
@@ -39,7 +39,7 @@ func _ready():
 	type = "Player"
 	$Sprite/Face.texture = global.FACES[int(randf() * global.FACES.size())]
 	
-	tweenIntro.connect("tween_completed", self, "_on_tween_completed")
+	tweenIntro.connect("tween_completed", self, "_child_on_tween_completed")
 	connect("destroyed", self, "_on_destroyed")
 	set_process_input(true)
 

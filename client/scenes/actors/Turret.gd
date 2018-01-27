@@ -5,7 +5,7 @@ onready var raycast = $Area2D/RayCast2D
 func _process(delta):
 	if (raycast.is_colliding()):
 		var actor = raycast.get_collider().get_parent()
-		if (actor.type == "Player"):
+		if (actor and actor.type == "Player"):
 			actor.destroy()
 
 func _ready():

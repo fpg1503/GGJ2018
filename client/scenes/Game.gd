@@ -7,17 +7,35 @@ onready var state = GAME_STATE.SETTING_UP setget set_state
 onready var won = false
 onready var map_id = null
 
+onready var original_map = null
+onready var current_map = null
+
+func load_original_grid():
+	current_map = original_map
+	load_grid(current_map)
+
+func load_grid(grid):
+	$Grid.reset_grid()
+	for item in grid:
+		$Grid.insert(item.type, item.x, item.y)
+
 func set_state(new_state):
 	if (new_state == CREATING):
 		$Hud.enter()
-		$Grid.set_grid("stage1")
+	
+	if (state == PLAYING and new_state == CREATING):
+		load_original_grid()
+	elif (state == TESTING and new_state == CREATING):
+		load_grid(current_map)
+	
 	state = new_state
 
 func level_fetched(error, level, grid_info, map_id):
 	print('Successfully fetched level ' + str(level))
 	self.map_id = map_id
-	for item in grid_info:
-		$Grid.insert(item.type, item.x, item.y)
+	original_map = grid_info
+	load_original_grid()
+	
 	$Grid.start_game()
 	
 func sendGridToServer():
@@ -42,13 +60,13 @@ func _on_hud_play():
 
 func _on_hud_stop():
 	$Grid.kill_player()
+#	load_grid(current_map)
 
 func _on_hud_shop():
 	$Shop.enter()
 
 func _on_hud_reset():
-	$Grid.reset_grid()
-	$Grid.set_grid("stage1")	
+	load_original_grid()
 
 func _ready():
 	set_process_input(true)
@@ -60,9 +78,6 @@ func _ready():
 	$Hud.connect("shop", self, "_on_hud_shop")
 	$Hud.connect("reset", self, "_on_hud_reset")
 	
-	$Grid.set_grid("stage1")
-	$Grid.start_game()
-
 	Server.fetch_level(1)
 	Server.connect('level_fetched', self, 'level_fetched')
 	
