@@ -1,7 +1,10 @@
 const express = require('express')
 const port = process.env.port || 3000
-
+const mongooseUri = process.env.mongoose || 'mongodb://localhost/test'
+const mongoose = require('mongoose')
 const app = express()
+
+mongoose.connect(mongooseUri)
 
 app.get('/', (req, res) => {
   res.json({levels: 3})
