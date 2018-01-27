@@ -23,11 +23,11 @@ func _ready():
 	$Grid.connect("won", self, "_on_won")
 	$Grid.connect("lost", self, "_on_lost")
 	
-	$Grid.set_grid("stage1")
-	$Grid.start_game()
+#	$Grid.set_grid("stage1")
+#	$Grid.start_game()
 	
 #	Server.fetch_levels()
-#	Server.fetch_level(1)
+	Server.fetch_level(1)
 	Server.connect('level_fetched', self, 'level_fetched')
 	
 	state = GAME_STATE.PLAYING

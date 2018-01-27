@@ -54,10 +54,7 @@ func request_completed(error, result_code, response_code, headers, result):
 			pass
 	elif _last_request == GET_LEVEL_INFO:
 		if result:
-			var level = result['level']
-			var map = result['map']
-			var map_id = result['_id']
-			emit_signal('level_fetched', level, map, map_id)
+			emit_signal('level_fetched', result.level, result.map, result._id)
 		else:
 			# TODO: Handle errors!
 			pass

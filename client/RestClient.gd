@@ -36,6 +36,7 @@ func _stringify_headers(headers):
 func _generic_request(method, url, headers, body = ''):
 	var stringified_headers = _stringify_headers(headers)
 	return _http_client.request(url, stringified_headers, true, method, body)
+	
 
 func _request_completed(result_code, response_code, headers, body):
 	var json_string = body.get_string_from_utf8()
