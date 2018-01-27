@@ -39,23 +39,7 @@ func level_fetched(level, grid_info, map_id):
 		var x = item['x']
 		var y = item['y']
 		var type = item['type']
-		if global.ACTORS.has(type):
-			var element = global.ACTORS[type].instance()
-			element.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
-			element.z_index = y*10
-			$Grid.add_child(element)
-			$Grid.gridmap[Vector2(x,y)] = element
-			element.grid_pos = Vector2(x,y)
-			if type == 'Player':
-				element.position = Vector2(x*global.TILE_SIZE.x, -500)
-				element.z_index += 1
-				element.falling = true
-				$Grid.player = element
-				$Grid.starting_y = y*global.TILE_SIZE.y
-		else:
-			print('Unsupoorted element: ' + type)
-
-	$Grid.player.connect("move", self, "_on_player_move")
+		$Grid.insert(type, x, y)
 	$Grid.start_game()
 	
 func sendGridToServer():
