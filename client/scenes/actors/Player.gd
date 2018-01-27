@@ -20,15 +20,19 @@ func _on_tween_completed(obj, prop):
 	invencible = false
 	falling = false
 	raising = false
+	if(is_destroyed):
+		get_parent().emit_signal("lost")
 
 func _on_destroyed():
-	get_parent().emit_signal("lost")
+	tweenIntro.interpolate_property($Sprite, "rotation_degrees", rotation_degrees, -90, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tweenIntro.interpolate_property(self, "position", position, Vector2(position.x, position.y + 30), 0.5, Tween.TRANS_ELASTIC,Tween.EASE_OUT_IN)
+	tweenIntro.start()
 
 func _ready():
 	add_child(tweenIntro)
 	
 	type = "Player"
-	$Face.texture = global.FACES[int(randf() * global.FACES.size())]
+	$Sprite/Face.texture = global.FACES[int(randf() * global.FACES.size())]
 	
 	tweenIntro.connect("tween_completed", self, "_on_tween_completed")
 	connect("destroyed", self, "_on_destroyed")

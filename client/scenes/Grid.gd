@@ -78,7 +78,6 @@ func _on_player_move(vec2):
 	
 	if (traps.has(to)):
 		player.destroy()
-		emit_signal("lost")
 
 
 func _ready():

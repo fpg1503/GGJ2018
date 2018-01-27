@@ -21,14 +21,14 @@ scale = Vector2( 0.422772, 0.447013 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
 
-[node name="Face" type="Sprite" parent="." index="1"]
+[node name="Face" type="Sprite" parent="Sprite" index="0"]
 
-position = Vector2( 7.12634, -24.6231 )
-scale = Vector2( 0.0986971, 0.131952 )
+position = Vector2( 16.1736, -3.63092 )
+scale = Vector2( 0.233452, 0.295186 )
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="ReferenceRect" type="ReferenceRect" parent="." index="2"]
+[node name="ReferenceRect" type="ReferenceRect" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -45,7 +45,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 _sections_unfolded = [ "Margin" ]
 
-[node name="Area2D" type="Area2D" parent="." index="3"]
+[node name="Area2D" type="Area2D" parent="." index="2"]
 
 position = Vector2( 0, -21.5658 )
 input_pickable = true
