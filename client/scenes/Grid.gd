@@ -2,6 +2,7 @@ extends Node2D
 
 onready var player = null
 onready var gridmap = {}
+
 onready var traps = {}
 onready var starting_y = 0
 
@@ -10,6 +11,24 @@ signal lost
 
 func start_game():
 	player.fall(starting_y)
+
+func insert(type, x, y):
+	if global.ACTORS.has(type):
+		var element = global.ACTORS[type].instance()
+		element.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
+		element.z_index = y*10
+		add_child(element)
+		gridmap[Vector2(x,y)] = element
+		element.grid_pos = Vector2(x,y)
+		if type == 'Player':
+			element.position = Vector2(x*global.TILE_SIZE.x, -500)
+			element.z_index += 1
+			element.falling = true
+			player = element
+			starting_y = y*global.TILE_SIZE.y
+			element.connect("move", self, "_on_player_move")
+	else:
+		print('Unsupoorted element: ' + type)
 
 func set_grid(stage):
 	var grid = global.STAGES[stage].instance()
@@ -21,67 +40,9 @@ func set_grid(stage):
 			var cell = grid.get_cell(x, y)
 			if (cell > -1):
 				var name = ts.tile_get_name(cell)
-				if (name == "Box"):
-					var box = global.ACTORS["Box"].instance()
-					box.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
-					box.z_index = y*10
-					add_child(box)
-					gridmap[Vector2(x,y)] = box
-					box.grid_pos = Vector2(x,y)
-				if (name == "Stone"):
-					var stone = global.ACTORS["Stone"].instance()
-					stone.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
-					stone.z_index = y*10
-					add_child(stone)
-					gridmap[Vector2(x,y)] = stone
-					stone.grid_pos = Vector2(x,y)
-				if (name == "Player"):
-					player = global.ACTORS["Player"].instance()
-					add_child(player)
-					player.position = Vector2(x*global.TILE_SIZE.x, -500)
-					player.z_index = y*10 + 1
-					gridmap[Vector2(x,y)] = player
-					player.grid_pos = Vector2(x,y)
-					player.falling = true
-					starting_y = y*global.TILE_SIZE.y
-				if (name == "Turret"):
-					var turret = global.ACTORS["Turret"].instance()
-					turret.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
-					turret.z_index = y*10
-					add_child(turret)
-					gridmap[Vector2(x,y)] = turret
-					turret.grid_pos = Vector2(x,y)
-				if (name == "Trap"):
-					var trap = global.ACTORS["Trap"].instance()
-					trap.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
-					trap.z_index = y*10
-					add_child(trap)
-					traps[Vector2(x,y)] = trap
-					trap.grid_pos = Vector2(x,y)
-	player.connect("move", self, "_on_player_move")
+				insert(name, x, y)
 
-func my_set_grid(grid_info):
-	print(grid_info)
-	for item in grid_info['map']:
-		var x = item['x']
-		var y = item['y']
-		if (item['type'] == "Box"):
-			var box = global.ACTORS["Box"].instance()
-			box.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
-			box.z_index = y * 10
-			add_child(box)
-			gridmap[Vector2(x,y)] = box
-			box.grid_pos = Vector2(x,y)
-		if (item['type'] == "Player"):
-			player = global.ACTORS["Player"].instance()
-			player.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
-			player.z_index = y * 10 + 1
-			add_child(player)
-			gridmap[Vector2(x,y)] = player
-			player.grid_pos = Vector2(x,y)
-	player.connect("move", self, "_on_player_move")
-	sendGridToServer()
-
+	
 func check_movable(from, to):
 	var next = to + (to - from)
 	if (next.x < 0 or next.x >= global.MAP_SIZE.x or next.y < 0 or next.y >= global.MAP_SIZE.y):
@@ -117,20 +78,6 @@ func _on_player_move(vec2):
 	if (traps.has(to)):
 		player.destroy()
 
-func sendGridToServer():
-	var regex = RegEx.new()
-	regex.compile("\\/([^./]*)\\.tscn$")
-
-	for child in get_children():
-		var position = child.get_position()
-		var x = position.x / global.TILE_SIZE.x
-		var y = position.y / global.TILE_SIZE.y
-		var filename = child.get_filename()
-		var result = regex.search(filename)
-		if result:
-			print('{"x":'+str(x) + ',"y":' + str(y) + ',"type":"' + str(result.get_strings()[1]) + '"}')
 
 func _ready():
-#	Server.connect('response', self, 'my_set_grid')
-#	$Player.connect("move", self, "_on_player_move")
 	pass

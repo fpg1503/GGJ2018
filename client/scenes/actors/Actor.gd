@@ -34,3 +34,6 @@ func _emit_destroyed(obj, key):
 
 func _ready():
 	add_child(tween)
+	
+func get_type():
+	return type
