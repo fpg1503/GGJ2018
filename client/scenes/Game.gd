@@ -32,7 +32,7 @@ func _ready():
 	
 	state = GAME_STATE.PLAYING
 
-func level_fetched(level, grid_info, map_id):
+func level_fetched(error, level, grid_info, map_id):
 	print('Successfully fetched level ' + str(level))
 	self.map_id = map_id
 	for item in grid_info:
