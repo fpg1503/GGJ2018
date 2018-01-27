@@ -2,7 +2,7 @@ extends Node
 
 var RestClient = preload("res://RestClient.gd")
 
-var is_prod = false
+var is_prod = true
 
 var prod_base = 'http://ggj2018.eastus.cloudapp.azure.com'
 var local_base = 'http://localhost:3000'
