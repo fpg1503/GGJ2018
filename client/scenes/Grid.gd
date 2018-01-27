@@ -28,8 +28,10 @@ func insert(type, x, y):
 			player = element
 			starting_y = y*global.TILE_SIZE.y
 			element.connect("move", self, "_on_player_move")
+	elif len(type) > 0:
+		print('Unsupported element: ' + type + '(' + str(x) + ',' + str(y) + ')')
 	else:
-		print('Unsupoorted element: ' + type)
+		print('Attempted to deserialize unnamed type')
 
 func set_grid(stage):
 	var grid = global.STAGES[stage].instance()

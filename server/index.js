@@ -1,19 +1,13 @@
+console.log(JSON.stringify(process.env))
+
 const express = require('express')
 const bodyParser = require('body-parser')
 const port = process.env.port || 3000
-const mongooseUri = process.env.mongoose || 'mongodb://localhost/test'
+const mongooseUri = process.env.mongooseUri || 'mongodb://localhost/test'
 const mongoose = require('mongoose')
 const app = express()
 
 const Level = require('./Model/Level')
-
-let map = [
-  {x: 6, y: 4, type: 'Player'},
-  {x: 0, y: 4, type: 'Box'},
-  {x: 6, y: 1, type: 'Box'},
-  {x: 7, y: 6, type: 'Box'},
-  {x: 9, y: 4, type: 'Box'}
-]
 
 mongoose.connect(mongooseUri)
 
