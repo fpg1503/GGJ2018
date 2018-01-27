@@ -15,6 +15,7 @@ func destroy():
 		return
 	is_destroyed = true
 	if(tween.is_active()):
+		print("OI")
 		tween.connect("tween_completed", self, "_emit_destroyed")
 	else:
 		emit_signal("destroyed")
