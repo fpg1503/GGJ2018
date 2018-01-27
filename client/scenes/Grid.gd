@@ -3,6 +3,54 @@ extends Node2D
 onready var player = null
 onready var gridmap = {}
 var map_id = ''
+onready var traps = {}
+
+func set_grid(stage):
+	var grid = global.STAGES[stage].instance()
+	print(grid)
+	var ts = grid.tile_set
+	
+	for x in range(global.MAP_SIZE.x):
+		for y in range(global.MAP_SIZE.y):
+			var cell = grid.get_cell(x, y)
+			if (cell > -1):
+				var name = ts.tile_get_name(cell)
+				if (name == "Box"):
+					var box = global.ACTORS["Box"].instance()
+					box.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
+					box.z_index = y*10
+					add_child(box)
+					gridmap[Vector2(x,y)] = box
+					box.grid_pos = Vector2(x,y)
+				if (name == "Stone"):
+					var stone = global.ACTORS["Stone"].instance()
+					stone.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
+					stone.z_index = y*10
+					add_child(stone)
+					gridmap[Vector2(x,y)] = stone
+					stone.grid_pos = Vector2(x,y)
+				if (name == "Player"):
+					player = global.ACTORS["Player"].instance()
+					player.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
+					player.z_index = y*10 + 1
+					add_child(player)
+					gridmap[Vector2(x,y)] = player
+					player.grid_pos = Vector2(x,y)
+				if (name == "Turret"):
+					var turret = global.ACTORS["Turret"].instance()
+					turret.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
+					turret.z_index = y*10
+					add_child(turret)
+					gridmap[Vector2(x,y)] = turret
+					turret.grid_pos = Vector2(x,y)
+				if (name == "Trap"):
+					var trap = global.ACTORS["Trap"].instance()
+					trap.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
+					trap.z_index = y*10
+					add_child(trap)
+					traps[Vector2(x,y)] = trap
+					trap.grid_pos = Vector2(x,y)
+	player.connect("move", self, "_on_player_move")
 
 func level_fetched(level, grid_info, map_id):
 	print('Successfully fetched level ' + str(level))
@@ -57,6 +105,9 @@ func _on_player_move(vec2):
 	gridmap[to] = player
 	player.z_index = to.y * 10 + 1
 	player.move_to_tile(to)
+	
+	if (traps.has(to)):
+		player.destroy()
 
 func sendGridToServer():
 	var regex = RegEx.new()
@@ -78,6 +129,8 @@ func sendGridToServer():
 func _ready():
 	Server.connect('level_fetched', self, 'level_fetched')
 	set_process_input(true)
+#	Server.connect('response', self, 'my_set_grid')
+#	$Player.connect("move", self, "_on_player_move")
 	pass
 	
 func _input(event):
