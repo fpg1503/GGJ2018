@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/tile.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Hud.gd" type="Script" id=2]
@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/shop.png" type="Texture" id=5]
 [ext_resource path="res://assets/restart.png" type="Texture" id=6]
 
-[node name="Hud" type="TextureRect"]
+[node name="Hud" type="TextureRect" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -42,9 +42,10 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 463.0
-margin_top = 11.0
-margin_right = 539.0
-margin_bottom = 81.0
+margin_top = 9.0
+margin_right = 565.0
+margin_bottom = 105.0
+rect_scale = Vector2( 0.8, 0.8 )
 rect_pivot_offset = Vector2( 0, 0 )
 focus_mode = 2
 mouse_filter = 0
@@ -67,9 +68,10 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 545.0
-margin_top = 11.0
-margin_right = 621.0
-margin_bottom = 81.0
+margin_top = 9.0
+margin_right = 647.0
+margin_bottom = 105.0
+rect_scale = Vector2( 0.8, 0.8 )
 rect_pivot_offset = Vector2( 0, 0 )
 focus_mode = 2
 mouse_filter = 0
@@ -92,9 +94,10 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 627.0
-margin_top = 11.0
-margin_right = 703.0
-margin_bottom = 81.0
+margin_top = 9.0
+margin_right = 729.0
+margin_bottom = 105.0
+rect_scale = Vector2( 0.8, 0.8 )
 rect_pivot_offset = Vector2( 0, 0 )
 focus_mode = 2
 mouse_filter = 0
@@ -117,9 +120,10 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 1034.0
-margin_top = 11.0
-margin_right = 1110.0
-margin_bottom = 81.0
+margin_top = 9.0
+margin_right = 1136.0
+margin_bottom = 105.0
+rect_scale = Vector2( 0.8, 0.8 )
 rect_pivot_offset = Vector2( 0, 0 )
 focus_mode = 2
 mouse_filter = 0
