@@ -13,6 +13,14 @@ config_version=3
 config/name="GGJ2018"
 config/icon="res://icon.png"
 
+[autoload]
+
+global="*res://global.gd"
+
+[display]
+
+window/size/width=1200
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
