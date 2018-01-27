@@ -11,6 +11,7 @@ config_version=3
 [application]
 
 config/name="GGJ2018"
+run/main_scene="res://scenes/Game.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -21,6 +22,7 @@ Server="*res://Server.gd"
 [display]
 
 window/size/width=1200
+window/stretch/mode="2d"
 
 [rendering]
 
