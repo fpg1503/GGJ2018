@@ -7,10 +7,10 @@ path="res://.import/restart.png-e3341f5ab3201ffaa3fc76965a1ab56e.stex"
 [deps]
 
 source_file="res://assets/restart.png"
-source_md5="8099f1439a8c1362d184fab39d9b794c"
+source_md5="4e1054bdfb17a81cafbb3102bd364b55"
 
 dest_files=[ "res://.import/restart.png-e3341f5ab3201ffaa3fc76965a1ab56e.stex" ]
-dest_md5="8ec1636ae69b3a34cd68b6580a8dbcce"
+dest_md5="c65015faf5ed2aa026a1028ef677a38b"
 
 [params]
 
