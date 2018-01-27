@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tile_rock.png-117c371f8aa9b36214c1e5cae8e4244f.stex"
+path="res://.import/trapdoor.png-52930bd4a3ef2225966be0f88b407ddd.stex"
 
 [deps]
 
-source_file="res://assets/tile/tile_rock.png"
-source_md5="96f5677a2c21028ca1d088a61fbdb257"
+source_file="res://assets/trapdoor.png"
+source_md5="33c9c37566e3bbc7569f47b870e3e664"
 
-dest_files=[ "res://.import/tile_rock.png-117c371f8aa9b36214c1e5cae8e4244f.stex" ]
-dest_md5="7105cbbb91371a7cc653428c1a604c35"
+dest_files=[ "res://.import/trapdoor.png-52930bd4a3ef2225966be0f88b407ddd.stex" ]
+dest_md5="a6d85ecf7574e2697d27f5537cfd6e92"
 
 [params]
 

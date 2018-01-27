@@ -2,8 +2,15 @@ extends Node2D
 
 onready var player = null
 onready var gridmap = {}
-var map_id = ''
+
 onready var traps = {}
+onready var starting_y = 0
+
+signal won
+signal lost
+
+func start_game():
+	player.fall(starting_y)
 
 func set_grid(stage):
 	var grid = global.STAGES[stage].instance()
@@ -31,11 +38,13 @@ func set_grid(stage):
 					stone.grid_pos = Vector2(x,y)
 				if (name == "Player"):
 					player = global.ACTORS["Player"].instance()
-					player.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
-					player.z_index = y*10 + 1
 					add_child(player)
+					player.position = Vector2(x*global.TILE_SIZE.x, -500)
+					player.z_index = y*10 + 1
 					gridmap[Vector2(x,y)] = player
 					player.grid_pos = Vector2(x,y)
+					player.falling = true
+					starting_y = y*global.TILE_SIZE.y
 				if (name == "Turret"):
 					var turret = global.ACTORS["Turret"].instance()
 					turret.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
@@ -52,27 +61,6 @@ func set_grid(stage):
 					trap.grid_pos = Vector2(x,y)
 	player.connect("move", self, "_on_player_move")
 
-func level_fetched(level, grid_info, map_id):
-	print('Successfully fetched level ' + str(level))
-	self.map_id = map_id
-	for item in grid_info:
-		var x = item['x']
-		var y = item['y']
-		if (item['type'] == "Box"):
-			var box = global.ACTORS["Box"].instance()
-			box.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
-			box.z_index = y * 10
-			add_child(box)
-			gridmap[Vector2(x,y)] = box
-			box.grid_pos = Vector2(x,y)
-		if (item['type'] == "Player"):
-			player = global.ACTORS["Player"].instance()
-			player.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
-			player.z_index = y * 10 + 1
-			add_child(player)
-			gridmap[Vector2(x,y)] = player
-			player.grid_pos = Vector2(x,y)
-	player.connect("move", self, "_on_player_move")
 	
 func check_movable(from, to):
 	var next = to + (to - from)
@@ -108,32 +96,8 @@ func _on_player_move(vec2):
 	
 	if (traps.has(to)):
 		player.destroy()
+		emit_signal("lost")
 
-func sendGridToServer():
-	var regex = RegEx.new()
-	regex.compile("\\/([^./]*)\\.tscn$")
-
-	var map = []
-	for child in get_children():
-		var position = child.get_position()
-		var x = position.x / global.TILE_SIZE.x
-		var y = position.y / global.TILE_SIZE.y
-		var filename = child.get_filename()
-		var result = regex.search(filename)
-		if result:
-			var type = result.get_strings()[1]
-			map.append({'x': x, 'y': y, 'type': type})
-			
-	Server.save_level(1, map, 'test_user', map_id)
 
 func _ready():
-	Server.connect('level_fetched', self, 'level_fetched')
-	set_process_input(true)
-#	Server.connect('response', self, 'my_set_grid')
-#	$Player.connect("move", self, "_on_player_move")
 	pass
-	
-func _input(event):
-	if event.as_text() == 'S' and event.is_pressed() and not event.is_echo():
-		print('Sending to server!')
-		sendGridToServer()

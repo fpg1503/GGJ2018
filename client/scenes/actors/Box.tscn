@@ -8,12 +8,14 @@
 custom_solver_bias = 0.0
 extents = Vector2( 35.2499, 41.194 )
 
-[node name="Box" type="Node2D"]
+[node name="Box" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
+modulate = Color( 0.234375, 0.163879, 0.163879, 1 )
 position = Vector2( 0.266608, -13.9999 )
 scale = Vector2( 0.466784, 0.388885 )
 texture = ExtResource( 2 )
