@@ -35,10 +35,15 @@ func fetch_level(level):
 	client._stringify_headers({"Content-Type": "application/json"})
 	return client.get(url)
 	
-func save_level(level, map):
+func save_level(level, map, user, parent):
 	var url = base_url + '/levels/' + str(level)
 	_last_request = SAVE_LEVEL
-	return client.post(url, map)
+	var body = {
+		'map': map,
+		'parentId': parent,
+		'userName': user
+	}
+	return client.post(url, body)
 	
 func request_completed(error, result_code, response_code, headers, result):
 	if _last_request == GET_LEVELS:
@@ -51,7 +56,8 @@ func request_completed(error, result_code, response_code, headers, result):
 		if result:
 			var level = result['level']
 			var map = result['map']
-			emit_signal('level_fetched', level, map)
+			var map_id = result['_id']
+			emit_signal('level_fetched', level, map, map_id)
 		else:
 			# TODO: Handle errors!
 			pass

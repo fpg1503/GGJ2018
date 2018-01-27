@@ -2,9 +2,11 @@ extends Node2D
 
 onready var player = null
 onready var gridmap = {}
+var map_id = ''
 
-func level_fetched(level, grid_info):
+func level_fetched(level, grid_info, map_id):
 	print('Successfully fetched level ' + str(level))
+	self.map_id = map_id
 	for item in grid_info:
 		var x = item['x']
 		var y = item['y']
@@ -23,7 +25,6 @@ func level_fetched(level, grid_info):
 			gridmap[Vector2(x,y)] = player
 			player.grid_pos = Vector2(x,y)
 	player.connect("move", self, "_on_player_move")
-	sendGridToServer()
 	
 func check_movable(from, to):
 	var next = to + (to - from)
@@ -51,8 +52,6 @@ func _on_player_move(vec2):
 			gridmap.erase(to)
 		else:
 			return
-	print('--------------')
-	sendGridToServer()
 	
 	gridmap.erase(from)
 	gridmap[to] = player
@@ -74,8 +73,14 @@ func sendGridToServer():
 			var type = result.get_strings()[1]
 			map.append({'x': x, 'y': y, 'type': type})
 			
-	Server.save_level(1, map)
+	Server.save_level(1, map, 'test_user', map_id)
 
 func _ready():
 	Server.connect('level_fetched', self, 'level_fetched')
+	set_process_input(true)
 	pass
+	
+func _input(event):
+	if event.as_text() == 'S' and event.is_pressed() and not event.is_echo():
+		print('Sending to server!')
+		sendGridToServer()
