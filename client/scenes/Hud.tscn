@@ -1,12 +1,18 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
-[ext_resource path="res://assets/tile.png" type="Texture" id=1]
+[ext_resource path="res://assets/sign.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Hud.gd" type="Script" id=2]
-[ext_resource path="res://assets/sign.png" type="Texture" id=3]
-[ext_resource path="res://assets/play.png" type="Texture" id=4]
-[ext_resource path="res://assets/stop.png" type="Texture" id=5]
-[ext_resource path="res://assets/shop.png" type="Texture" id=6]
-[ext_resource path="res://assets/restart.png" type="Texture" id=7]
+[ext_resource path="res://assets/play.png" type="Texture" id=3]
+[ext_resource path="res://assets/stop.png" type="Texture" id=4]
+[ext_resource path="res://assets/shop.png" type="Texture" id=5]
+[ext_resource path="res://assets/restart.png" type="Texture" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -30,13 +36,6 @@ content_margin_top = -1.0
 content_margin_bottom = -1.0
 
 [sub_resource type="StyleBoxEmpty" id=5]
-
-content_margin_left = -1.0
-content_margin_right = -1.0
-content_margin_top = -1.0
-content_margin_bottom = -1.0
-
-[sub_resource type="StyleBoxEmpty" id=1]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -164,7 +163,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 1 )
 expand = true
-stretch_mode = 0
+stretch_mode = 4
 script = ExtResource( 2 )
 _sections_unfolded = [ "Rect", "Visibility" ]
 
@@ -177,55 +176,46 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="sign" type="Sprite" parent="." index="1"]
-
-position = Vector2( 585.2, 46 )
-scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 3 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Play" type="Button" parent="." index="2"]
+[node name="Play" type="Button" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 489.0
-margin_top = 9.0
-margin_right = 591.0
-margin_bottom = 105.0
-rect_scale = Vector2( 0.68, 0.68 )
+margin_left = 436.0
+margin_top = -5.0
+margin_right = 538.0
+margin_bottom = 91.0
 rect_pivot_offset = Vector2( 0, 0 )
 focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/focus = SubResource( 4 )
-custom_styles/disabled = SubResource( 5 )
-custom_styles/normal = SubResource( 1 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-icon = ExtResource( 4 )
+icon = ExtResource( 3 )
 flat = false
 align = 1
 _sections_unfolded = [ "Material", "Rect", "Textures", "Visibility", "custom_styles" ]
 
-[node name="Stop" type="Button" parent="." index="3"]
+[node name="Stop" type="Button" parent="." index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 558.0
-margin_top = 9.0
-margin_right = 660.0
-margin_bottom = 105.0
-rect_scale = Vector2( 0.7, 0.7 )
+margin_left = 521.0
+margin_top = -5.0
+margin_right = 623.0
+margin_bottom = 91.0
 rect_pivot_offset = Vector2( 0, 0 )
 focus_mode = 2
 mouse_filter = 0
@@ -241,22 +231,21 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-icon = ExtResource( 5 )
+icon = ExtResource( 4 )
 flat = false
 align = 1
 _sections_unfolded = [ "Material", "Rect", "Textures", "Visibility", "custom_styles" ]
 
-[node name="Shop" type="Button" parent="." index="4"]
+[node name="Shop" type="Button" parent="." index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 632.0
-margin_top = 9.0
-margin_right = 734.0
-margin_bottom = 105.0
-rect_scale = Vector2( 0.7, 0.7 )
+margin_left = 597.0
+margin_top = -5.0
+margin_right = 699.0
+margin_bottom = 91.0
 rect_pivot_offset = Vector2( 0, 0 )
 focus_mode = 2
 mouse_filter = 0
@@ -272,22 +261,21 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-icon = ExtResource( 6 )
+icon = ExtResource( 5 )
 flat = false
 align = 1
 _sections_unfolded = [ "Material", "Rect", "Textures", "Visibility", "custom_styles" ]
 
-[node name="Reset" type="Button" parent="." index="5"]
+[node name="Reset" type="Button" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 1034.0
-margin_top = 9.0
-margin_right = 1136.0
-margin_bottom = 105.0
-rect_scale = Vector2( 0.8, 0.8 )
+margin_left = 680.0
+margin_top = -2.0
+margin_right = 782.0
+margin_bottom = 94.0
 rect_pivot_offset = Vector2( 0, 0 )
 focus_mode = 2
 mouse_filter = 0
@@ -303,7 +291,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-icon = ExtResource( 7 )
+icon = ExtResource( 6 )
 flat = false
 align = 1
 _sections_unfolded = [ "Material", "Rect", "Textures", "Visibility", "custom_styles" ]
