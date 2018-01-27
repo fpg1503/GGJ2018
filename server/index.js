@@ -37,6 +37,7 @@ app.get('/levels/:id', (req, res) => {
 })
 
 app.post('/levels/:id', (req, res) => {
+  console.log(req.body)
   map = req.body
   res.statusCode = 201
   res.send()
