@@ -1,10 +1,31 @@
-const http = require('http')
-const port = process.env.port || 80
+const express = require('express')
+const port = process.env.port || 3000
 
-const server = http.createServer((req, res) => {
-  res.writeHead(200, {'Content-Type': 'text/plain'})
-  res.end('Hello World\n')
+const app = express()
+
+app.get('/', (req, res) => {
+  res.json({levels: 3})
 })
 
-server.listen(port)
-console.log(`Server running at http://localhost:${port}/`)
+app.get('/levels', (req, res) => {
+  res.json([
+    { level: 1, name: 'First' },
+    { level: 2, map: 'Second' }
+  ])
+})
+
+app.get('/levels/:id', (req, res) => {
+  res.json({
+    level: req.params.id,
+    name: 'foo',
+    map: 'TODO'
+  })
+})
+
+app.post('/levels/:id', (req, res) => {
+  //TODO!
+  res.statusCode = 201
+  res.send()
+})
+
+app.listen(port, () => console.log(`Listening on port ${port}!`))
