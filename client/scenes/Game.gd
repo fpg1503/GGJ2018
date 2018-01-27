@@ -5,6 +5,5 @@ extends Control
 # var b = "textvar"
 
 func _ready():
-	print("OIFUAFU")
 	$Grid.set_grid("stage1")
 	pass
