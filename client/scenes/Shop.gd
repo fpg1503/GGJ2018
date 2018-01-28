@@ -9,17 +9,32 @@ enum Items { ITEM_BOX, ITEM_TRAP, ITEM_TURRET }
 const ITEM_DETAILS = {
 	ITEM_BOX: {
 		'price': 5,
-		'name': 'Box'
+		'name': 'Box',
+		'asset': preload("res://assets/tile/tile_crate.png")
 	},
 	ITEM_TRAP: {
 		'price': 3,
-		'name': 'Trap'
+		'name': 'Trap',
+		'asset': preload("res://assets/tile/tile_trap.png")
 	},
 	ITEM_TURRET: {
 		'price': 10,
-		'name': 'Turret'
+		'name': 'Turret',
+		'asset': preload("res://assets/tile/tile_gun.png")
 	}
 }
+
+func get_price(item):
+	return get_generic(item, 'price')
+
+func get_name(item):
+	return get_generic(item, 'name')
+	
+func get_asset(item):
+	return get_generic(item, 'asset')
+	
+func get_generic(item, prop):
+	return ITEM_DETAILS[item][prop]
 
 func enter():
 	tween.interpolate_property(self, "rect_position", rect_position, Vector2(rect_position.x, 0), 1.0, Tween.TRANS_CUBIC, Tween.EASE_OUT)

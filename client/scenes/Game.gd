@@ -72,7 +72,7 @@ func _on_hud_reset():
 	load_original_grid()
 
 func _on_shop(item):
-	$Follow.texture = global.SHOP_ICONS[$Shop.ITEM_DETAILS[item].name]
+	$Follow.texture = $Shop.get_asset(item)
 	$Follow.active = true
 	follow_type = item
 
@@ -81,10 +81,10 @@ func _on_shop_back():
 	$Hud.enter()
 
 func _on_place_item(pos):
-	if $Grid.insert($Shop.ITEM_DETAILS[follow_type].name, pos.x, pos.y):
-		current_map.append({'type': $Shop.ITEM_DETAILS[follow_type].name, 'x': pos.x, 'y': pos.y})
+	if $Grid.insert($Shop.get_name(follow_type), pos.x, pos.y):
+		current_map.append({'type': $Shop.get_name(follow_type), 'x': pos.x, 'y': pos.y})
 	else:
-		global.coins += $Shop.ITEM_DETAILS[follow_type].price
+		global.coins += $Shop.get_price(follow_type)
 		$Shop.update_text()
 
 func _ready():
