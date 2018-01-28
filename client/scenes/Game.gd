@@ -15,6 +15,11 @@ onready var level_loaded = false
 onready var time_is_up = false
 onready var timer = Timer.new()
 
+onready var level_sent = false
+onready var send_time_is_up = false
+onready var send_timer = Timer.new()
+
+
 func load_original_grid():
 	current_map = original_map.duplicate()
 	load_grid(current_map)
@@ -54,7 +59,8 @@ func sendGridToServer():
 		var y = position.y / global.TILE_SIZE.y
 		if child.has_method('get_type'):
 			map.append({'x': x, 'y': y, 'type': child.get_type()})
-			
+	
+	var userId = OS.get_unique_id()
 	Server.save_level(1, map, 'test_user', map_id)
 
 func _on_won():
@@ -142,6 +148,29 @@ func hide_loading():
 	if time_is_up:
 		print('Level loaded after timeout')
 		show_loaded_map()
+		
+func show_seding():
+	add_child(send_timer)
+	send_timer.wait_time = 3
+	send_timer.one_shot = true
+	send_timer.connect('timeout', self, '_on_timeout_send')
+	send_timer.start()
+	$Sending.show()
+
+func _on_timeout_send():
+	if level_sent:
+		print('Timeout and level saved!')
+		# TODO
+	else:
+		print('Timeout, level is not yet saved')
+		send_time_is_up = true
+
+func hide_sending():
+	level_sent = true
+	print('Level finished sending')
+	if send_time_is_up:
+		print('Level sent after timeout')
+		# TODO
 
 func _input(event):
 	if event.as_text() == 'S' and event.is_pressed() and not event.is_echo():
