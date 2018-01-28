@@ -30,8 +30,8 @@ func fetch_levels():
 	_last_request = GET_LEVELS
 	return client.get(url)
 	
-func fetch_level(level):
-	var url = base_url + '/levels/' + str(level)
+func fetch_level(level, user):
+	var url = base_url + '/levels/' + str(level) + '?userName=' + str(user)
 	_last_request = GET_LEVEL_INFO
 	return client.get(url)
 	

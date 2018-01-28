@@ -20,7 +20,7 @@ use_filter = false
 font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Sending" type="Node2D" index="0"]
+[node name="Sending" type="Node2D"]
 
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
