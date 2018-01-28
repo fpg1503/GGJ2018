@@ -14,6 +14,11 @@ const ACTORS = {
 "Trapdoor": preload("res://scenes/actors/Trapdoor.tscn"),
 }
 
+const MUSIC = {
+"boot_camp": preload("res://assets/boot_camp.ogg"),
+"spy_time": preload("res://assets/spy_time.ogg"),
+}
+
 const STAGES = {
 "stage1": preload("res://scenes/tilemap/Stage1.tscn"),
 }
