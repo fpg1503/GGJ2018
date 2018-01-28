@@ -73,4 +73,10 @@ func _ready():
 	$Trap.connect("button_down", self, "_on_trap")
 	$Turret.connect("button_down", self, "_on_turret")
 	$Back.connect("button_down", self, "_on_back")
+	
+	$BoxPrice.text = 'Price: ' + str(get_price(ITEM_BOX))
+	$TrapPrice.text = 'Price: ' + str(get_price(ITEM_TRAP))
+	$TurretPrice.text = 'Price: ' + str(get_price(ITEM_TURRET))
+	$TurretPrice.text = 'Price: ' + str(get_price(ITEM_TURRET))
+	
 	update_text()

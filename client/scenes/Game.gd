@@ -8,11 +8,11 @@ onready var won = false
 onready var map_id = null
 onready var follow_type = null
 
-onready var original_map = null
-onready var current_map = null
+onready var original_map = []
+onready var current_map = []
 
 func load_original_grid():
-	current_map = original_map
+	current_map = original_map.duplicate()
 	load_grid(current_map)
 
 func load_grid(grid):
@@ -104,7 +104,7 @@ func _ready():
 	Server.fetch_level(1)
 #	$Grid.set_grid('stage1')
 #	$Grid.start_game()
-	
+
 	Server.connect('level_fetched', self, 'level_fetched')
 	
 	state = GAME_STATE.PLAYING
