@@ -18,11 +18,6 @@ const STAGES = {
 "stage1": preload("res://scenes/tilemap/Stage1.tscn"),
 }
 
-const SHOP_ICONS = {
-"trap": preload("res://assets/tile/tile_trap.png"),
-"box": preload("res://assets/tile/tile_crate.png"),
-}
-
 const FACES = [
 preload("res://assets/faces/layersdude-3.png"),
 preload("res://assets/faces/layersdude-4.png"),

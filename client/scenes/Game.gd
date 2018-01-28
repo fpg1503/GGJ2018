@@ -6,7 +6,7 @@ onready var current_stage = 0
 onready var state = GAME_STATE.SETTING_UP setget set_state
 onready var won = false
 onready var map_id = null
-onready var follow_type = ""
+onready var follow_type = null
 
 onready var original_map = null
 onready var current_map = null
@@ -70,23 +70,20 @@ func _on_hud_shop():
 func _on_hud_reset():
 	load_original_grid()
 
-func _on_shop_box():
-	pass
-
-func _on_shop_trap():
-	$Follow.texture = global.SHOP_ICONS.trap
+func _on_shop(item):
+	$Follow.texture = $Shop.get_asset(item)
 	$Follow.active = true
-	follow_type = "Trap"
+	follow_type = item
 
 func _on_shop_back():
 	$Shop.exit()
 	$Hud.enter()
 
 func _on_place_item(pos):
-	if $Grid.insert(follow_type, pos.x, pos.y):
-		current_map.append({'type': follow_type, 'x': pos.x, 'y': pos.y})
+	if $Grid.insert($Shop.get_name(follow_type), pos.x, pos.y):
+		current_map.append({'type': $Shop.get_name(follow_type), 'x': pos.x, 'y': pos.y})
 	else:
-		global.coins += 3 if follow_type == 'Trap' else 5
+		global.coins += $Shop.get_price(follow_type)
 		$Shop.update_text()
 
 func _ready():
@@ -99,8 +96,7 @@ func _ready():
 	$Hud.connect("shop", self, "_on_hud_shop")
 	$Hud.connect("reset", self, "_on_hud_reset")
 	
-	$Shop.connect("shop_box", self, "_on_shop_box")
-	$Shop.connect("shop_trap", self, "_on_shop_trap")
+	$Shop.connect("shop", self, "_on_shop")
 	$Shop.connect("shop_back", self, "_on_shop_back")
 	
 	$Follow.connect("place_item", self, "_on_place_item")
