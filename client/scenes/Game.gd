@@ -36,7 +36,7 @@ func level_fetched(error, level, grid_info, map_id):
 	self.map_id = map_id
 	original_map = grid_info
 	load_original_grid()
-	
+	$Loading.hide()
 	$Grid.start_game()
 	
 func sendGridToServer():
@@ -104,6 +104,7 @@ func _ready():
 	$Follow.connect("place_item", self, "_on_place_item")
 	
 	Server.fetch_level(1)
+	$Loading.show()
 #	$Grid.set_grid('stage1')
 #	$Grid.start_game()
 
