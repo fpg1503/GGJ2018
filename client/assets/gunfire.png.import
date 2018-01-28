@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
+path="res://.import/gunfire.png-c5e3bd3b7071841ecabed13fdb79fc9d.stex"
 
 [deps]
 
-source_file="res://icon.png"
-source_md5="d5faefcbece5c610494fe5a064a616d5"
+source_file="res://assets/gunfire.png"
+source_md5="6c015f1c838fe1c6c956d935851ba63f"
 
-dest_files=[ "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex" ]
-dest_md5="37ec8510e3b4d987f55e48f62d53625e"
+dest_files=[ "res://.import/gunfire.png-c5e3bd3b7071841ecabed13fdb79fc9d.stex" ]
+dest_md5="6d8cbd5e1c37503c73da838cc67ba016"
 
 [params]
 

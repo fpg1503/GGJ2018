@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
+path="res://.import/CRTFrame.png-15f917f7e0000080a0887f4b0af6fb18.stex"
 
 [deps]
 
-source_file="res://icon.png"
-source_md5="d5faefcbece5c610494fe5a064a616d5"
+source_file="res://CRTViewportDisplay/CRTFrame.png"
+source_md5="df84d0e7c378fc804ee71ab344da073a"
 
-dest_files=[ "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex" ]
-dest_md5="37ec8510e3b4d987f55e48f62d53625e"
+dest_files=[ "res://.import/CRTFrame.png-15f917f7e0000080a0887f4b0af6fb18.stex" ]
+dest_md5="1a94df3d4e5bfe9a966b0b9368f408a8"
 
 [params]
 

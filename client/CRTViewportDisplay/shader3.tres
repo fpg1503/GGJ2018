@@ -1,0 +1,95 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+
+code = "shader_type canvas_item;
+uniform float screen_width = 1024;
+uniform float screen_height = 600;
+// Curvature
+uniform float BarrelPower = 1.1;
+// Color bleeding
+uniform float color_bleeding = 1.2;
+uniform float bleeding_range_x = 3;
+uniform float bleeding_range_y = 3;
+// Scanline
+uniform float lines_distance = 3.0;
+uniform float scan_size = 1.0;
+uniform float scanline_alpha = 0.9;
+uniform float lines_velocity = -.0;
+
+// Scanline function
+vec4 get_color_scanline(vec2 uv, vec4 c, float time){
+	float line_row = floor((uv.y * screen_height/scan_size) + mod(time*lines_velocity, lines_distance));
+
+	float n = 1.0 - ceil((mod(line_row,lines_distance)/lines_distance));
+
+	c = c - n*c*(1.0 - scanline_alpha);
+	c.a = 1.0;
+	return c;
+}
+
+// Color bleeding function
+
+vec4 get_color_bleeding(sampler2D text, vec2 uv){
+	float pixel_size_x = 1.0/screen_width*bleeding_range_x;
+	float pixel_size_y = 1.0/screen_height*bleeding_range_y;
+	vec4 color_left = texture(text, uv - vec2(pixel_size_x, pixel_size_y));
+	vec4 current_color = texture(text, uv);
+	
+	current_color = current_color*vec4(color_bleeding,0.5,1.0-color_bleeding,1);
+	color_left = color_left*vec4(1.0-color_bleeding,0.5,color_bleeding,1);
+	
+	return (current_color + color_left);
+}
+
+
+// Curvature function
+vec2 distort(vec2 p) {
+	float angle = p.y / p.x;
+	
+	float theta = atan(angle);
+	float radius = length(p);
+	radius = pow(radius, BarrelPower);
+	
+	p.x = radius * cos(theta);
+	p.y = radius * sin(theta);
+	
+	return 0.5 * (p + vec2(1.0,1.0));
+}
+
+void fragment(){
+	// Setup curvature, than Color bleeding and finally scanline
+	vec2 xy = 2.0*SCREEN_UV;
+//	vec2 xy = 2.0* UV;
+	xy.x = xy.x-1.0;
+	xy.y = xy.y-1.0;
+	float d = length(xy);
+	if(d < 1.0){
+		xy = distort(SCREEN_UV);
+//		xy = vec2(0.0, 0.0)
+	}
+	else{
+		xy = SCREEN_UV;
+	}
+	
+	COLOR = texture(TEXTURE, xy);
+//	vec4 c = get_color_bleeding(TEXTURE, xy);
+//	COLOR = get_color_scanline(xy,c, TIME);
+}"
+
+[resource]
+
+render_priority = 0
+shader = SubResource( 1 )
+shader_param/screen_width = 1200.0
+shader_param/screen_height = 600.0
+shader_param/BarrelPower = 1.05
+shader_param/color_bleeding = 1.0
+shader_param/bleeding_range_x = 1.0
+shader_param/bleeding_range_y = 2.0
+shader_param/lines_distance = 2.0
+shader_param/scan_size = 1.0
+shader_param/scanline_alpha = 0.9
+shader_param/lines_velocity = 1.0
+_sections_unfolded = [ "shader_param" ]
+

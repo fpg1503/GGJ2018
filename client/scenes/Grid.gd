@@ -25,6 +25,9 @@ func reset_grid():
 	
 
 func insert(type, x, y):
+	if (x < 0 or x >= global.MAP_SIZE.x or y < 0 or y > global.MAP_SIZE.y):
+		return false
+	
 	if global.ACTORS.has(type):
 		if gridmap.has(Vector2(x, y)) or traps.has(Vector2(x, y)):
 			return false
@@ -99,6 +102,8 @@ func _on_player_move(vec2):
 	
 	if (traps.has(to) and traps[to].type == "Trap"):
 		player.destroy()
+	elif (traps.has(to) and traps[to].type == "Trapdoor"):
+		player.won = true
 
 
 func _ready():

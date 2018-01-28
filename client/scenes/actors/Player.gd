@@ -8,6 +8,7 @@ onready var raising = false
 onready var left = true
 
 onready var end = false
+onready var won = false
 
 func fall(y):
 	invencible = true
@@ -17,6 +18,10 @@ func fall(y):
 	tweenIntro.interpolate_property(self, "position", position, Vector2(position.x, y), 2,Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 	
 	tweenIntro.start()
+
+func _movement_completed(obj, prop):
+	if (is_destroyed == false and won == true):
+		$AnimationPlayer.play("won")
 
 func _child_on_tween_completed(obj, prop):
 	if (end):
@@ -28,6 +33,10 @@ func _child_on_tween_completed(obj, prop):
 		end = true
 		get_parent().emit_signal("lost")
 
+func _on_animation_finished(name):
+	if (name == "won"):
+		get_parent().emit_signal("won")
+
 func _on_destroyed():
 	tweenIntro.interpolate_property($Sprite, "rotation_degrees", rotation_degrees, -90, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tweenIntro.interpolate_property(self, "position", position, Vector2(position.x, position.y + 30), 0.5, Tween.TRANS_ELASTIC,Tween.EASE_OUT_IN)
@@ -35,6 +44,7 @@ func _on_destroyed():
 
 func _ready():
 	add_child(tweenIntro)
+	$AnimationPlayer.connect("animation_finished", self, "_on_animation_finished")
 	
 	swipe.connect("swipe", self, "_on_swipe")
 	
@@ -42,6 +52,7 @@ func _ready():
 	$Sprite/Face.texture = global.FACES[int(randf() * global.FACES.size())]
 	
 	tweenIntro.connect("tween_completed", self, "_child_on_tween_completed")
+	tween.connect("tween_completed", self, "_movement_completed")
 	connect("destroyed", self, "_on_destroyed")
 	set_process_input(true)
 

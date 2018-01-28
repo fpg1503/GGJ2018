@@ -69,6 +69,8 @@ func _on_hud_shop():
 
 func _on_hud_reset():
 	load_original_grid()
+	global.coins = 10
+	$Shop.update_text()
 
 func _on_shop(item):
 	$Follow.texture = $Shop.get_asset(item)
