@@ -13,6 +13,7 @@ func _process(delta):
 			actor.destroy()
 			if (not $AnimationPlayer.is_playing()):
 				$AnimationPlayer.play("shoot")
+				$Player.play()
 
 func _on_destroyed():
 	$AnimationPlayer.play("destroyed")

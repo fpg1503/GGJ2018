@@ -8,6 +8,8 @@ onready var won = false
 onready var map_id = null
 onready var follow_type = null
 
+onready var ended = false
+
 onready var original_map = []
 onready var current_map = []
 
@@ -66,21 +68,29 @@ func show_loaded_map():
 	$AudioStreamPlayer.play(0.0)
 
 func send_grid_to_server():
-	var map = []
-	for child in $Grid.get_children():
-		var position = child.get_position()
-		var x = position.x / global.TILE_SIZE.x
-		var y = position.y / global.TILE_SIZE.y
-		if child.has_method('get_type'):
-			map.append({'x': x, 'y': y, 'type': child.get_type()})
+#	var map = []
+#	for child in $Grid.get_children():
+#		var position = child.get_position()
+#		var x = position.x / global.TILE_SIZE.x
+#		var y = position.y / global.TILE_SIZE.y
+#		if child.has_method('get_type'):
+#			map.append({'x': x, 'y': y, 'type': child.get_type()})
 	var user = UserIdentifier.get_unique_id()
-	Server.save_level(1, map, user, map_id)
+	Server.save_level(1, current_map, user, map_id)
 
 func _on_won():
-	set_state(GAME_STATE.CREATING)
+	$WonPlayer.play()
+	if(state == GAME_STATE.TESTING):
+		$Hud.exit()
+		$Grid.hide()
+		send_grid_to_server()
+		show_seding()
+	else:
+		set_state(GAME_STATE.CREATING)
 
 func _on_lost():
 	set_state(GAME_STATE.CREATING)
+	$LostPlayer.play()	
 
 func _on_hud_play():
 	set_state(GAME_STATE.TESTING)
@@ -132,13 +142,19 @@ func _on_place_item(pos):
 					_delete_on_pos(tile)
 	
 	elif $Grid.insert($Shop.get_name(follow_type), pos.x, pos.y):
+		$PopPlayer.play()
 		current_map.append({'type': $Shop.get_name(follow_type), 'x': pos.x, 'y': pos.y})
 	else:
 		global.coins += $Shop.get_price(follow_type)
 		$Shop.update_text()
 
+func _on_level_saved(err):
+	hide_sending()
+
 func _ready():
 	set_process_input(true)
+	Server.connect("level_saved", self, "_on_level_saved")
+	
 	$Grid.connect("won", self, "_on_won")
 	$Grid.connect("lost", self, "_on_lost")
 	
@@ -196,7 +212,8 @@ func show_seding():
 func _on_timeout_send():
 	if level_sent:
 		print('Timeout and level saved!')
-		# TODO
+		$Sending/Label.text = "Click to play again!"
+		ended = true
 	else:
 		print('Timeout, level is not yet saved')
 		send_time_is_up = true
@@ -209,6 +226,8 @@ func hide_sending():
 		# TODO
 
 func _input(event):
+	if ended and event.is_pressed():
+		get_tree().change_scene("res://scenes/Game.tscn")
 	if event.as_text() == 'S' and event.is_pressed() and not event.is_echo():
 		print('Sending to server!')
 		# TODO: Send grid after being tested by user

@@ -69,6 +69,7 @@ func _on_bomb():
 func shop(item):
 	var details = ITEM_DETAILS[item]
 	if global.coins >= details.price:
+		$PickPlayer.play()
 		emit_signal('shop', item)
 		global.coins -= details.price
 		update_text()

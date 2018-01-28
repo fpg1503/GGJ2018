@@ -2,6 +2,7 @@
 
 [ext_resource path="res://scenes/actors/Box.gd" type="Script" id=1]
 [ext_resource path="res://assets/crate.png" type="Texture" id=2]
+[ext_resource path="res://assets/audio/box_drag.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -97,5 +98,13 @@ playback_speed = 1.0
 anims/destroyed = SubResource( 2 )
 blend_times = [  ]
 autoplay = ""
+
+[node name="Player" type="AudioStreamPlayer" parent="." index="3"]
+
+stream = ExtResource( 3 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 

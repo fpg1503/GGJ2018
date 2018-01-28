@@ -3,6 +3,7 @@
 [ext_resource path="res://scenes/actors/Turret.gd" type="Script" id=1]
 [ext_resource path="res://assets/gun.png" type="Texture" id=2]
 [ext_resource path="res://assets/gunfire.png" type="Texture" id=3]
+[ext_resource path="res://assets/audio/turret.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -156,5 +157,13 @@ scale = Vector2( 0.134112, 0.134112 )
 texture = ExtResource( 3 )
 offset = Vector2( -248.822, -2.53779 )
 _sections_unfolded = [ "Offset", "Transform", "Visibility" ]
+
+[node name="Player" type="AudioStreamPlayer" parent="." index="5"]
+
+stream = ExtResource( 4 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 
