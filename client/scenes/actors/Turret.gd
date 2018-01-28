@@ -9,6 +9,8 @@ func _process(delta):
 			actor = actor.get_parent()
 		if (actor and actor.type == "Player"):
 			actor.destroy()
+			if (not $AnimationPlayer.is_playing()):
+				$AnimationPlayer.play("shoot")
 
 func _ready():
 	type = "Turret"

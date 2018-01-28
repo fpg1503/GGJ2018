@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 35.2499, 41.194 )
 
-[node name="Box" type="Node2D" index="0"]
+[node name="Box" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Z Index" ]
@@ -53,6 +53,7 @@ audio_bus_name = "Master"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
 position = Vector2( -0.464104, 6.82743 )
+rotation = 0.00131667
 shape = SubResource( 1 )
 
 
