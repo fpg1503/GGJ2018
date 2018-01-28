@@ -72,7 +72,9 @@ func _on_hud_reset():
 	load_original_grid()
 
 func _on_shop_box():
-	pass
+	$Follow.texture = global.SHOP_ICONS.box
+	$Follow.active = true
+	follow_type = "Box"
 
 func _on_shop_trap():
 	$Follow.texture = global.SHOP_ICONS.trap
