@@ -71,15 +71,10 @@ func _on_hud_shop():
 func _on_hud_reset():
 	load_original_grid()
 
-func _on_shop_box():
-	$Follow.texture = global.SHOP_ICONS.box
+func _on_shop(item):
+	$Follow.texture = global.SHOP_ICONS[item]
 	$Follow.active = true
-	follow_type = "Box"
-
-func _on_shop_trap():
-	$Follow.texture = global.SHOP_ICONS.trap
-	$Follow.active = true
-	follow_type = "Trap"
+	follow_type = item
 
 func _on_shop_back():
 	$Shop.exit()
@@ -102,9 +97,7 @@ func _ready():
 	$Hud.connect("shop", self, "_on_hud_shop")
 	$Hud.connect("reset", self, "_on_hud_reset")
 	
-	$Shop.connect("shop_box", self, "_on_shop_box")
-	$Shop.connect("shop_trap", self, "_on_shop_trap")
-	$Shop.connect("shop_back", self, "_on_shop_back")
+	$Shop.connect("shop", self, "_on_shop")
 	
 	$Follow.connect("place_item", self, "_on_place_item")
 	

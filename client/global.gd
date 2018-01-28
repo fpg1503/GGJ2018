@@ -18,8 +18,9 @@ const STAGES = {
 }
 
 const SHOP_ICONS = {
-"trap": preload("res://assets/tile/tile_trap.png"),
-"box": preload("res://assets/tile/tile_crate.png"),
+"Trap": preload("res://assets/tile/tile_trap.png"),
+"Box": preload("res://assets/tile/tile_crate.png"),
+"Turret": preload("res://assets/tile/tile_gun.png")
 }
 
 const FACES = [
