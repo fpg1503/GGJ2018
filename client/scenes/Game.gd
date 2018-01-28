@@ -19,6 +19,7 @@ onready var level_sent = false
 onready var send_time_is_up = false
 onready var send_timer = Timer.new()
 
+const UserIdentifier = preload("res://UserIdentifier.gd")
 
 func load_original_grid():
 	current_map = original_map.duplicate()
@@ -59,8 +60,6 @@ func sendGridToServer():
 		var y = position.y / global.TILE_SIZE.y
 		if child.has_method('get_type'):
 			map.append({'x': x, 'y': y, 'type': child.get_type()})
-	
-	var userId = OS.get_unique_id()
 	Server.save_level(1, map, 'test_user', map_id)
 
 func _on_won():
@@ -116,6 +115,8 @@ func _ready():
 	
 	$Follow.connect("place_item", self, "_on_place_item")
 	
+	var id = UserIdentifier.get_unique_id()
+	print(id)
 	Server.fetch_level(1)
 	show_loading()
 	
