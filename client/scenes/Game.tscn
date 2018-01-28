@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Grid.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/map.png" type="Texture" id=3]
 [ext_resource path="res://scenes/Hud.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Shop.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Follow.tscn" type="PackedScene" id=6]
 
-[node name="Game" type="Control"]
+[node name="Game" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -50,5 +51,7 @@ margin_bottom = 0.0
 
 margin_top = -93.0
 margin_bottom = 0.0
+
+[node name="Follow" parent="." index="4" instance=ExtResource( 6 )]
 
 

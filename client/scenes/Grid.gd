@@ -27,6 +27,8 @@ func reset_grid():
 
 func insert(type, x, y):
 	if global.ACTORS.has(type):
+		if gridmap.has(Vector2(x, y)) or traps.has(Vector2(x, y)):
+			return false
 		var dic_to_add = traps if type == 'Trap' else gridmap
 		var element = global.ACTORS[type].instance()
 		element.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
@@ -41,10 +43,13 @@ func insert(type, x, y):
 			player = element
 			starting_y = y*global.TILE_SIZE.y
 			element.connect("move", self, "_on_player_move")
+		return true
 	elif len(type) > 0:
 		print('Unsupported element: ' + type + '(' + str(x) + ',' + str(y) + ')')
+		return false
 	else:
 		print('Attempted to deserialize unnamed type')
+		return false
 
 func set_grid(stage):
 	reset_grid()

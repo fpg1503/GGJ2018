@@ -3,6 +3,8 @@ extends Node
 const TILE_SIZE = Vector2(80, 60)
 const MAP_SIZE = Vector2(14,8)
 
+onready var coins = 10
+
 const ACTORS = {
 "Box": preload("res://scenes/actors/Box.tscn"),
 "Player": preload("res://scenes/actors/Player.tscn"),
@@ -13,6 +15,11 @@ const ACTORS = {
 
 const STAGES = {
 "stage1": preload("res://scenes/tilemap/Stage1.tscn"),
+}
+
+const SHOP_ICONS = {
+"trap": preload("res://assets/tile/tile_trap.png"),
+"box": preload("res://assets/tile/tile_crate.png"),
 }
 
 const FACES = [
