@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Grid.tscn" type="PackedScene" id=2]
@@ -8,8 +8,11 @@
 [ext_resource path="res://Follow.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Loading.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Sending.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/audio/yay.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/audio/die.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/audio/put_item.wav" type="AudioStream" id=11]
 
-[node name="Game" type="Control" index="0"]
+[node name="Game" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -67,6 +70,30 @@ visible = false
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="7"]
 
 stream = null
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="WonPlayer" type="AudioStreamPlayer" parent="." index="8"]
+
+stream = ExtResource( 9 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="LostPlayer" type="AudioStreamPlayer" parent="." index="9"]
+
+stream = ExtResource( 10 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="PopPlayer" type="AudioStreamPlayer" parent="." index="10"]
+
+stream = ExtResource( 11 )
 volume_db = 0.0
 autoplay = false
 mix_target = 0

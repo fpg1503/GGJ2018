@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/actors/Box.gd" type="Script" id=1]
 [ext_resource path="res://assets/crate.png" type="Texture" id=2]
+[ext_resource path="res://assets/audio/box_drag.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -55,5 +56,13 @@ audio_bus_name = "Master"
 position = Vector2( -0.464104, 6.82743 )
 rotation = 0.00131667
 shape = SubResource( 1 )
+
+[node name="Player" type="AudioStreamPlayer" parent="." index="3"]
+
+stream = ExtResource( 3 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 

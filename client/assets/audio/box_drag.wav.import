@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/box_drag.wav-a4bf962ba6dd8716b9a311cd28f9dde3.sample"
+
+[deps]
+
+source_file="res://assets/audio/box_drag.wav"
+source_md5="d319b0e692836c365dad32f035a0cf97"
+
+dest_files=[ "res://.import/box_drag.wav-a4bf962ba6dd8716b9a311cd28f9dde3.sample" ]
+dest_md5="425eed3d0a1021bfe96af6a786c38884"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -78,9 +78,11 @@ func send_grid_to_server():
 
 func _on_won():
 	set_state(GAME_STATE.CREATING)
+	$WonPlayer.play()
 
 func _on_lost():
 	set_state(GAME_STATE.CREATING)
+	$LostPlayer.play()	
 
 func _on_hud_play():
 	set_state(GAME_STATE.TESTING)
@@ -108,6 +110,7 @@ func _on_shop_back():
 	$Hud.enter()
 
 func _on_place_item(pos):
+	$PopPlayer.play()
 	if $Grid.insert($Shop.get_name(follow_type), pos.x, pos.y):
 		current_map.append({'type': $Shop.get_name(follow_type), 'x': pos.x, 'y': pos.y})
 	else:

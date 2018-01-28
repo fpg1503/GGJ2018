@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/die.wav-087ffdeea77da2d281dd49bf11cf0272.sample"
+
+[deps]
+
+source_file="res://assets/audio/die.wav"
+source_md5="c046d0c14f5f8cff84cd7c3cc15cd0c5"
+
+dest_files=[ "res://.import/die.wav-087ffdeea77da2d281dd49bf11cf0272.sample" ]
+dest_md5="dc9eda53276f9d972f9718913df5b456"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

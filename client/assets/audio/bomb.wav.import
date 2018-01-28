@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bomb.wav-0150827637f32fd1dc64d3139e54a627.sample"
+
+[deps]
+
+source_file="res://assets/audio/bomb.wav"
+source_md5="72dfe32afd4a33522fbd22ca1f8497a8"
+
+dest_files=[ "res://.import/bomb.wav-0150827637f32fd1dc64d3139e54a627.sample" ]
+dest_md5="c154b30fb9c8b935991318b9484360e1"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
