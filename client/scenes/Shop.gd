@@ -5,7 +5,7 @@ onready var tween = $Tween
 signal shop
 signal shop_back
 
-enum Items { ITEM_BOX, ITEM_TRAP, ITEM_TURRET }
+enum Items { ITEM_BOX, ITEM_TRAP, ITEM_TURRET, ITEM_BOMB }
 const ITEM_DETAILS = {
 	ITEM_BOX: {
 		'price': 5,
@@ -21,6 +21,11 @@ const ITEM_DETAILS = {
 		'price': 10,
 		'name': 'Turret',
 		'asset': preload("res://assets/tile/tile_gun.png")
+	},
+	ITEM_BOMB: {
+		'price': 4,
+		'name': 'Bomb',
+		'asset': preload("res://assets/tile/tile_bomb.png")
 	}
 }
 
@@ -57,7 +62,10 @@ func _on_trap():
 
 func _on_turret():
 	shop(ITEM_TURRET)
-		
+
+func _on_bomb():
+	shop(ITEM_BOMB)
+
 func shop(item):
 	var details = ITEM_DETAILS[item]
 	if global.coins >= details.price:
@@ -73,10 +81,12 @@ func _ready():
 	$Trap.connect("button_down", self, "_on_trap")
 	$Turret.connect("button_down", self, "_on_turret")
 	$Back.connect("button_down", self, "_on_back")
+	$Bomb.connect("button_down", self, "_on_bomb")
 	
 	$BoxPrice.text = 'Price: ' + str(get_price(ITEM_BOX))
 	$TrapPrice.text = 'Price: ' + str(get_price(ITEM_TRAP))
 	$TurretPrice.text = 'Price: ' + str(get_price(ITEM_TURRET))
 	$TurretPrice.text = 'Price: ' + str(get_price(ITEM_TURRET))
+	$BombPrice.text = 'Price: ' + str(get_price(ITEM_BOMB))
 	
 	update_text()

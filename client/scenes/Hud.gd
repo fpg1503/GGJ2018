@@ -50,7 +50,7 @@ func _on_play():
 
 func _on_stop():
 	emit_signal("stop")
-	enable_buttons()
+#	enable_buttons()
 
 func _on_shop():
 	emit_signal("shop")

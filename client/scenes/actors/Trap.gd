@@ -1,5 +1,8 @@
 extends "Actor.gd"
 
+func on_destroyed():
+	$AnimationPlayer.play("destroyed")
+
 func _ready():
 	type = "Trap"
-	pass
+	connect("destroyed", self, "on_destroyed")

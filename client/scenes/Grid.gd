@@ -8,6 +8,7 @@ onready var starting_y = 0
 
 signal won
 signal lost
+signal deleted
 
 func kill_player():
 	player.destroy()

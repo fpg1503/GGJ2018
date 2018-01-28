@@ -35,7 +35,7 @@ func set_state(new_state):
 		$Hud.enter()
 	
 	if (state == PLAYING and new_state == CREATING):
-		$AudioStreamPlayer.stream = global.MUSIC["spy_time"]
+		$AudioStreamPlayer.stream = global.MUSIC["boot_camp"]
 		$AudioStreamPlayer.play(0.0)
 		load_original_grid()
 	elif (state == TESTING and new_state == CREATING):
@@ -62,7 +62,7 @@ func show_loaded_map():
 	$Grid.start_game()
 	set_state(GAME_STATE.PLAYING)
 	
-	$AudioStreamPlayer.stream = global.MUSIC["boot_camp"]
+	$AudioStreamPlayer.stream = global.MUSIC["spy_time"]
 	$AudioStreamPlayer.play(0.0)
 
 func send_grid_to_server():
@@ -84,10 +84,14 @@ func _on_lost():
 
 func _on_hud_play():
 	set_state(GAME_STATE.TESTING)
+	load_grid(current_map)
 	$Grid.start_game()
 
 func _on_hud_stop():
+	if($Grid.player and $Grid.player.falling):
+		return
 	$Grid.kill_player()
+	$Hud.enable_buttons()
 
 func _on_hud_shop():
 	$Shop.enter()
@@ -107,8 +111,27 @@ func _on_shop_back():
 	$Shop.exit()
 	$Hud.enter()
 
+func _delete_on_pos(pos):
+	for item in current_map:
+		print(item)
+		print(pos)
+		if item.x == pos.x and item.y == pos.y:
+			current_map.erase(item)
+			print(current_map.size())
+
 func _on_place_item(pos):
-	if $Grid.insert($Shop.get_name(follow_type), pos.x, pos.y):
+	if (follow_type == $Shop.ITEM_BOMB):
+		for tx in range(3):
+			for ty in range(3):
+				var tile = Vector2(pos.x-1+tx, pos.y-1+ty)
+				if $Grid.gridmap.has(tile) and $Grid.gridmap[tile].type != "Player":
+					$Grid.gridmap[tile].destroy()
+					_delete_on_pos(tile)
+				if $Grid.traps.has(tile) and $Grid.traps[tile].type != "Trapdoor":
+					$Grid.traps[tile].destroy()
+					_delete_on_pos(tile)
+	
+	elif $Grid.insert($Shop.get_name(follow_type), pos.x, pos.y):
 		current_map.append({'type': $Shop.get_name(follow_type), 'x': pos.x, 'y': pos.y})
 	else:
 		global.coins += $Shop.get_price(follow_type)

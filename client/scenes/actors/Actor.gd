@@ -19,7 +19,6 @@ func destroy():
 	
 	is_destroyed = true
 	if(not is_moving):
-		print("destroying")
 		emit_signal("destroyed")
 
 func is_movable():

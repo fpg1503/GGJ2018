@@ -9,7 +9,7 @@
 [ext_resource path="res://Loading.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Sending.tscn" type="PackedScene" id=8]
 
-[node name="Game" type="Control" index="0"]
+[node name="Game" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
