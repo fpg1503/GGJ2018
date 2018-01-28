@@ -6,7 +6,7 @@ onready var current_stage = 0
 onready var state = GAME_STATE.SETTING_UP setget set_state
 onready var won = false
 onready var map_id = null
-onready var follow_type = ""
+onready var follow_type = null
 
 onready var original_map = null
 onready var current_map = null
@@ -72,7 +72,7 @@ func _on_hud_reset():
 	load_original_grid()
 
 func _on_shop(item):
-	$Follow.texture = global.SHOP_ICONS[item]
+	$Follow.texture = global.SHOP_ICONS[$Shop.ITEM_DETAILS[item].name]
 	$Follow.active = true
 	follow_type = item
 
@@ -81,10 +81,10 @@ func _on_shop_back():
 	$Hud.enter()
 
 func _on_place_item(pos):
-	if $Grid.insert(follow_type, pos.x, pos.y):
-		current_map.append({'type': follow_type, 'x': pos.x, 'y': pos.y})
+	if $Grid.insert($Shop.ITEM_DETAILS[follow_type].name, pos.x, pos.y):
+		current_map.append({'type': $Shop.ITEM_DETAILS[follow_type].name, 'x': pos.x, 'y': pos.y})
 	else:
-		global.coins += 3 if follow_type == 'Trap' else 5
+		global.coins += $Shop.ITEM_DETAILS[follow_type].price
 		$Shop.update_text()
 
 func _ready():

@@ -46,7 +46,7 @@ func _on_turret():
 func shop(item):
 	var details = ITEM_DETAILS[item]
 	if global.coins >= details.price:
-		emit_signal('shop', details.name)
+		emit_signal('shop', item)
 		global.coins -= details.price
 		update_text()
 
