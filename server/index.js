@@ -14,19 +14,18 @@ mongoose.connect(mongooseUri)
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
-  res.json({levels: 3})
+  res.json({levels: 1})
 })
 
 app.get('/levels', (req, res) => {
   res.json([
     { level: 1, name: 'First' },
-    { level: 2, map: 'Second' }
   ])
 })
 
 app.get('/levels/:id', (req, res) => {
   Level.findOne(
-    { level: { $eq: req.params.id }},
+    { level: { $eq: req.params.id }, lastEditedBy: { $ne: req.query.userName }},
     { __v: false },
     {sort: { 'lastEditedAt': -1 }})
   .then(result => {

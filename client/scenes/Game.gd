@@ -19,6 +19,7 @@ onready var level_sent = false
 onready var send_time_is_up = false
 onready var send_timer = Timer.new()
 
+const UserIdentifier = preload("res://UserIdentifier.gd")
 
 func load_original_grid():
 	current_map = original_map.duplicate()
@@ -52,10 +53,11 @@ func show_loaded_map():
 	$Loading.hide()
 	load_original_grid()
 	$Grid.start_game()
+
 	$AudioStreamPlayer.stream = global.MUSIC["boot_camp"]
 	$AudioStreamPlayer.play(0.0)
 
-func sendGridToServer():
+func send_grid_to_server():
 	var map = []
 	for child in $Grid.get_children():
 		var position = child.get_position()
@@ -63,9 +65,8 @@ func sendGridToServer():
 		var y = position.y / global.TILE_SIZE.y
 		if child.has_method('get_type'):
 			map.append({'x': x, 'y': y, 'type': child.get_type()})
-	
-	var userId = OS.get_unique_id()
-	Server.save_level(1, map, 'test_user', map_id)
+	var user = UserIdentifier.get_unique_id()
+	Server.save_level(1, map, user, map_id)
 
 func _on_won():
 	set_state(GAME_STATE.CREATING)
@@ -120,7 +121,8 @@ func _ready():
 	
 	$Follow.connect("place_item", self, "_on_place_item")
 	
-	Server.fetch_level(1)
+	var user = UserIdentifier.get_unique_id()
+	Server.fetch_level(1, user)
 	show_loading()
 	
 #	$Grid.set_grid('stage1')
@@ -179,4 +181,5 @@ func hide_sending():
 func _input(event):
 	if event.as_text() == 'S' and event.is_pressed() and not event.is_echo():
 		print('Sending to server!')
-		sendGridToServer()
+		# TODO: Send grid after being tested by user
+		send_grid_to_server()
