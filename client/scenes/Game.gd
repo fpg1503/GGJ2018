@@ -60,7 +60,8 @@ func show_loaded_map():
 	$Loading.hide()
 	load_original_grid()
 	$Grid.start_game()
-
+	set_state(GAME_STATE.PLAYING)
+	
 	$AudioStreamPlayer.stream = global.MUSIC["boot_camp"]
 	$AudioStreamPlayer.play(0.0)
 
@@ -136,9 +137,8 @@ func _ready():
 #	$Grid.start_game()
 
 	Server.connect('level_fetched', self, 'level_fetched')
-	
-	set_state(GAME_STATE.PLAYING)
-	
+
+
 func show_loading():
 	add_child(timer)
 	timer.wait_time = 3
