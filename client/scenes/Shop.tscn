@@ -1,20 +1,30 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/sign.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Shop.gd" type="Script" id=2]
 [ext_resource path="res://assets/tile/tile_crate.png" type="Texture" id=3]
-[ext_resource path="res://assets/tile/tile_trap.png" type="Texture" id=4]
-[ext_resource path="res://assets/gun.png" type="Texture" id=5]
-[ext_resource path="res://assets/next.png" type="Texture" id=6]
-[ext_resource path="res://assets/mariofont.tres" type="DynamicFontData" id=7]
+[ext_resource path="res://assets/mariofont.tres" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/tile/tile_trap.png" type="Texture" id=5]
+[ext_resource path="res://assets/gun.png" type="Texture" id=6]
+[ext_resource path="res://assets/next.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 
+resource_name = "small"
+size = 21
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Font", "Resource", "Settings" ]
+
+[sub_resource type="DynamicFont" id=2]
+
+resource_name = "small"
 size = 50
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 7 )
-_sections_unfolded = [ "Font", "Settings" ]
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Font", "Resource", "Settings" ]
 
 [node name="Shop" type="TextureRect" index="0"]
 
@@ -70,7 +80,29 @@ icon = ExtResource( 3 )
 flat = true
 align = 1
 
-[node name="Trap" type="Button" parent="." index="2"]
+[node name="BoxPrice" type="Label" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 36.0
+margin_right = 261.0
+margin_bottom = 51.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Price: 0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="Trap" type="Button" parent="." index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -91,12 +123,34 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-icon = ExtResource( 4 )
+icon = ExtResource( 5 )
 flat = true
 align = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="Turret" type="Button" parent="." index="3"]
+[node name="TrapPrice" type="Label" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 148.0
+margin_right = 373.0
+margin_bottom = 51.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Price: 0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="Turret" type="Button" parent="." index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -117,12 +171,34 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-icon = ExtResource( 5 )
+icon = ExtResource( 6 )
 flat = true
 align = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="Back" type="Button" parent="." index="4"]
+[node name="TurretPrice" type="Label" parent="." index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 254.0
+margin_right = 479.0
+margin_bottom = 51.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Price: 0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="Back" type="Button" parent="." index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -142,27 +218,27 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-icon = ExtResource( 6 )
+icon = ExtResource( 7 )
 flat = true
 align = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="LabelCoins" type="Label" parent="." index="5"]
+[node name="LabelCoins" type="Label" parent="." index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -308.0
-margin_top = 15.0
-margin_right = -83.0
-margin_bottom = 66.0
+margin_left = -292.0
+margin_top = 19.0
+margin_right = -67.0
+margin_bottom = 70.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "Coins: 0"
 percent_visible = 1.0
