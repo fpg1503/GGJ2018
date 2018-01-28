@@ -11,6 +11,10 @@ onready var follow_type = null
 onready var original_map = []
 onready var current_map = []
 
+onready var level_loaded = false
+onready var time_is_up = false
+onready var timer = Timer.new()
+
 func load_original_grid():
 	current_map = original_map.duplicate()
 	load_grid(current_map)
@@ -35,8 +39,11 @@ func level_fetched(error, level, grid_info, map_id):
 	print('Successfully fetched level ' + str(level))
 	self.map_id = map_id
 	original_map = grid_info
-	load_original_grid()
+	hide_loading()
+	
+func show_loaded_map():
 	$Loading.hide()
+	load_original_grid()
 	$Grid.start_game()
 	
 func sendGridToServer():
@@ -104,13 +111,37 @@ func _ready():
 	$Follow.connect("place_item", self, "_on_place_item")
 	
 	Server.fetch_level(1)
-	$Loading.show()
+	show_loading()
+	
 #	$Grid.set_grid('stage1')
 #	$Grid.start_game()
 
 	Server.connect('level_fetched', self, 'level_fetched')
 	
 	state = GAME_STATE.PLAYING
+	
+func show_loading():
+	add_child(timer)
+	timer.wait_time = 3
+	timer.one_shot = true
+	timer.connect('timeout', self, '_on_timeout')
+	timer.start()
+	$Loading.show()
+
+func _on_timeout():
+	if level_loaded:
+		print('Timeout and level loaded!')
+		show_loaded_map()
+	else:
+		print('Timeout, level is not yet loaded')
+		time_is_up = true
+
+func hide_loading():
+	level_loaded = true
+	print('Level finished loading')
+	if time_is_up:
+		print('Level loaded after timeout')
+		show_loaded_map()
 
 func _input(event):
 	if event.as_text() == 'S' and event.is_pressed() and not event.is_echo():
