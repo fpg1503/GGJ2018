@@ -1,0 +1,18 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/boot_camp.ogg-300b0c250e74bcdb81fc1b591f68def9.oggstr"
+
+[deps]
+
+source_file="res://assets/boot_camp.ogg"
+source_md5="bbb6be2d87731641ab55c56de5ee6341"
+
+dest_files=[ "res://.import/boot_camp.ogg-300b0c250e74bcdb81fc1b591f68def9.oggstr" ]
+dest_md5="43da0012da3617b5b5fcb8b0cdf2b978"
+
+[params]
+
+loop=true
+loop_offset=0

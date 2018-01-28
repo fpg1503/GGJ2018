@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/mariofont.tres" type="DynamicFontData" id=4]
 [ext_resource path="res://assets/tile/tile_trap.png" type="Texture" id=5]
 [ext_resource path="res://assets/gun.png" type="Texture" id=6]
-[ext_resource path="res://assets/next.png" type="Texture" id=7]
+[ext_resource path="res://assets/icon_back.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -204,10 +204,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 346.0
-margin_top = -11.0
-margin_right = 422.0
-margin_bottom = 85.0
+margin_left = 344.0
+margin_right = 436.0
+margin_bottom = 79.0
 rect_pivot_offset = Vector2( 0, 0 )
 focus_mode = 2
 mouse_filter = 0

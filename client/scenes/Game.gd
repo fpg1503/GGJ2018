@@ -35,6 +35,8 @@ func set_state(new_state):
 		$Hud.enter()
 	
 	if (state == PLAYING and new_state == CREATING):
+		$AudioStreamPlayer.stream = global.MUSIC["spy_time"]
+		$AudioStreamPlayer.play(0.0)
 		load_original_grid()
 	elif (state == TESTING and new_state == CREATING):
 		load_grid(current_map)
@@ -58,7 +60,10 @@ func show_loaded_map():
 	$Loading.hide()
 	load_original_grid()
 	$Grid.start_game()
-	
+
+	$AudioStreamPlayer.stream = global.MUSIC["boot_camp"]
+	$AudioStreamPlayer.play(0.0)
+
 func send_grid_to_server():
 	var map = []
 	for child in $Grid.get_children():

@@ -2,14 +2,14 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/spy time.wav-145821b4cd63cdcf275165bcf180b33d.sample"
+path="res://.import/spy_time.wav-275cb9dc2afece6c759616bd1fe8ab56.sample"
 
 [deps]
 
-source_file="res://assets/spy time.wav"
+source_file="res://assets/spy_time.wav"
 source_md5="8c35598706cb86b3282a731b50237b19"
 
-dest_files=[ "res://.import/spy time.wav-145821b4cd63cdcf275165bcf180b33d.sample" ]
+dest_files=[ "res://.import/spy_time.wav-275cb9dc2afece6c759616bd1fe8ab56.sample" ]
 dest_md5="a119bf9743e87c41dba56a82987c726e"
 
 [params]

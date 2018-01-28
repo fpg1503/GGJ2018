@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/map.png-dfba05084e3346587240e6093ee94fb2.stex"
+path="res://.import/tile_gunfire.png-80857e6a877f8830c66bef6e92954527.stex"
 
 [deps]
 
-source_file="res://assets/map.png"
-source_md5="46a25942beb2bec7d196435979f4d742"
+source_file="res://assets/tile/tile_gunfire.png"
+source_md5="9ba3cdcc14b89caf25e2a2fd83654a81"
 
-dest_files=[ "res://.import/map.png-dfba05084e3346587240e6093ee94fb2.stex" ]
-dest_md5="565546d2f790abfbba8e1109c6704def"
+dest_files=[ "res://.import/tile_gunfire.png-80857e6a877f8830c66bef6e92954527.stex" ]
+dest_md5="48038dea7664a6027d06acd74c951136"
 
 [params]
 
