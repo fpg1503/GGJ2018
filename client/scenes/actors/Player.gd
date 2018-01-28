@@ -36,12 +36,33 @@ func _on_destroyed():
 func _ready():
 	add_child(tweenIntro)
 	
+	swipe.connect("swipe", self, "_on_swipe")
+	
 	type = "Player"
 	$Sprite/Face.texture = global.FACES[int(randf() * global.FACES.size())]
 	
 	tweenIntro.connect("tween_completed", self, "_child_on_tween_completed")
 	connect("destroyed", self, "_on_destroyed")
 	set_process_input(true)
+
+func _on_swipe(dir):
+	if (falling or raising):
+		return
+	if(not is_destroyed):
+		if (dir == "left"):
+			emit_signal("move", Vector2(-1,0))
+			if(left):
+				left = false
+				scale.x = -1
+		if (dir == "right"):
+			emit_signal("move", Vector2(1,0))
+			if(not left):
+				left = true
+				scale.x = 1
+		if (dir == "up"):
+			emit_signal("move", Vector2(0,-1))
+		if (dir == "down"):
+			emit_signal("move", Vector2(0,1))
 
 func _input(event):
 	if (falling or raising):
