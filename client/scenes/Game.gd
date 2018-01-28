@@ -11,6 +11,15 @@ onready var follow_type = null
 onready var original_map = []
 onready var current_map = []
 
+onready var level_loaded = false
+onready var time_is_up = false
+onready var timer = Timer.new()
+
+onready var level_sent = false
+onready var send_time_is_up = false
+onready var send_timer = Timer.new()
+
+
 func load_original_grid():
 	current_map = original_map.duplicate()
 	load_grid(current_map)
@@ -35,8 +44,11 @@ func level_fetched(error, level, grid_info, map_id):
 	print('Successfully fetched level ' + str(level))
 	self.map_id = map_id
 	original_map = grid_info
-	load_original_grid()
+	hide_loading()
 	
+func show_loaded_map():
+	$Loading.hide()
+	load_original_grid()
 	$Grid.start_game()
 	
 func sendGridToServer():
@@ -47,7 +59,8 @@ func sendGridToServer():
 		var y = position.y / global.TILE_SIZE.y
 		if child.has_method('get_type'):
 			map.append({'x': x, 'y': y, 'type': child.get_type()})
-			
+	
+	var userId = OS.get_unique_id()
 	Server.save_level(1, map, 'test_user', map_id)
 
 func _on_won():
@@ -104,12 +117,60 @@ func _ready():
 	$Follow.connect("place_item", self, "_on_place_item")
 	
 	Server.fetch_level(1)
+	show_loading()
+	
 #	$Grid.set_grid('stage1')
 #	$Grid.start_game()
 
 	Server.connect('level_fetched', self, 'level_fetched')
 	
 	state = GAME_STATE.PLAYING
+	
+func show_loading():
+	add_child(timer)
+	timer.wait_time = 3
+	timer.one_shot = true
+	timer.connect('timeout', self, '_on_timeout')
+	timer.start()
+	$Loading.show()
+
+func _on_timeout():
+	if level_loaded:
+		print('Timeout and level loaded!')
+		show_loaded_map()
+	else:
+		print('Timeout, level is not yet loaded')
+		time_is_up = true
+
+func hide_loading():
+	level_loaded = true
+	print('Level finished loading')
+	if time_is_up:
+		print('Level loaded after timeout')
+		show_loaded_map()
+		
+func show_seding():
+	add_child(send_timer)
+	send_timer.wait_time = 3
+	send_timer.one_shot = true
+	send_timer.connect('timeout', self, '_on_timeout_send')
+	send_timer.start()
+	$Sending.show()
+
+func _on_timeout_send():
+	if level_sent:
+		print('Timeout and level saved!')
+		# TODO
+	else:
+		print('Timeout, level is not yet saved')
+		send_time_is_up = true
+
+func hide_sending():
+	level_sent = true
+	print('Level finished sending')
+	if send_time_is_up:
+		print('Level sent after timeout')
+		# TODO
 
 func _input(event):
 	if event.as_text() == 'S' and event.is_pressed() and not event.is_echo():

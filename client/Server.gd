@@ -50,7 +50,6 @@ func request_completed(error, result_code, response_code, headers, result):
 		emit_signal('levels', error, result)
 	elif _last_request == GET_LEVEL_INFO:
 		# TODO: Handle malformed JSON responses!
-		# TODO: Handle malformed JSON responses!
 		emit_signal('level_fetched', error, result.level, result.map, result._id)
 	elif _last_request == SAVE_LEVEL:
 		emit_signal('level_saved', error)
