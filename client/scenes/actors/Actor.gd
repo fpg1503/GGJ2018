@@ -29,6 +29,8 @@ func move_to_tile(vec2):
 	is_moving = true
 	grid_pos = vec2
 	var target_pos = Vector2(grid_pos.x*global.TILE_SIZE.x, grid_pos.y*global.TILE_SIZE.y)
+	if (tween.is_active()):
+		tween.stop_all()
 	tween.interpolate_property(self, "position", position, target_pos, 0.2, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	tween.start()
 
@@ -36,7 +38,6 @@ func _on_tween_completed(obj, prop):
 	print("tween_destroying")
 	is_moving = false
 	if(is_destroyed):
-
 		emit_signal("destroyed")
 
 func _ready():

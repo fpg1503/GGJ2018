@@ -7,7 +7,7 @@ path="res://.import/tile_trapdoor.png-ce237d6421eab6489f17df26f4547edd.stex"
 [deps]
 
 source_file="res://assets/tile/tile_trapdoor.png"
-source_md5="ef403f081147a8e698170fc7b636f3ec"
+source_md5="f22077685e00d5da3e438a01d1015b9c"
 
 dest_files=[ "res://.import/tile_trapdoor.png-ce237d6421eab6489f17df26f4547edd.stex" ]
 dest_md5="68dc42f257db8f1c98d7397c417cfc7b"

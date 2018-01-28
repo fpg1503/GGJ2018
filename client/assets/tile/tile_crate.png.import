@@ -7,7 +7,7 @@ path="res://.import/tile_crate.png-529b5b385b474d55e46db25b58ffcce7.stex"
 [deps]
 
 source_file="res://assets/tile/tile_crate.png"
-source_md5="9ad1bb05f38a0d9bd87418244921fad0"
+source_md5="102b7aa423f8c3b9ee3beeb19134f885"
 
 dest_files=[ "res://.import/tile_crate.png-529b5b385b474d55e46db25b58ffcce7.stex" ]
 dest_md5="e49c615ccb8f8e2655440908154f8be8"

@@ -1,14 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://scenes/actors/Box.gd" type="Script" id=1]
+[ext_resource path="res://scenes/actors/Trapdoor.gd" type="Script" id=1]
 [ext_resource path="res://assets/tile/tile_trapdoor.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 35.2499, 41.194 )
-
-[node name="Trapdoor" type="Node2D" index="0"]
+[node name="Trapdoor" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Z Index" ]
@@ -36,22 +31,5 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 _sections_unfolded = [ "Margin" ]
-
-[node name="Area2D" type="Area2D" parent="." index="2"]
-
-position = Vector2( 0.624931, -19 )
-scale = Vector2( 1.05078, 1 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-
-position = Vector2( -0.464104, 6.82743 )
-shape = SubResource( 1 )
 
 

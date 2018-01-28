@@ -11,6 +11,7 @@ const ACTORS = {
 "Turret": preload("res://scenes/actors/Turret.tscn"),
 "Trap": preload("res://scenes/actors/Trap.tscn"),
 "Stone": preload("res://scenes/actors/Stone.tscn"),
+"Trapdoor": preload("res://scenes/actors/Trapdoor.tscn"),
 }
 
 const STAGES = {

@@ -7,7 +7,7 @@ path="res://.import/tile_trap.png-af86abb18196024fe8138bbcee10240f.stex"
 [deps]
 
 source_file="res://assets/tile/tile_trap.png"
-source_md5="b640a8c46e145e07f54f736149acb97c"
+source_md5="f58e9262611c31db4147c2c3a24c5cab"
 
 dest_files=[ "res://.import/tile_trap.png-af86abb18196024fe8138bbcee10240f.stex" ]
 dest_md5="acf24716af957cdf8c1e0ebf044b110a"

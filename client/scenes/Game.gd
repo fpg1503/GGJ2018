@@ -62,7 +62,6 @@ func _on_hud_play():
 
 func _on_hud_stop():
 	$Grid.kill_player()
-#	load_grid(current_map)
 
 func _on_hud_shop():
 	$Shop.enter()
@@ -106,9 +105,9 @@ func _ready():
 	
 	$Follow.connect("place_item", self, "_on_place_item")
 	
-	Server.fetch_level(1)
-#	$Grid.set_grid('stage1')
-#	$Grid.start_game()
+#	Server.fetch_level(1)
+	$Grid.set_grid('stage1')
+	$Grid.start_game()
 	Server.connect('level_fetched', self, 'level_fetched')
 	
 	state = GAME_STATE.PLAYING

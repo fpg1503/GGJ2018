@@ -7,7 +7,7 @@ path="res://.import/tile_dude.png-769bd1837d50a58755e6237ad5722439.stex"
 [deps]
 
 source_file="res://assets/tile/tile_dude.png"
-source_md5="9f33c447d227d454a9f45bbabb6ae88f"
+source_md5="40383a382916506908ca446b14c8d2e0"
 
 dest_files=[ "res://.import/tile_dude.png-769bd1837d50a58755e6237ad5722439.stex" ]
 dest_md5="8c2b52bb0ea9c3262af71d8f88abb884"

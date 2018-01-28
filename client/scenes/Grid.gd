@@ -29,10 +29,11 @@ func insert(type, x, y):
 	if global.ACTORS.has(type):
 		if gridmap.has(Vector2(x, y)) or traps.has(Vector2(x, y)):
 			return false
-		var dic_to_add = traps if type == 'Trap' else gridmap
+		print(x,' ', y)
+		var dic_to_add = traps if type == 'Trap' or type == 'Trapdoor' else gridmap
 		var element = global.ACTORS[type].instance()
 		element.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
-		element.z_index = y*10
+		element.z_index = y*10 + 1
 		add_child(element)
 		dic_to_add[Vector2(x,y)] = element
 		element.grid_pos = Vector2(x,y)
@@ -95,10 +96,10 @@ func _on_player_move(vec2):
 	
 	gridmap.erase(from)
 	gridmap[to] = player
-	player.z_index = to.y * 10 + 1
+	player.z_index = to.y * 10 + 2
 	player.move_to_tile(to)
 	
-	if (traps.has(to)):
+	if (traps.has(to) and traps[to].type == "Trap"):
 		player.destroy()
 
 
