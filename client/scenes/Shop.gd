@@ -3,6 +3,7 @@ extends TextureRect
 onready var tween = $Tween
 
 signal shop
+signal shop_back
 
 enum Items { ITEM_BOX, ITEM_TRAP, ITEM_TURRET }
 const ITEM_DETAILS = {
@@ -55,7 +56,6 @@ func _on_back():
 func _ready():
 	$Box.connect("button_down", self, "_on_box")
 	$Trap.connect("button_down", self, "_on_trap")
-#	$Turret.connect("button_down", self, "_on_turret")
-#	$Turret.connect("button_down", self, "_on_turret")
+	$Turret.connect("button_down", self, "_on_turret")
 	$Back.connect("button_down", self, "_on_back")
 	update_text()

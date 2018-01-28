@@ -98,6 +98,7 @@ func _ready():
 	$Hud.connect("reset", self, "_on_hud_reset")
 	
 	$Shop.connect("shop", self, "_on_shop")
+	$Shop.connect("shop_back", self, "_on_shop_back")
 	
 	$Follow.connect("place_item", self, "_on_place_item")
 	
