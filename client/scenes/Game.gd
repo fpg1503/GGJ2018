@@ -38,6 +38,13 @@ func set_state(new_state):
 		load_original_grid()
 	elif (state == TESTING and new_state == CREATING):
 		load_grid(current_map)
+		
+	if new_state == PLAYING:
+		print('hiding')
+		$Grid.get_tree().call_group('traps', 'hide')
+	else:
+		print('showing')
+		$Grid.get_tree().call_group('traps', 'show')
 	
 	state = new_state
 
@@ -70,7 +77,7 @@ func _on_lost():
 	set_state(GAME_STATE.CREATING)
 
 func _on_hud_play():
-	state = TESTING
+	set_state(GAME_STATE.TESTING)
 	$Grid.start_game()
 
 func _on_hud_stop():
@@ -125,7 +132,7 @@ func _ready():
 
 	Server.connect('level_fetched', self, 'level_fetched')
 	
-	state = GAME_STATE.PLAYING
+	set_state(GAME_STATE.PLAYING)
 	
 func show_loading():
 	add_child(timer)

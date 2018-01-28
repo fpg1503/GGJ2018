@@ -45,6 +45,8 @@ func insert(type, x, y):
 			player = element
 			starting_y = y*global.TILE_SIZE.y
 			element.connect("move", self, "_on_player_move")
+		if type == 'Trap':
+			element.add_to_group('traps')
 		return true
 	elif len(type) > 0:
 		print('Unsupported element: ' + type + '(' + str(x) + ',' + str(y) + ')')
