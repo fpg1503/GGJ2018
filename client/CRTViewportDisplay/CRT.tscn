@@ -1,0 +1,152 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource type="Texture" path="res://CRTViewportDisplay/white.png" id=1]
+
+[ext_resource type="Texture" path="res://CRTViewportDisplay/CRTFrame.png" id=2]
+
+
+[sub_resource type="CanvasItemShader" id=1]
+
+_code={
+"fragment": "uniform float screen_width = 1024;
+uniform float screen_height = 600;
+// Curvature
+uniform float BarrelPower = 1.1;
+// Color bleeding
+uniform float color_bleeding = 1.2;
+uniform float bleeding_range_x = 3;
+uniform float bleeding_range_y = 3;
+// Scanline
+uniform float lines_distance = 3.0;
+uniform float scan_size = 1.0;
+uniform float scanline_alpha = 0.9;
+uniform float lines_velocity = -.0;
+
+// Scanline function
+vec4 get_color_scanline(vec2 uv, vec4 c){
+	float line_row = floor((uv.y * screen_height/scan_size) + mod(TIME*lines_velocity, lines_distance));
+
+	float n = 1.0 - ceil((mod(line_row,lines_distance)/lines_distance));
+
+	c = c - n*c*(1 - scanline_alpha);
+	c.a = 1;
+	return c;
+}
+
+// Color bleeding function
+
+vec4 get_color_bleeding(vec2 uv){
+	float pixel_size_x = 1/screen_width*bleeding_range_x;
+	float pixel_size_y = 1/screen_height*bleeding_range_y;
+	vec4 color_left = vec4(texscreen(uv - vec2(pixel_size_x, pixel_size_y)),1);
+	vec4 current_color = vec4(texscreen(uv),1);
+	
+	current_color = current_color*vec4(color_bleeding,0.5,1-color_bleeding,1);
+	color_left = color_left*vec4(1-color_bleeding,0.5,color_bleeding,1);
+	
+	return (current_color + color_left);
+}
+
+
+// Curvature function
+vec2 distort(vec2 p) {
+
+	float angle = p.y / p.x;
+	float theta = atan2(p.y,p.x);
+	float radius = length(p);
+	radius = pow(radius, BarrelPower);
+	
+	p.x = radius * cos(theta);
+	p.y = radius * sin(theta);
+	
+	return 0.5 * (p + vec2(1.0,1.0));
+}
+
+// Setup curvature, than Color bleeding and finally scanline
+vec2 xy = 2* SCREEN_UV;
+xy.x = xy.x-1;
+xy.y = xy.y-1;
+
+float d = length(xy);
+if(d < 1.5){
+	xy = distort(xy);
+}
+else{
+	xy = SCREEN_UV;
+}
+
+vec4 c = get_color_bleeding(xy);
+COLOR = get_color_scanline(xy,c);",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
+
+[sub_resource type="CanvasItemMaterial" id=2]
+
+shader/shader=SubResource(1)
+shader/shading_mode=0
+shader_param/screen_width=1024.0
+shader_param/screen_height=600.0
+shader_param/BarrelPower=1.1
+shader_param/color_bleeding=1.2
+shader_param/bleeding_range_x=3.0
+shader_param/bleeding_range_y=3.0
+shader_param/lines_distance=3.0
+shader_param/scan_size=1.0
+shader_param/scanline_alpha=0.9
+shader_param/lines_velocity=0.0
+
+[node  name="CRT" type="Panel"]
+
+focus_ignore_mouse=true
+focus_stop_mouse=true
+size_flags_horizontal=2
+size_flags_vertical=2
+margin_left=0.0
+margin_top=0.0
+margin_right=1024.0
+margin_bottom=600.0
+__meta__={
+"__editor_plugin_screen__": "2D"
+}
+
+[node  name="Viewport" parent="." type="Viewport"]
+
+rect=Rect2( 0, 0, 1024, 600 )
+own_world=false
+world=null
+transparent_bg=false
+render_target/enabled=false
+render_target/v_flip=false
+render_target/clear_on_new_frame=true
+render_target/filter=false
+render_target/gen_mipmaps=false
+render_target/update_mode=2
+audio_listener/enable_2d=false
+audio_listener/enable_3d=false
+physics/object_picking=false
+gui/disable_input=false
+
+[node  name="CRTShader" parent="." type="TextureRect"]
+
+material=SubResource(2)
+focus_ignore_mouse=true
+focus_stop_mouse=true
+size_flags_horizontal=2
+size_flags_vertical=2
+margin_left=0.0
+margin_top=0.0
+margin_right=1026.0
+margin_bottom=598.0
+texture=ExtResource(1)
+expand=true
+stretch_mode=0
+
+[node  name="CRTFrame" parent="." type="Sprite"]
+
+position=Vector2( 511.882, 299.692 )
+scale=Vector2( 0.947058, 0.74035 )
+texture=ExtResource(2)

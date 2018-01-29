@@ -1,0 +1,18 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/spy_time.ogg-bf4615eb0088080556737e753a6fa5c5.oggstr"
+
+[deps]
+
+source_file="res://assets/spy_time.ogg"
+source_md5="15c1723ef3d1877120db5459ec94bb0b"
+
+dest_files=[ "res://.import/spy_time.ogg-bf4615eb0088080556737e753a6fa5c5.oggstr" ]
+dest_md5="6586b88deaeaf9ad0ddce4da25f659d2"
+
+[params]
+
+loop=true
+loop_offset=0

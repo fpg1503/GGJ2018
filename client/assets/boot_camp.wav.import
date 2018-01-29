@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/boot_camp.wav-058d3de0a5248debe750abc84644f744.sample"
+
+[deps]
+
+source_file="res://assets/boot_camp.wav"
+source_md5="07c2c84abd601f200584b27c7aaf65a0"
+
+dest_files=[ "res://.import/boot_camp.wav-058d3de0a5248debe750abc84644f744.sample" ]
+dest_md5="d1282967401dc16de08507f60ca09484"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=true
+compress/mode=0

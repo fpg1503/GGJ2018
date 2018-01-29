@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/spy_time.wav-275cb9dc2afece6c759616bd1fe8ab56.sample"
+
+[deps]
+
+source_file="res://assets/spy_time.wav"
+source_md5="8c35598706cb86b3282a731b50237b19"
+
+dest_files=[ "res://.import/spy_time.wav-275cb9dc2afece6c759616bd1fe8ab56.sample" ]
+dest_md5="a119bf9743e87c41dba56a82987c726e"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

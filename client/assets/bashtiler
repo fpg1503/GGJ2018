@@ -1,0 +1,1 @@
+for i in *.png; do convert "$i" -resize 64x64 "tile/tile_${i%%.*}.png"; done
