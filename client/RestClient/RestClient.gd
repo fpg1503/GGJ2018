@@ -128,4 +128,5 @@ func _request_completed(result_code, response_code, headers, body):
 	var json = JSON.parse(json_string)
 	var error = json.error
 	var result = json.result
+	# TODO: Find a way to know which client sent this!
 	emit_signal('request_completed', error, result_code, response_code, headers, result)
