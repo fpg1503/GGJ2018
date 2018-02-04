@@ -1,4 +1,7 @@
-const uuid = preload("res://uuid.gd")
+# TODO: Resolve how we'll handle UUID generation. 
+# Should it be provided by the engine?
+# We should not import it from the RestClient
+const uuid = preload("res://RestClient/UUID.gd")
 
 static func get_unique_id():
 	var os_unique_id = OS.get_unique_id().strip_edges()

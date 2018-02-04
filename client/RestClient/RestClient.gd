@@ -1,6 +1,6 @@
 extends Node
 
-var Request = preload("res://Request.gd")
+var Request = preload("res://RestClient/Request.gd")
 
 var _http_client_pool = []
 var _request_queue = []

@@ -1,6 +1,6 @@
 extends Node
 
-var RestClient = preload("res://RestClient.gd")
+var RestClient = preload("res://RestClient/RestClient.gd")
 
 var is_prod = true
 
