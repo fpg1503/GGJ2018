@@ -1,12 +1,21 @@
 extends Node
 
-var _http_client = HTTPRequest.new()
+var Request = preload("res://Request.gd")
+
+var _http_client_pool = []
+var _request_queue = []
+var _http_clients_in_use = []
 
 signal request_completed
 
+func _init(pool_size = 5):
+	for i in range(pool_size):
+		_http_client_pool.append(HTTPRequest.new())
+
 func _ready():
-	add_child(_http_client)
-	_http_client.connect('request_completed', self, '_request_completed')
+	for client in _http_client_pool:
+		add_child(client)
+		client.connect('request_completed', self, '_request_completed')
 
 func get(url, headers = {}):
 	return _generic_request(HTTPClient.METHOD_GET, url, headers)
@@ -35,10 +44,35 @@ func _stringify_headers(headers):
 
 func _generic_request(method, url, headers, body = ''):
 	var stringified_headers = _stringify_headers(headers)
-	return _http_client.request(url, stringified_headers, true, method, body)
+	if _http_client_pool.size() > 0:
+		var client = _http_client_pool[0]
+		_http_client_pool.pop_front()
+		client.request(url, stringified_headers, true, method, body)
+	else:
+		var request = Request.new(method, url, body, stringified_headers)
+		_request_queue.append(request)
 	
+func _add_clients_to_pool():
+	for client in _http_clients_in_use:
+		if client.get_http_client_status == HTTPClient.STATUS_DISCONNECTED:
+			_http_clients_in_use.erase(client)
+			_http_client_pool.append(client)
+
+func _process_enqueued_requests_if_possible():
+	for request in _request_queue:
+		if _http_client_pool.size() > 0:
+			var client = _http_client_pool[0]
+			_http_client_pool.pop_front()
+			client.request(request.url, request.headers, true, request.method, request.body)
+			_request_queue.erase(request)
+
+func _add_clients_to_pool_and_dequeue_requests():
+	_add_clients_to_pool()
+	_process_enqueued_requests_if_possible()
+
 
 func _request_completed(result_code, response_code, headers, body):
+	_add_clients_to_pool_and_dequeue_requests()
 	var json_string = body.get_string_from_utf8()
 	var json = JSON.parse(json_string)
 	var error = json.error
