@@ -44,27 +44,38 @@ func _stringify_headers(headers):
 
 func _generic_request(method, url, headers, body = ''):
 	var stringified_headers = _stringify_headers(headers)
-	if _http_client_pool.size() > 0:
-		var client = _http_client_pool[0]
-		_http_client_pool.pop_front()
+	var client = _pop_client()
+	if client:
 		client.request(url, stringified_headers, true, method, body)
 	else:
 		var request = Request.new(method, url, body, stringified_headers)
 		_request_queue.append(request)
-	
+		print('No free clients. Enqueueing request, queue size is ' + str(_request_queue.size()))
+
+func _pop_client():
+	if _http_client_pool.size() > 0:
+		var client = _http_client_pool[0]
+		_http_client_pool.pop_front()
+		_http_clients_in_use.append(client)
+		print('Popped client, ' + str(_http_client_pool.size()) + ' left')
+		return client
+	else:
+		return null
+
 func _add_clients_to_pool():
 	for client in _http_clients_in_use:
-		if client.get_http_client_status == HTTPClient.STATUS_DISCONNECTED:
+		if client.get_http_client_status() == HTTPClient.STATUS_DISCONNECTED:
 			_http_clients_in_use.erase(client)
 			_http_client_pool.append(client)
+			print('Pushed client, ' + str(_http_client_pool.size()) + ' left')
 
 func _process_enqueued_requests_if_possible():
 	for request in _request_queue:
-		if _http_client_pool.size() > 0:
-			var client = _http_client_pool[0]
-			_http_client_pool.pop_front()
+		var client = _pop_client()
+		if client:
 			client.request(request.url, request.headers, true, request.method, request.body)
 			_request_queue.erase(request)
+			print('Processing enqueued request, queue size is ' + str(_request_queue.size()))
 
 func _add_clients_to_pool_and_dequeue_requests():
 	_add_clients_to_pool()
