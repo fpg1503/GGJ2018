@@ -45,7 +45,8 @@ func save_level(level, map, user, parent):
 	}
 	return client.post(url, body)
 	
-func request_completed(error, result_code, response_code, headers, result):
+func request_completed(id, error, result_code, response_code, headers, result):
+	print('Response from ' + id)
 	if _last_request == GET_LEVELS:
 		emit_signal('levels', error, result)
 	elif _last_request == GET_LEVEL_INFO:

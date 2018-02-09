@@ -4,6 +4,7 @@ const Cancelable = preload('res://RestClient/Cancelable.gd')
 const Request = preload('res://RestClient/Request.gd')
 const UUID = preload('res://RestClient/UUID.gd')
 
+var _http_clients = []
 var _http_client_pool = []
 var _request_queue = []
 var _http_clients_in_use = []
@@ -17,12 +18,15 @@ signal request_completed
 
 func _init(pool_size = 5):
 	for i in range(pool_size):
-		_http_client_pool.append(HTTPRequest.new())
+		var client = HTTPRequest.new()
+		_http_client_pool.append(client)
+		_http_clients.append(client)
 
 func _ready():
-	for client in _http_client_pool:
+	for index in range(_http_client_pool.size()):
+		var client = _http_client_pool[index]
 		add_child(client)
-		client.connect('request_completed', self, '_request_completed')
+		client.connect('request_completed', self, '_request_completed', [index])
 
 func get(url, headers = {}):
 	return _generic_request(HTTPClient.METHOD_GET, url, headers)
@@ -41,7 +45,7 @@ func cancel(uuid):
 		_ongoing_requests_client_to_id.erase(client)
 		client.cancel_request()
 		print('Ongoing request cancelled')
-		_add_clients_to_pool_and_dequeue_requests()
+		_add_client_to_pool_and_dequeue_requests(client)
 	elif uuid in _enqueued_requests_id_to_request:
 		var request = _enqueued_requests_id_to_request[uuid]
 		_enqueued_requests_id_to_request.erase(uuid)
@@ -92,18 +96,6 @@ func _pop_client():
 	else:
 		return null
 
-func _add_clients_to_pool():
-	for client in _http_clients_in_use:
-		if client.get_http_client_status() == HTTPClient.STATUS_DISCONNECTED:
-			_http_clients_in_use.erase(client)
-			_http_client_pool.append(client)
-			if client in _ongoing_requests_client_to_id:
-				var uuid = _ongoing_requests_client_to_id[client]
-				_ongoing_requests_client_to_id.erase(client)
-				_ongoing_requests_id_to_client.erase(uuid)
-			
-			print('Pushed client, ' + str(_http_client_pool.size()) + ' left')
-
 func _process_enqueued_requests_if_possible():
 	for request in _request_queue:
 		var client = _pop_client()
@@ -117,16 +109,25 @@ func _process_enqueued_requests_if_possible():
 			_ongoing_requests_client_to_id[client] = uuid
 			print('Processing enqueued request, queue size is ' + str(_request_queue.size()))
 
-func _add_clients_to_pool_and_dequeue_requests():
-	_add_clients_to_pool()	
+func _add_client_to_pool_and_dequeue_requests(client):
+	if client.get_http_client_status() == HTTPClient.STATUS_DISCONNECTED:
+		_http_clients_in_use.erase(client)
+		_http_client_pool.append(client)
+		if client in _ongoing_requests_client_to_id:
+			var uuid = _ongoing_requests_client_to_id[client]
+			_ongoing_requests_client_to_id.erase(client)
+			_ongoing_requests_id_to_client.erase(uuid)
+		print('Pushed client, ' + str(_http_client_pool.size()) + ' left')
+	else:
+		print('Invalid client status!')
 	_process_enqueued_requests_if_possible()
 
-
-func _request_completed(result_code, response_code, headers, body):
-	_add_clients_to_pool_and_dequeue_requests()
+func _request_completed(result_code, response_code, headers, body, index):
+	var client = _http_clients[index]
+	var id = _ongoing_requests_client_to_id[client]
+	_add_client_to_pool_and_dequeue_requests(client)
 	var json_string = body.get_string_from_utf8()
 	var json = JSON.parse(json_string)
 	var error = json.error
 	var result = json.result
-	# TODO: Find a way to know which client sent this!
-	emit_signal('request_completed', error, result_code, response_code, headers, result)
+	emit_signal('request_completed', id, error, result_code, response_code, headers, result)
