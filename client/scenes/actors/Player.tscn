@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/dude.png" type="Texture" id=2]
 [ext_resource path="res://assets/faces/layersdude-3.png" type="Texture" id=3]
+[ext_resource path="res://scenes/actors/TrapsBalloon.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -70,6 +71,7 @@ margin_top = -30.0
 margin_right = 40.0
 margin_bottom = 30.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -100,6 +102,9 @@ playback_default_blend_time = 0.0
 playback_speed = 1.0
 anims/won = SubResource( 2 )
 blend_times = [  ]
-autoplay = ""
+
+[node name="TrapsBalloon" parent="." index="4" instance=ExtResource( 4 )]
+
+position = Vector2( 40, -90 )
 
 

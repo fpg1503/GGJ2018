@@ -169,13 +169,13 @@ func _ready():
 	$Follow.connect("place_item", self, "_on_place_item")
 	
 	var user = UserIdentifier.get_unique_id()
-	Server.fetch_level(1, user)
+#	Server.fetch_level(1, user)
 	show_loading()
 	
-#	$Grid.set_grid('stage1')
-#	$Grid.start_game()
+	$Grid.set_grid('stage1')
+	$Grid.start_game()
 
-	Server.connect('level_fetched', self, 'level_fetched')
+#	Server.connect('level_fetched', self, 'level_fetched')
 
 
 func show_loading():

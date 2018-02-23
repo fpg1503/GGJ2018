@@ -23,7 +23,6 @@ func reset_grid():
 		traps[key].queue_free()
 	gridmap.clear()
 	traps.clear()
-	
 
 func insert(type, x, y):
 	if (x < 0 or x >= global.MAP_SIZE.x or y < 0 or y > global.MAP_SIZE.y):
@@ -81,7 +80,6 @@ func check_movable(from, to):
 	return false
 
 func _on_player_move(vec2):
-	
 	var from = player.grid_pos
 	var to = from + vec2
 	
@@ -107,7 +105,21 @@ func _on_player_move(vec2):
 		player.destroy()
 	elif (traps.has(to) and traps[to].type == "Trapdoor"):
 		player.won = true
+	else:
+		# Check how many traps there are around the player
+		var number_traps = _check_traps_around(to)
+		if number_traps > 0:
+			player.show_ballon(number_traps)
+		else:
+			player.hide_ballon()
 
+func _check_traps_around(pos):
+	var number_traps = 0
+	for x in range(pos.x-1,pos.x+1):
+		for y in range(pos.y-1, pos.y+1):
+			if (traps.has(Vector2(x,y))):
+				number_traps+=1
+	return number_traps
 
 func _ready():
 	pass

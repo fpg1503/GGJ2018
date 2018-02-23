@@ -10,6 +10,14 @@ onready var left = true
 onready var end = false
 onready var won = false
 
+func show_ballon(n):
+	$TrapsBalloon.set_label_traps(n)
+	$TrapsBalloon.appear()
+
+func hide_ballon():
+	if $TrapsBalloon.shown:
+		$TrapsBalloon.disappear()
+
 func fall(y):
 	invencible = true
 	falling = true
@@ -56,6 +64,8 @@ func _ready():
 	connect("destroyed", self, "_on_destroyed")
 	set_process_input(true)
 
+###REFACTOR
+# repeated code on _on_swipe and _input for movement
 func _on_swipe(dir):
 	if (falling or raising):
 		return
@@ -64,12 +74,12 @@ func _on_swipe(dir):
 			emit_signal("move", Vector2(-1,0))
 			if(left):
 				left = false
-				scale.x = -1
+				$Sprite.scale.x *= -1
 		if (dir == "right"):
 			emit_signal("move", Vector2(1,0))
 			if(not left):
 				left = true
-				scale.x = 1
+				$Sprite.scale.x *= -1
 		if (dir == "up"):
 			emit_signal("move", Vector2(0,-1))
 		if (dir == "down"):
@@ -83,12 +93,12 @@ func _input(event):
 			emit_signal("move", Vector2(-1,0))
 			if(left):
 				left = false
-				scale.x = -1
+				$Sprite.scale.x *= -1
 		if (event.is_action("ui_right") and event.is_pressed() and !event.is_echo()):
 			emit_signal("move", Vector2(1,0))
 			if(not left):
 				left = true
-				scale.x = 1
+				$Sprite.scale.x *= -1
 		if (event.is_action("ui_up") and event.is_pressed() and !event.is_echo()):
 			emit_signal("move", Vector2(0,-1))
 		if (event.is_action("ui_down") and event.is_pressed() and !event.is_echo()):
