@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/tilemap/tilemap.tres" type="TileSet" id=1]
 
-[node name="Stage1" type="TileMap"]
+[node name="Stage2" type="TileMap"]
 
 mode = 0
 tile_set = ExtResource( 1 )
@@ -20,6 +20,6 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 131074, 0, 0, 196612, 4, 0, 196613, 4, 0, 262154, 4, 0, 327683, 4, 0, 327690, 6, 0, 327691, 4, 0, 393225, 4, 0, 393226, 4, 0 )
+tile_data = PoolIntArray( 8, 3, 0, 65537, 4, 0, 65544, 4, 0, 131077, 4, 0, 196613, 4, 0, 262146, 0, 0, 262149, 3, 0, 262154, 6, 0, 327687, 3, 0, 393218, 4, 0, 393224, 4, 0, 393225, 3, 0, 393226, 3, 0, 393227, 3, 0, 458756, 4, 0 )
 
 

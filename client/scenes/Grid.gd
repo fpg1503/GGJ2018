@@ -47,6 +47,7 @@ func insert(type, x, y):
 			element.connect("move", self, "_on_player_move")
 		if type == 'Trap':
 			element.add_to_group('traps')
+			element.z_index += 2
 		return true
 	elif len(type) > 0:
 		print('Unsupported element: ' + type + '(' + str(x) + ',' + str(y) + ')')
@@ -93,6 +94,8 @@ func _on_player_move(vec2):
 			gridmap[to].move_to_tile(toto)
 			gridmap[toto] = gridmap[to]
 			gridmap.erase(to)
+			if (traps.has(toto)):
+				traps[toto].deactivate()
 		else:
 			return
 	
@@ -101,8 +104,9 @@ func _on_player_move(vec2):
 	player.z_index = to.y * 10 + 2
 	player.move_to_tile(to)
 	
-	if (traps.has(to) and traps[to].type == "Trap"):
+	if (traps.has(to) and traps[to].type == "Trap" and traps[to].active):
 		player.destroy()
+		traps[to].deactivate()
 	elif (traps.has(to) and traps[to].type == "Trapdoor"):
 		player.won = true
 	else:
@@ -115,9 +119,10 @@ func _on_player_move(vec2):
 
 func _check_traps_around(pos):
 	var number_traps = 0
-	for x in range(pos.x-1,pos.x+1):
-		for y in range(pos.y-1, pos.y+1):
-			if (traps.has(Vector2(x,y))):
+	for x in range(pos.x-1,pos.x+2):
+		for y in range(pos.y-1, pos.y+2):
+			var p = Vector2(x,y)
+			if (traps.has(p) and traps[p].type == "Trap" and traps[p].active):
 				number_traps+=1
 	return number_traps
 

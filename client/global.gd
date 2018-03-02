@@ -21,6 +21,9 @@ const MUSIC = {
 
 const STAGES = {
 "stage1": preload("res://scenes/tilemap/Stage1.tscn"),
+"stage2": preload("res://scenes/tilemap/Stage2.tscn"),
+"stage3": preload("res://scenes/tilemap/Stage3.tscn"),
+"stage4": preload("res://scenes/tilemap/Stage4.tscn"),
 }
 
 const FACES = [

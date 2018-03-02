@@ -21,6 +21,8 @@ onready var level_sent = false
 onready var send_time_is_up = false
 onready var send_timer = Timer.new()
 
+onready var current_level = 1
+
 const UserIdentifier = preload("res://UserIdentifier.gd")
 
 func load_original_grid():
@@ -80,17 +82,24 @@ func send_grid_to_server():
 
 func _on_won():
 	$WonPlayer.play()
-	if(state == GAME_STATE.TESTING):
-		$Hud.exit()
-		$Grid.hide()
-		send_grid_to_server()
-		show_seding()
+	if(current_level < 4):
+		current_level += 1
+		load_off_state()
 	else:
-		set_state(GAME_STATE.CREATING)
+		get_tree().change_scene("res://scenes/EndScreen.tscn")
+#	if(state == GAME_STATE.TESTING):
+#		$Hud.exit()
+#		$Grid.hide()
+#		send_grid_to_server()
+#		show_seding()
+#	else:
+#		set_state(GAME_STATE.CREATING)
 
 func _on_lost():
-	set_state(GAME_STATE.CREATING)
-	$LostPlayer.play()	
+	OS.delay_msec(1000)
+	load_off_state()
+#	set_state(GAME_STATE.CREATING)
+	$LostPlayer.play()
 
 func _on_hud_play():
 	set_state(GAME_STATE.TESTING)
@@ -168,14 +177,22 @@ func _ready():
 	
 	$Follow.connect("place_item", self, "_on_place_item")
 	
+	$Button.connect("pressed", self, "load_off_state")
+	
 	var user = UserIdentifier.get_unique_id()
 #	Server.fetch_level(1, user)
-	show_loading()
-	
-	$Grid.set_grid('stage1')
-	$Grid.start_game()
+#	show_loading()
+
+	load_off_state()
 
 #	Server.connect('level_fetched', self, 'level_fetched')
+
+func load_off_state():
+	$Grid.set_grid('stage' + str(current_level))
+	$Grid.start_game()
+	$Grid.get_tree().call_group('traps', 'hide')
+	$AudioStreamPlayer.stream = global.MUSIC["spy_time"]
+	$AudioStreamPlayer.play(0.0)
 
 
 func show_loading():

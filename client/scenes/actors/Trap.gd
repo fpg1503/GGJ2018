@@ -1,5 +1,11 @@
 extends "Actor.gd"
 
+onready var active = true
+
+func deactivate():
+	$AnimationPlayer.play("deactivate")
+	active = false
+
 func on_destroyed():
 	$AnimationPlayer.play("destroyed")
 

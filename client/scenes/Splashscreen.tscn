@@ -1,0 +1,103 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/Splashscreen.gd" type="Script" id=1]
+[ext_resource path="res://assets/banner.png" type="Texture" id=2]
+
+[sub_resource type="DynamicFontData" id=1]
+
+font_path = "res://assets/SuperMario256.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 100
+use_mipmaps = false
+use_filter = false
+font_data = SubResource( 1 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=3]
+
+size = 60
+use_mipmaps = false
+use_filter = false
+font_data = SubResource( 1 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="Splashscreen" type="Control"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 2 )
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 80.0
+margin_top = 22.0
+margin_right = 1150.0
+margin_bottom = 122.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "CACo Games DEMO"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Focus", "Mouse", "custom_colors", "custom_fonts" ]
+
+[node name="Label2" type="Label" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 32.0
+margin_top = 513.0
+margin_right = 129036.0
+margin_bottom = 65015.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Touch the screen to continue!"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Focus", "Mouse", "custom_colors", "custom_fonts" ]
+
+

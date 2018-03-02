@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/tilemap/tilemap.tres" type="TileSet" id=1]
+
+[node name="Stage3" type="TileMap"]
+
+mode = 0
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 64, 64 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 65545, 1, 0, 65546, 1, 0, 131078, 4, 0, 131085, 2, 0, 196611, 4, 0, 196612, 3, 0, 196613, 3, 0, 262145, 0, 0, 262147, 4, 0, 327683, 4, 0, 327689, 4, 0, 327693, 2, 0, 393224, 2, 0, 393227, 6, 0 )
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 895.0
+margin_bottom = 514.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+

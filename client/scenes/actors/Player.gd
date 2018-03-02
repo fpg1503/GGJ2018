@@ -29,6 +29,7 @@ func fall(y):
 
 func _movement_completed(obj, prop):
 	if (is_destroyed == false and won == true):
+		raising = true
 		$AnimationPlayer.play("won")
 
 func _child_on_tween_completed(obj, prop):
