@@ -23,7 +23,7 @@ use_filter = false
 font_data = SubResource( 1 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Splashscreen" type="Control"]
+[node name="Splashscreen" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0

@@ -2,6 +2,8 @@ extends "Actor.gd"
 
 signal move
 
+enum MOVE_DIR {UP, RIGHT, DOWN, LEFT}
+
 onready var tweenIntro = Tween.new()
 onready var falling = false
 onready var raising = false
@@ -67,40 +69,44 @@ func _ready():
 
 ###REFACTOR
 # repeated code on _on_swipe and _input for movement
+func _move(dir):
+	if dir == UP:
+		emit_signal("move", Vector2(0,-1))
+	elif dir == DOWN:
+		emit_signal("move", Vector2(0,1))
+	elif dir == LEFT:
+		emit_signal("move", Vector2(-1,0))
+		if(left):
+			left = false
+			$Sprite.scale.x *= -1
+	elif dir == RIGHT:
+		emit_signal("move", Vector2(1,0))
+		if(not left):
+			left = true
+			$Sprite.scale.x *= -1
+
 func _on_swipe(dir):
 	if (falling or raising):
 		return
 	if(not is_destroyed):
 		if (dir == "left"):
-			emit_signal("move", Vector2(-1,0))
-			if(left):
-				left = false
-				$Sprite.scale.x *= -1
+			_move(LEFT)
 		if (dir == "right"):
-			emit_signal("move", Vector2(1,0))
-			if(not left):
-				left = true
-				$Sprite.scale.x *= -1
+			_move(RIGHT)
 		if (dir == "up"):
-			emit_signal("move", Vector2(0,-1))
+			_move(UP)
 		if (dir == "down"):
-			emit_signal("move", Vector2(0,1))
+			_move(DOWN)
 
 func _input(event):
 	if (falling or raising):
 		return
 	if(not is_destroyed):
 		if (event.is_action("ui_left") and event.is_pressed() and !event.is_echo()):
-			emit_signal("move", Vector2(-1,0))
-			if(left):
-				left = false
-				$Sprite.scale.x *= -1
+			_move(LEFT)
 		if (event.is_action("ui_right") and event.is_pressed() and !event.is_echo()):
-			emit_signal("move", Vector2(1,0))
-			if(not left):
-				left = true
-				$Sprite.scale.x *= -1
+			_move(RIGHT)
 		if (event.is_action("ui_up") and event.is_pressed() and !event.is_echo()):
-			emit_signal("move", Vector2(0,-1))
+			_move(UP)
 		if (event.is_action("ui_down") and event.is_pressed() and !event.is_echo()):
-			emit_signal("move", Vector2(0,1))
+			_move(DOWN)

@@ -70,13 +70,13 @@ func show_loaded_map():
 	$AudioStreamPlayer.play(0.0)
 
 func send_grid_to_server():
-#	var map = []
-#	for child in $Grid.get_children():
-#		var position = child.get_position()
-#		var x = position.x / global.TILE_SIZE.x
-#		var y = position.y / global.TILE_SIZE.y
-#		if child.has_method('get_type'):
-#			map.append({'x': x, 'y': y, 'type': child.get_type()})
+	var map = []
+	for child in $Grid.get_children():
+		var position = child.get_position()
+		var x = position.x / global.TILE_SIZE.x
+		var y = position.y / global.TILE_SIZE.y
+		if child.has_method('get_type'):
+			map.append({'x': x, 'y': y, 'type': child.get_type()})
 	var user = UserIdentifier.get_unique_id()
 	Server.save_level(1, current_map, user, map_id)
 
@@ -87,18 +87,18 @@ func _on_won():
 		load_off_state()
 	else:
 		get_tree().change_scene("res://scenes/EndScreen.tscn")
-#	if(state == GAME_STATE.TESTING):
-#		$Hud.exit()
-#		$Grid.hide()
-#		send_grid_to_server()
-#		show_seding()
-#	else:
-#		set_state(GAME_STATE.CREATING)
+	if(state == GAME_STATE.TESTING):
+		$Hud.exit()
+		$Grid.hide()
+		send_grid_to_server()
+		show_seding()
+	else:
+		set_state(GAME_STATE.CREATING)
 
 func _on_lost():
 	OS.delay_msec(1000)
 	load_off_state()
-#	set_state(GAME_STATE.CREATING)
+	set_state(GAME_STATE.CREATING)
 	$LostPlayer.play()
 
 func _on_hud_play():
@@ -180,12 +180,12 @@ func _ready():
 	$Button.connect("pressed", self, "load_off_state")
 	
 	var user = UserIdentifier.get_unique_id()
-#	Server.fetch_level(1, user)
-#	show_loading()
+	Server.fetch_level(1, user)
+	show_loading()
 
-	load_off_state()
+#	load_off_state()
 
-#	Server.connect('level_fetched', self, 'level_fetched')
+	Server.connect('level_fetched', self, 'level_fetched')
 
 func load_off_state():
 	$Grid.set_grid('stage' + str(current_level))
