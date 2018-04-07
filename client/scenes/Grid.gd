@@ -108,6 +108,5 @@ func _on_player_move(vec2):
 	elif (traps.has(to) and traps[to].type == "Trapdoor"):
 		player.won = true
 
-
 func _ready():
 	pass
