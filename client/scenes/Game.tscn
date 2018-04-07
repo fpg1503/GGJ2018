@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/audio/put_item.wav" type="AudioStream" id=9]
 [ext_resource path="res://Loading.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Sending.tscn" type="PackedScene" id=11]
+
 [ext_resource path="res://assets/SuperMario256.ttf" type="DynamicFontData" id=12]
 
 [sub_resource type="DynamicFont" id=1]
@@ -30,6 +31,7 @@ anchor_bottom = 0.0
 margin_right = 40.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -49,6 +51,7 @@ anchor_bottom = 0.0
 margin_right = 40.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -60,11 +63,13 @@ stretch_mode = 0
 
 margin_top = -93.0
 margin_bottom = 0.0
+rect_clip_content = false
 
 [node name="Shop" parent="." index="3" instance=ExtResource( 5 )]
 
 margin_top = -93.0
 margin_bottom = 0.0
+rect_clip_content = false
 
 [node name="Follow" parent="." index="4" instance=ExtResource( 6 )]
 
@@ -133,5 +138,6 @@ text = "restart"
 flat = false
 align = 1
 _sections_unfolded = [ "custom_fonts" ]
+
 
 

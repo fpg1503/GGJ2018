@@ -58,6 +58,7 @@ func level_fetched(error, level, grid_info, map_id):
 	print('Successfully fetched level ' + str(level))
 	self.map_id = map_id
 	original_map = grid_info
+	print(original_map)
 	hide_loading()
 	
 func show_loaded_map():

@@ -3,7 +3,14 @@ extends Node
 const TILE_SIZE = Vector2(80, 60)
 const MAP_SIZE = Vector2(14,8)
 
+onready var scene_manager = null
 onready var coins = 10
+
+const SCENES = {
+"MainMenu": preload("res://scenes/Menu.tscn"),
+"ShopMenu": preload("res://scenes/ShopMenu.tscn"),
+"GameMenu": preload("res://scenes/
+}
 
 const ACTORS = {
 "Box": preload("res://scenes/actors/Box.tscn"),
