@@ -1,11 +1,31 @@
 extends Control
 
+onready var _enabled = true
 
-func change_scene():
-	pass
+func change_scene(new_scene):
+	var scene = $CurrentScene.get_child(0)
+	scene.queue_free()
+	var instanced = global.SCENES[new_scene].instance()
+	$CurrentScene.add_child(instanced)
+
+func _check_nickname(anim):
+	if (global.player_data["nickname"] == ""):
+		_change_nickname()
+
+func _change_nickname():
+	$PopupPanel.show()
+	_enabled = false
+	$AnimationPlayer.play("blackscreen_alpha")
+
+func _close_nickname():
+	$AnimationPlayer.play_backwards("blackscreen_alpha")
+	$PopupPanel.hide()
+	_enabled = true
 
 func _ready():
 	global.scene_manager = self
+	$LockedScreen/AnimationPlayer.connect("animation_finished", self, "_check_nickname")
+	$PopupPanel.connect("closed", self, "_close_nickname")
 
 func _flick():
 	pass

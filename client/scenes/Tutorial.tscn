@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://scenes/Game.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Tutorial.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Grid.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/map.png" type="Texture" id=3]
 [ext_resource path="res://scenes/Hud.tscn" type="PackedScene" id=4]
@@ -41,13 +41,22 @@ script = ExtResource( 1 )
 
 position = Vector2( 80, 114 )
 
-[node name="TextureRect" type="Sprite" parent="." index="1"]
+[node name="TextureRect" type="TextureRect" parent="." index="1"]
 
-position = Vector2( 600.043, 299.924 )
-scale = Vector2( 1.00054, 1.0014 )
-z_index = -600
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
 texture = ExtResource( 3 )
-_sections_unfolded = [ "Z Index" ]
+stretch_mode = 0
 
 [node name="Hud" parent="." index="2" instance=ExtResource( 4 )]
 
@@ -104,7 +113,6 @@ visible = false
 
 [node name="Button" type="Button" parent="." index="11"]
 
-visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0

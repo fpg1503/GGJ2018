@@ -99,6 +99,9 @@ func _on_swipe(dir):
 			_move(DOWN)
 
 func _input(event):
+	if (event is InputEventKey and event.scancode == KEY_K):
+		.destroy()
+	
 	if (falling or raising):
 		return
 	if(not is_destroyed):

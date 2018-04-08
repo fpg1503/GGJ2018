@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/background frente.png-782eceff53a2a1972c1aa764b0ddbd17.stex"
+
+[deps]
+
+source_file="res://assets/background frente.png"
+source_md5="edbdec3a984a9f53612752c3308a59f3"
+
+dest_files=[ "res://.import/background frente.png-782eceff53a2a1972c1aa764b0ddbd17.stex" ]
+dest_md5="eef0f6949f9f9b56cf2b65b9042ddb15"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

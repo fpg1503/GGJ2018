@@ -3,13 +3,11 @@ extends Node
 const TILE_SIZE = Vector2(80, 60)
 const MAP_SIZE = Vector2(14,8)
 
-onready var scene_manager = null
-onready var coins = 10
-
 const SCENES = {
 "MainMenu": preload("res://scenes/Menu.tscn"),
 "ShopMenu": preload("res://scenes/ShopMenu.tscn"),
-"GameMenu": preload("res://scenes/
+"Game": preload("res://scenes/Game.tscn"),
+"Tutorial": preload("res://scenes/Tutorial.tscn"),
 }
 
 const ACTORS = {
@@ -40,5 +38,42 @@ preload("res://assets/faces/layersdude-5.png"),
 preload("res://assets/faces/layersdude-6.png"),
 preload("res://assets/faces/layersdude-7.png")]
 
+onready var scene_manager = null
+onready var coins = 10
+
+onready var player_data = {
+"gold": 0,
+"tutorial": false,
+"nickname": "",
+}
+
+onready var savegame = File.new()
+onready var save_path = "user://savegame.bin"
+
+func check_savegame():
+#	savegame.open(save_path, File.WRITE)
+#	savegame.store_var(player_data)
+#	savegame.close()
+	
+	if not savegame.file_exists(save_path):
+		savegame.open(save_path, File.WRITE)
+		savegame.store_var(player_data)
+		savegame.close()
+	else:
+		load_player_data()
+
+func save_player_data():
+	savegame.open(save_path, File.WRITE)
+	savegame.store_var(player_data)
+	savegame.close()
+
+func load_player_data():
+	savegame.open(save_path, File.READ)
+	player_data = savegame.get_var()
+	print(player_data)
+	savegame.close()
+
 func _ready():
 	randomize()
+#	save_player_data()
+	check_savegame()

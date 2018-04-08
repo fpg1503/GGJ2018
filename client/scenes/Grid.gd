@@ -1,5 +1,7 @@
 extends Node2D
 
+const Z_INDEX_FIX = 500
+
 onready var player = null
 onready var gridmap = {}
 
@@ -34,12 +36,12 @@ func insert(type, x, y):
 		var dic_to_add = traps if type == 'Trap' or type == 'Trapdoor' else gridmap
 		var element = global.ACTORS[type].instance()
 		element.position = Vector2(x*global.TILE_SIZE.x, y*global.TILE_SIZE.y)
-		element.z_index = y*10 + 1
+		element.z_index = y*10 + 1 - Z_INDEX_FIX
 		add_child(element)
 		dic_to_add[Vector2(x,y)] = element
 		element.grid_pos = Vector2(x,y)
 		if type == 'Player':
-			element.position = Vector2(x*global.TILE_SIZE.x, -500)
+			element.position = Vector2(x*global.TILE_SIZE.x, - Z_INDEX_FIX)
 			element.z_index += 1
 			element.falling = true
 			player = element
@@ -89,8 +91,9 @@ func _on_player_move(vec2):
 	
 	if (gridmap.has(to)):
 		if (check_movable(from, to)):
-			var toto = to + (to - from) # africa by
-			gridmap[to].z_index = toto.y * 10
+			# africa by
+			var toto = to + (to - from) 
+			gridmap[to].z_index = toto.y * 10 - Z_INDEX_FIX
 			gridmap[to].move_to_tile(toto)
 			gridmap[toto] = gridmap[to]
 			gridmap.erase(to)
@@ -101,7 +104,7 @@ func _on_player_move(vec2):
 	
 	gridmap.erase(from)
 	gridmap[to] = player
-	player.z_index = to.y * 10 + 2
+	player.z_index = to.y * 10 + 2 - Z_INDEX_FIX
 	player.move_to_tile(to)
 	
 	if (traps.has(to) and traps[to].type == "Trap" and traps[to].active):

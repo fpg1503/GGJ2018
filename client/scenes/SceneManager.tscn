@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/SceneManager.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Menu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/white.png" type="Texture" id=3]
-[ext_resource path="res://assets/CRTFrame.png" type="Texture" id=4]
+[ext_resource path="res://scenes/NamePopup.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/CRTFrame.png" type="Texture" id=5]
+[ext_resource path="res://scenes/LockedScreen.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Shader" id=1]
 
@@ -38,8 +40,8 @@ vec2 distort(vec2 p)
 
 void get_color_bleeding(inout vec4 current_color,inout vec4 color_left){
 
-	current_color = current_color*vec4(color_bleeding,0.7,0.25,1);
-	color_left = color_left*vec4(0.25,0.7,color_bleeding,1);
+	current_color = current_color*vec4(color_bleeding,0.5,0.25,1);
+	color_left = color_left*vec4(0.25,0.5,color_bleeding,1);
 }
 
 void get_color_scanline(vec2 uv,inout vec4 c,float TIME){
@@ -94,6 +96,25 @@ shader_param/scanline_alpha = 0.9
 shader_param/lines_velocity = 50.0
 _sections_unfolded = [ "shader_param" ]
 
+[sub_resource type="Animation" id=3]
+
+resource_name = "blackscreen_alpha"
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Blackscreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.588235 ) ]
+}
+
 [node name="SceneManager" type="Control" index="0"]
 
 anchor_left = 0.0
@@ -124,12 +145,40 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+_sections_unfolded = [ "Visibility" ]
 
 [node name="Menu" parent="CurrentScene" index="0" instance=ExtResource( 2 )]
 
-[node name="Shader" type="TextureRect" parent="." index="1"]
+[node name="Blackscreen" type="TextureRect" parent="." index="1"]
+
+modulate = Color( 0, 0, 0, 0 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1201.0
+margin_bottom = 601.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 0
+_sections_unfolded = [ "Mouse", "Visibility" ]
+
+[node name="PopupPanel" parent="." index="2" instance=ExtResource( 4 )]
 
 visible = false
+margin_left = 295.0
+margin_top = 196.0
+margin_right = 917.0
+margin_bottom = 410.0
+
+[node name="Shader" type="TextureRect" parent="." index="3"]
+
 material = SubResource( 2 )
 anchor_left = 0.0
 anchor_top = 0.0
@@ -139,16 +188,16 @@ margin_right = 1200.0
 margin_bottom = 600.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 1
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 0
-_sections_unfolded = [ "Material" ]
+_sections_unfolded = [ "Focus", "Material", "Mouse", "Visibility" ]
 
-[node name="TextureRect" type="TextureRect" parent="." index="2"]
+[node name="TextureRect" type="TextureRect" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -158,12 +207,25 @@ margin_right = 1200.0
 margin_bottom = 600.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 1
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 expand = true
 stretch_mode = 0
+_sections_unfolded = [ "Mouse" ]
+
+[node name="LockedScreen" parent="." index="5" instance=ExtResource( 6 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/blackscreen_alpha = SubResource( 3 )
+blend_times = [  ]
 
 
