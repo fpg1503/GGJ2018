@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Grid.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/audio/put_item.wav" type="AudioStream" id=9]
 [ext_resource path="res://Loading.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Sending.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/Inventory.tscn" type="PackedScene" id=12]
 
 [node name="Game" type="Control" index="0"]
 
@@ -91,5 +92,7 @@ visible = false
 [node name="Sending" parent="." index="10" instance=ExtResource( 11 )]
 
 visible = false
+
+[node name="Inventory" parent="." index="11" instance=ExtResource( 12 )]
 
 

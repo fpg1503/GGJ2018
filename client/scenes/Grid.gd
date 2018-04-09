@@ -82,6 +82,15 @@ func check_movable(from, to):
 			return true
 	return false
 
+func used_smoke_bomb():
+	var pos = player.grid_pos
+	
+	for x in range(pos.x-1,pos.x+2):
+		for y in range(pos.y-1, pos.y+2):
+			var p = Vector2(x,y)
+			if (traps.has(p) and traps[p].type == "Trap" and traps[p].active):
+				traps[p].deactivate()
+
 func _on_player_move(vec2):
 	var from = player.grid_pos
 	var to = from + vec2

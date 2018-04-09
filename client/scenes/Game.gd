@@ -171,11 +171,16 @@ func _ready():
 	
 	$Follow.connect("place_item", self, "_on_place_item")
 	
+	$Inventory.connect("used_smoke_bomb", self, "_on_used_smoke_bomb")
+	
 	var user = UserIdentifier.get_unique_id()
 	Server.fetch_level(1, user)
 	show_loading()
 
 	Server.connect('level_fetched', self, 'level_fetched')
+
+func _on_used_smoke_bomb():
+	$Grid.used_smoke_bomb()
 
 func show_loading():
 	add_child(timer)
