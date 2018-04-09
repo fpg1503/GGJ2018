@@ -89,6 +89,7 @@ func _on_won():
 		send_grid_to_server()
 		show_seding()
 	else:
+		global.player_data["gold"] += 10
 		set_state(GAME_STATE.CREATING)
 
 func _on_lost():
@@ -216,11 +217,13 @@ func show_seding():
 func _on_timeout_send():
 	if level_sent:
 		print('Timeout and level saved!')
-		$Sending/Label.text = "Click to play again!"
 		ended = true
 	else:
 		print('Timeout, level is not yet saved')
 		send_time_is_up = true
+	
+	global.save_player_data()
+	global.scene_manager.change_scene("MainMenu")
 
 func hide_sending():
 	level_sent = true

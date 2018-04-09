@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/actors/TrapsBalloon.gd" type="Script" id=1]
 [ext_resource path="res://assets/speech-bubble.png" type="Texture" id=2]
 [ext_resource path="res://assets/SuperMario256.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://assets/trap.png" type="Texture" id=4]
+[ext_resource path="res://assets/alarm.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -32,7 +32,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0.19154, 0.19154 ) ]
 }
 
-[node name="TrapsBalloon" type="Node2D" index="0"]
+[node name="TrapsBalloon" type="Node2D"]
 
 scale = Vector2( 1e-05, 1e-05 )
 script = ExtResource( 1 )
@@ -50,19 +50,18 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 143.208
-margin_top = -243.0
-margin_right = 317.208
-margin_bottom = -123.0
+margin_left = 158.0
+margin_top = -248.0
+margin_right = 332.0
+margin_bottom = -128.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "= 0"
+text = "=0"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -70,8 +69,8 @@ _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
 [node name="TrapSprite" type="Sprite" parent="." index="2"]
 
-position = Vector2( 41.9464, -205.47 )
-scale = Vector2( 1.60999, 1.60999 )
+position = Vector2( 81.0679, -207.451 )
+scale = Vector2( 1.87431, 1.87431 )
 texture = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]

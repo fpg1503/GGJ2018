@@ -42,14 +42,14 @@ func insert(type, x, y):
 		element.grid_pos = Vector2(x,y)
 		if type == 'Player':
 			element.position = Vector2(x*global.TILE_SIZE.x, - Z_INDEX_FIX)
-			element.z_index += 1
+			element.z_index += 2
 			element.falling = true
 			player = element
 			starting_y = y*global.TILE_SIZE.y
 			element.connect("move", self, "_on_player_move")
 		if type == 'Trap':
 			element.add_to_group('traps')
-			element.z_index += 2
+			element.z_index -= 5
 		return true
 	elif len(type) > 0:
 		print('Unsupported element: ' + type + '(' + str(x) + ',' + str(y) + ')')
@@ -102,7 +102,7 @@ func _on_player_move(vec2):
 		if (check_movable(from, to)):
 			# africa by
 			var toto = to + (to - from) 
-			gridmap[to].z_index = toto.y * 10 - Z_INDEX_FIX
+			gridmap[to].z_index = toto.y * 10 - Z_INDEX_FIX + 2
 			gridmap[to].move_to_tile(toto)
 			gridmap[toto] = gridmap[to]
 			gridmap.erase(to)

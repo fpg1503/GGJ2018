@@ -40,18 +40,16 @@ func _child_on_tween_completed(obj, prop):
 	invencible = false
 	falling = false
 	raising = false
-	if(is_destroyed):
-		end = true
-		get_parent().emit_signal("lost")
 
 func _on_animation_finished(name):
 	if (name == "won"):
 		get_parent().emit_signal("won")
+	elif (name == "lost"):
+		end = true
+		get_parent().emit_signal("lost")
 
 func _on_destroyed():
-	tweenIntro.interpolate_property($Sprite, "rotation_degrees", rotation_degrees, -90, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
-	tweenIntro.interpolate_property(self, "position", position, Vector2(position.x, position.y + 30), 0.5, Tween.TRANS_ELASTIC,Tween.EASE_OUT_IN)
-	tweenIntro.start()
+	$AnimationPlayer.play("lost")
 
 func _ready():
 	add_child(tweenIntro)
