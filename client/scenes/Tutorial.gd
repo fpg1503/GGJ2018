@@ -87,20 +87,17 @@ func _on_won():
 		current_level += 1
 		load_off_state()
 	else:
-		get_tree().change_scene("res://scenes/EndScreen.tscn")
-	if(state == GAME_STATE.TESTING):
-		$Hud.exit()
-		$Grid.hide()
-		send_grid_to_server()
-		show_seding()
-	else:
-		set_state(GAME_STATE.CREATING)
+		if not global.player_data["tutorial"]:
+			global.player_data["tutorial"] = true
+			global.player_data["gold"] += 10
+			global.save_player_data()
+		global.scene_manager.change_scene("MainMenu")
 
 func _on_lost():
 	OS.delay_msec(1000)
 	load_off_state()
-	set_state(GAME_STATE.CREATING)
-	$LostPlayer.play()
+#	set_state(GAME_STATE.CREATING)
+#	$LostPlayer.play()
 
 func _on_hud_play():
 	set_state(GAME_STATE.TESTING)
@@ -180,18 +177,28 @@ func _ready():
 	
 	$Button.connect("pressed", self, "load_off_state")
 	
-	var user = UserIdentifier.get_unique_id()
-	Server.fetch_level(1, user)
-	show_loading()
+	$BackButton.connect("pressed", self, "_on_back_pressed")
+	
+#	var user = UserIdentifier.get_unique_id()
+#	Server.fetch_level(1, user)
+#	show_loading()
 
-#	load_off_state()
+	load_off_state()
 
-	Server.connect('level_fetched', self, 'level_fetched')
+#	Server.connect('level_fetched', self, 'level_fetched')
+
+func _on_back_pressed():
+	global.scene_manager.change_scene("MainMenu")
 
 func load_off_state():
 	$Grid.set_grid('stage' + str(current_level))
 	$Grid.start_game()
 	$Grid.get_tree().call_group('traps', 'hide')
+	
+	for c in $OfflineTips.get_children():
+		c.hide()
+	$OfflineTips.get_child(current_level-1).show()
+	
 	$AudioStreamPlayer.stream = global.MUSIC["spy_time"]
 	$AudioStreamPlayer.play(0.0)
 

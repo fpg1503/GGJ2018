@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/play.png-659bd52d7667961eaefb6f06b279c2de.stex"
+path="res://.import/museu com combra.png-31d7e13ecb8475cc82a5a1d786792625.stex"
 
 [deps]
 
-source_file="res://assets/play.png"
-source_md5="ed34034792339b289d62681050436588"
+source_file="res://assets/museu com combra.png"
+source_md5="dc47396a2880cd73664f5fb01caabd43"
 
-dest_files=[ "res://.import/play.png-659bd52d7667961eaefb6f06b279c2de.stex" ]
-dest_md5="8786808beb59ed718a8f28667017b29d"
+dest_files=[ "res://.import/museu com combra.png-31d7e13ecb8475cc82a5a1d786792625.stex" ]
+dest_md5="7db0e2c775f2fe8a325bb0a7d03211ee"
 
 [params]
 

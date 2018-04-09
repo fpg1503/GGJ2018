@@ -1,6 +1,6 @@
 extends Control
 
-onready var _enabled = true
+onready var _enabled = false
 
 func change_scene(new_scene):
 	var scene = $CurrentScene.get_child(0)
@@ -11,10 +11,11 @@ func change_scene(new_scene):
 func _check_nickname(anim):
 	if (global.player_data["nickname"] == ""):
 		_change_nickname()
+	else:
+		_enabled = true
 
 func _change_nickname():
 	$PopupPanel.show()
-	_enabled = false
 	$AnimationPlayer.play("blackscreen_alpha")
 
 func _close_nickname():

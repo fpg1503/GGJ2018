@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/play.png-659bd52d7667961eaefb6f06b279c2de.stex"
+path="res://.import/museu 2.png-b2b3b8cdd02e763d3300c703f8781eab.stex"
 
 [deps]
 
-source_file="res://assets/play.png"
-source_md5="ed34034792339b289d62681050436588"
+source_file="res://assets/museu 2.png"
+source_md5="cea770bc7697d27e930a63143eca0bc2"
 
-dest_files=[ "res://.import/play.png-659bd52d7667961eaefb6f06b279c2de.stex" ]
-dest_md5="8786808beb59ed718a8f28667017b29d"
+dest_files=[ "res://.import/museu 2.png-b2b3b8cdd02e763d3300c703f8781eab.stex" ]
+dest_md5="714cdaac0ffa0d4763cf791aec1cc91f"
 
 [params]
 

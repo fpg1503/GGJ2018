@@ -52,7 +52,7 @@ func exit():
 	pass
 
 func update_text():
-	$LabelCoins.text = "Coins: " + str(global.coins)
+	$LabelCoins.text = "Gold: " + str(global.player_data["gold"])
 
 func _on_box():
 	shop(ITEM_BOX)
@@ -68,10 +68,10 @@ func _on_bomb():
 
 func shop(item):
 	var details = ITEM_DETAILS[item]
-	if global.coins >= details.price:
+	if global.player_data["gold"] >= details.price:
 		$PickPlayer.play()
 		emit_signal('shop', item)
-		global.coins -= details.price
+		global.player_data["gold"] -= details.price
 		update_text()
 
 func _on_back():

@@ -5,15 +5,33 @@ extends Control
 # var b = "textvar"
 
 func _ready():
-	$Tutorial.connect("pressed", self, "_tutorial_pressed")
-	$Game.connect("pressed", self, "_game_pressed")
-	$Shop.connect("pressed", self, "_shop_pressed")
+	$Tutorial.connect("pressed", self, "_button_pressed", ["Tutorial"])
+	$Game.connect("pressed", self, "_button_pressed", ["Game"])
+	$Shop.connect("pressed", self, "_button_pressed", ["ShopMenu"])
+	$Reward.connect("pressed", self, "_button_pressed", ["RewardMenu"])
+	$Ranking.connect("pressed", self, "_button_pressed", ["RankingMenu"])
+	
+	_server_reward_update()
+	_server_reward_handle()
+	
+	if not global.player_data.tutorial:
+		$TutorialLabel.show()
+		$TutorialLabel/AnimationPlayer.play("anim")
+	else:
+		$TutorialLabel.hide()
+	
+	$GoldLabel.text = "Current gold: " + str(global.player_data["gold"])
 
-func _tutorial_pressed():
-	global.scene_manager.change_scene("Tutorial")
+func _button_pressed(scene):
+	if (not global.scene_manager._enabled):
+		return
+	global.scene_manager.change_scene(scene)
 
-func _game_pressed():
-	global.scene_manager.change_scene("Game")
+func _server_reward_update():
+	# something something
+	pass
 
-func _shop_pressed():
-	global.scene_manager.change_scene("Shop")
+func _server_reward_handle():
+	# update rewards on global
+	if global.rewards.size() > 0:
+		$Reward/Notice.show()

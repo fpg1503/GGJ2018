@@ -60,7 +60,6 @@ func _ready():
 	swipe.connect("swipe", self, "_on_swipe")
 	
 	type = "Player"
-	$Sprite/Face.texture = global.FACES[int(randf() * global.FACES.size())]
 	
 	tweenIntro.connect("tween_completed", self, "_child_on_tween_completed")
 	tween.connect("tween_completed", self, "_movement_completed")

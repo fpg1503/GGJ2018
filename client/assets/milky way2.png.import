@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/play.png-659bd52d7667961eaefb6f06b279c2de.stex"
+path="res://.import/milky way2.png-7b78a08e6c8c74c610ff5adb8def1a40.stex"
 
 [deps]
 
-source_file="res://assets/play.png"
-source_md5="ed34034792339b289d62681050436588"
+source_file="res://assets/milky way2.png"
+source_md5="5cb1fa40016d1d2cd83e5f83d3b1ae33"
 
-dest_files=[ "res://.import/play.png-659bd52d7667961eaefb6f06b279c2de.stex" ]
-dest_md5="8786808beb59ed718a8f28667017b29d"
+dest_files=[ "res://.import/milky way2.png-7b78a08e6c8c74c610ff5adb8def1a40.stex" ]
+dest_md5="a2a6e01c1b4481e84d1d6161ded9c579"
 
 [params]
 

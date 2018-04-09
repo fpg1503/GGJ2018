@@ -3,7 +3,8 @@ extends Panel
 signal closed
 
 func _ok_pressed():
-#	print(global.player_data)
+	if ($LineEdit.text == ""):
+		return
 	global.player_data["nickname"] = $LineEdit.text
 	global.save_player_data()
 	emit_signal("closed")

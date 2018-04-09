@@ -83,11 +83,6 @@ func send_grid_to_server():
 
 func _on_won():
 	$WonPlayer.play()
-	if(current_level < 4):
-		current_level += 1
-		load_off_state()
-	else:
-		get_tree().change_scene("res://scenes/EndScreen.tscn")
 	if(state == GAME_STATE.TESTING):
 		$Hud.exit()
 		$Grid.hide()
@@ -98,7 +93,6 @@ func _on_won():
 
 func _on_lost():
 	OS.delay_msec(1000)
-	load_off_state()
 	set_state(GAME_STATE.CREATING)
 	$LostPlayer.play()
 
@@ -119,7 +113,6 @@ func _on_hud_shop():
 
 func _on_hud_reset():
 	load_original_grid()
-	global.coins = 10
 	$Shop.update_text()
 
 func _on_shop(item):
@@ -155,7 +148,7 @@ func _on_place_item(pos):
 		$PopPlayer.play()
 		current_map.append({'type': $Shop.get_name(follow_type), 'x': pos.x, 'y': pos.y})
 	else:
-		global.coins += $Shop.get_price(follow_type)
+		global.player_data["gold"] += $Shop.get_price(follow_type)
 		$Shop.update_text()
 
 func _on_level_saved(err):
@@ -178,23 +171,11 @@ func _ready():
 	
 	$Follow.connect("place_item", self, "_on_place_item")
 	
-	$Button.connect("pressed", self, "load_off_state")
-	
 	var user = UserIdentifier.get_unique_id()
 	Server.fetch_level(1, user)
 	show_loading()
 
-#	load_off_state()
-
 	Server.connect('level_fetched', self, 'level_fetched')
-
-func load_off_state():
-	$Grid.set_grid('stage' + str(current_level))
-	$Grid.start_game()
-	$Grid.get_tree().call_group('traps', 'hide')
-	$AudioStreamPlayer.stream = global.MUSIC["spy_time"]
-	$AudioStreamPlayer.play(0.0)
-
 
 func show_loading():
 	add_child(timer)

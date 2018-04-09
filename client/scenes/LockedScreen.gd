@@ -4,4 +4,5 @@ func _ready():
 	$PawButton.connect("pressed", self, "_open")
 
 func _open():
-	$AnimationPlayer.play("open")
+	if( not $AnimationPlayer.is_playing()):
+		$AnimationPlayer.play("open")

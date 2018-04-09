@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/actors/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/dude.png" type="Texture" id=2]
-[ext_resource path="res://assets/faces/layersdude-3.png" type="Texture" id=3]
-[ext_resource path="res://scenes/actors/TrapsBalloon.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/milky way2.png" type="Texture" id=2]
+[ext_resource path="res://scenes/actors/TrapsBalloon.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -48,17 +47,10 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-position = Vector2( 0.400362, -46.3234 )
-scale = Vector2( 0.422772, 0.447013 )
+position = Vector2( 0.276426, -19.6015 )
+scale = Vector2( 0.744674, 0.824073 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
-
-[node name="Face" type="Sprite" parent="Sprite" index="0"]
-
-position = Vector2( 16.1736, -3.63092 )
-scale = Vector2( 0.233452, 0.295186 )
-texture = ExtResource( 3 )
-_sections_unfolded = [ "Transform" ]
 
 [node name="ReferenceRect" type="ReferenceRect" parent="." index="1"]
 
@@ -71,7 +63,6 @@ margin_top = -30.0
 margin_right = 40.0
 margin_bottom = 30.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -103,7 +94,7 @@ playback_speed = 1.0
 anims/won = SubResource( 2 )
 blend_times = [  ]
 
-[node name="TrapsBalloon" parent="." index="4" instance=ExtResource( 4 )]
+[node name="TrapsBalloon" parent="." index="4" instance=ExtResource( 3 )]
 
 position = Vector2( 40, -90 )
 
