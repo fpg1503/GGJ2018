@@ -6,6 +6,11 @@ func show_connection_error():
 	$ConnectionError/AnimationPlayer.play("appear")
 
 func change_scene(new_scene):
+	if (new_scene == "Game" or new_scene == "Tutorial"):
+		$Shader.hide()
+	else:
+		$Shader.show()
+	
 	var scene = $CurrentScene.get_child(0)
 	scene.queue_free()
 	var instanced = global.SCENES[new_scene].instance()

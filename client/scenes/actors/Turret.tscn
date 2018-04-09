@@ -83,7 +83,7 @@ tracks/1/keys = {
 "values": [ 0.0, 9.04088, -6.28032 ]
 }
 
-[node name="Turret" type="Node2D" index="0"]
+[node name="Turret" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]

@@ -83,7 +83,7 @@ func _move(dir):
 			$Sprite.scale.x *= -1
 
 func _on_swipe(dir):
-	if (falling or raising):
+	if (falling or raising or won):
 		return
 	if(not is_destroyed):
 		if (dir == "left"):
@@ -99,7 +99,7 @@ func _input(event):
 	if (event is InputEventKey and event.scancode == KEY_K):
 		.destroy()
 	
-	if (falling or raising):
+	if (falling or raising or won):
 		return
 	if(not is_destroyed):
 		if (event.is_action("ui_left") and event.is_pressed() and !event.is_echo()):
