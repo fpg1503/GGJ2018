@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/actors/Turret.gd" type="Script" id=1]
 [ext_resource path="res://assets/gun.png" type="Texture" id=2]
@@ -10,7 +10,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 30.036, 41.335 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 
 resource_name = "destroyed"
 length = 1.0
@@ -53,9 +53,8 @@ tracks/2/keys = {
 "values": [ 0.0, 90.0 ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 
-resource_name = "shoot"
 length = 0.6
 loop = false
 step = 0.1
@@ -84,7 +83,7 @@ tracks/1/keys = {
 "values": [ 0.0, 9.04088, -6.28032 ]
 }
 
-[node name="Turret" type="Node2D"]
+[node name="Turret" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -107,6 +106,7 @@ margin_top = -30.0
 margin_right = 40.0
 margin_bottom = 30.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -143,10 +143,9 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/destroyed = SubResource( 3 )
-anims/shoot = SubResource( 2 )
+anims/destroyed = SubResource( 2 )
+anims/shoot = SubResource( 3 )
 blend_times = [  ]
-autoplay = ""
 
 [node name="Gunfire" type="Sprite" parent="." index="4"]
 

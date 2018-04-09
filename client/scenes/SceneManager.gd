@@ -2,6 +2,9 @@ extends Control
 
 onready var _enabled = false
 
+func show_connection_error():
+	$ConnectionError/AnimationPlayer.play("appear")
+
 func change_scene(new_scene):
 	var scene = $CurrentScene.get_child(0)
 	scene.queue_free()

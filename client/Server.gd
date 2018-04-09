@@ -46,6 +46,11 @@ func save_level(level, map, user, parent):
 	return client.post(url, body)
 	
 func request_completed(error, result_code, response_code, headers, result):
+	if result == null:
+		global.scene_manager.change_scene("MainMenu")
+		global.scene_manager.show_connection_error()
+		return
+	
 	if _last_request == GET_LEVELS:
 		emit_signal('levels', error, result)
 	elif _last_request == GET_LEVEL_INFO:
