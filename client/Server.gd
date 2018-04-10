@@ -33,7 +33,7 @@ func fetch_levels():
 	return client.get(url)
 	
 func fetch_level(level, user):
-	var url = base_url + '/levels/' + str(level) + '?userName=' + str(user)
+	var url = base_url + '/levels/' + str(level) + '?userId=' + str(user)
 	_last_request = GET_LEVEL_INFO
 	return client.get(url)
 	
@@ -42,13 +42,14 @@ func fetch_ranking(level, start = 0, page_size = 10):
 	_last_request = RANKING
 	return client.get(url)
 	
-func save_level(level, map, user, parent):
+func save_level(level, map, user, name, parent_level):
 	var url = base_url + '/levels/' + str(level)
 	_last_request = SAVE_LEVEL
 	var body = {
 		'map': map,
-		'parentId': parent,
-		'userName': user
+		'parentId': parent_level,
+		'userId': user,
+		'name': name
 	}
 	return client.post(url, body)
 	
