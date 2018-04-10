@@ -18,7 +18,8 @@ signal level_saved
 enum Action {
 	GET_LEVELS,
 	GET_LEVEL_INFO,
-	SAVE_LEVEL
+	SAVE_LEVEL,
+	LEVEL_COMPLETION
 }
 
 func _ready():
@@ -44,6 +45,14 @@ func save_level(level, map, user, parent):
 		'userName': user
 	}
 	return client.post(url, body)
+	
+func set_level_completion(level, user, level_id, completed):
+	var url = base_url + '/levels/' + level_id + '/completion'
+	_last_request = LEVEL_COMPLETION
+	var body = {
+		'user': user,
+		'completed': completed
+	}
 	
 func request_completed(error, result_code, response_code, headers, result):
 	if result == null:
