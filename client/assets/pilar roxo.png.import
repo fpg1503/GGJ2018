@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tile_gun.png-c71c002c3b46cd45da52b59dff7a0ef8.stex"
+path="res://.import/pilar roxo.png-0140f0e8b9f94d755ce062f1c5929d63.stex"
 
 [deps]
 
-source_file="res://assets/tile/tile_gun.png"
-source_md5="02f2ffabbe1d97da64fd243bbbbfc4e1"
+source_file="res://assets/pilar roxo.png"
+source_md5="42a42ac6119a8bb4594185076adf5039"
 
-dest_files=[ "res://.import/tile_gun.png-c71c002c3b46cd45da52b59dff7a0ef8.stex" ]
-dest_md5="dc09bda05c30226aea6a76641df0a27e"
+dest_files=[ "res://.import/pilar roxo.png-0140f0e8b9f94d755ce062f1c5929d63.stex" ]
+dest_md5="3935f2ba9e4b0e179765d429c7e5d185"
 
 [params]
 

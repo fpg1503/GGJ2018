@@ -1,9 +1,9 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/Tutorial.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://assets/icon_back.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Grid.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/museu 2.png" type="Texture" id=4]
+[ext_resource path="res://assets/museu 2 blackout.png" type="Texture" id=4]
 [ext_resource path="res://scenes/Hud.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Shop.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Follow.tscn" type="PackedScene" id=7]
@@ -31,7 +31,7 @@ use_filter = false
 font_data = ExtResource( 14 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Game" type="Control"]
+[node name="Game" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -40,6 +40,7 @@ anchor_bottom = 0.0
 margin_right = 40.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -57,6 +58,7 @@ margin_top = 14.0
 margin_right = 89.0
 margin_bottom = 77.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
@@ -145,6 +147,7 @@ margin_top = 15.0
 margin_right = 683.0
 margin_bottom = 61.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
@@ -169,6 +172,7 @@ anchor_bottom = 0.0
 margin_right = 40.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -185,6 +189,7 @@ margin_top = 558.0
 margin_right = 1098.0
 margin_bottom = 598.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -214,6 +219,7 @@ margin_top = 556.0
 margin_right = 1040.0
 margin_bottom = 596.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -236,11 +242,12 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 114.0
+margin_left = 144.0
 margin_top = 558.0
-margin_right = 1080.0
+margin_right = 1037.0
 margin_bottom = 598.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -250,7 +257,7 @@ custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 1
 custom_constants/shadow_as_outline = 1
-text = "move the boxes and avoid the turrets"
+text = "move the boxes and avoid the light"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -268,6 +275,7 @@ margin_top = 560.0
 margin_right = 962.0
 margin_bottom = 600.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1

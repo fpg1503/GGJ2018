@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tile_gun.png-c71c002c3b46cd45da52b59dff7a0ef8.stex"
+path="res://.import/museu 2 blackout.png-62e7330317a8c0680d9a9cf5db691a3a.stex"
 
 [deps]
 
-source_file="res://assets/tile/tile_gun.png"
-source_md5="02f2ffabbe1d97da64fd243bbbbfc4e1"
+source_file="res://assets/museu 2 blackout.png"
+source_md5="bf1c12196ae60630f47f9071f6f62f2f"
 
-dest_files=[ "res://.import/tile_gun.png-c71c002c3b46cd45da52b59dff7a0ef8.stex" ]
-dest_md5="dc09bda05c30226aea6a76641df0a27e"
+dest_files=[ "res://.import/museu 2 blackout.png-62e7330317a8c0680d9a9cf5db691a3a.stex" ]
+dest_md5="b1c6636ac29cf5a0cbf33be0c37685d5"
 
 [params]
 

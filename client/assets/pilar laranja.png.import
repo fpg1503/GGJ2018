@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tile_gun.png-c71c002c3b46cd45da52b59dff7a0ef8.stex"
+path="res://.import/pilar laranja.png-22bb833084864d7e7bde1256516bb27b.stex"
 
 [deps]
 
-source_file="res://assets/tile/tile_gun.png"
-source_md5="02f2ffabbe1d97da64fd243bbbbfc4e1"
+source_file="res://assets/pilar laranja.png"
+source_md5="2f109033770ee6ff9e185003b2f6fae7"
 
-dest_files=[ "res://.import/tile_gun.png-c71c002c3b46cd45da52b59dff7a0ef8.stex" ]
-dest_md5="dc09bda05c30226aea6a76641df0a27e"
+dest_files=[ "res://.import/pilar laranja.png-22bb833084864d7e7bde1256516bb27b.stex" ]
+dest_md5="8f2401870f5ad8d3f94cf2e2965decf6"
 
 [params]
 

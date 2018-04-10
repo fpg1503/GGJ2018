@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Grid.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/museu 2.png" type="Texture" id=3]
+[ext_resource path="res://assets/museu 2 blackout.png" type="Texture" id=3]
 [ext_resource path="res://scenes/Hud.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Shop.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Follow.tscn" type="PackedScene" id=6]
@@ -22,6 +22,7 @@ anchor_bottom = 0.0
 margin_right = 40.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -94,5 +95,7 @@ visible = false
 visible = false
 
 [node name="Inventory" parent="." index="11" instance=ExtResource( 12 )]
+
+rect_clip_content = false
 
 

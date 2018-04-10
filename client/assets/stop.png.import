@@ -7,10 +7,10 @@ path="res://.import/stop.png-21b5e2ecc8f4a602e13063921f4a2f9d.stex"
 [deps]
 
 source_file="res://assets/stop.png"
-source_md5="ada3c4d8228c06328c7cab2bd1b5cdee"
+source_md5="32e34f73ed310b795d013fe47d0eec46"
 
 dest_files=[ "res://.import/stop.png-21b5e2ecc8f4a602e13063921f4a2f9d.stex" ]
-dest_md5="4cc6909ad19ab15a2ac7657699347488"
+dest_md5="f5e7d6b4c465ca95492e9d8e7f2937fb"
 
 [params]
 

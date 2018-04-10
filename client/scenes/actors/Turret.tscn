@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/actors/Turret.gd" type="Script" id=1]
-[ext_resource path="res://assets/gun.png" type="Texture" id=2]
+[ext_resource path="res://assets/holofote.png" type="Texture" id=2]
 [ext_resource path="res://assets/gunfire.png" type="Texture" id=3]
 [ext_resource path="res://assets/audio/turret.wav" type="AudioStream" id=4]
 
@@ -86,12 +86,12 @@ tracks/1/keys = {
 [node name="Turret" type="Node2D"]
 
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
 position = Vector2( -3.97964, -34 )
-scale = Vector2( 0.959256, 1.10416 )
+scale = Vector2( 0.992076, 0.692215 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
 
