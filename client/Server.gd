@@ -19,7 +19,8 @@ enum Action {
 	GET_LEVELS,
 	GET_LEVEL_INFO,
 	SAVE_LEVEL,
-	LEVEL_COMPLETION
+	LEVEL_COMPLETION,
+	RANKING
 }
 
 func _ready():
@@ -36,6 +37,11 @@ func fetch_level(level, user):
 	_last_request = GET_LEVEL_INFO
 	return client.get(url)
 	
+func fetch_ranking(level, start = 0, page_size = 10):
+	var url = base_url + '/levels/' + str(level) + '/ranking' + '?start=' + str(start) + '&pageSize=' + str(page_size)
+	_last_request = RANKING
+	return client.get(url)
+	
 func save_level(level, map, user, parent):
 	var url = base_url + '/levels/' + str(level)
 	_last_request = SAVE_LEVEL
@@ -47,12 +53,13 @@ func save_level(level, map, user, parent):
 	return client.post(url, body)
 	
 func set_level_completion(level, user, level_id, completed):
-	var url = base_url + '/levels/' + level_id + '/completion'
+	var url = base_url + '/levels/' + str(level) + '/id/' + level_id + '/completion'
 	_last_request = LEVEL_COMPLETION
 	var body = {
 		'user': user,
 		'completed': completed
 	}
+	return client.post(url, body)
 	
 func request_completed(error, result_code, response_code, headers, result):
 	if result == null:
@@ -67,3 +74,5 @@ func request_completed(error, result_code, response_code, headers, result):
 		emit_signal('level_fetched', error, result.level, result.map, result._id)
 	elif _last_request == SAVE_LEVEL:
 		emit_signal('level_saved', error)
+	elif _last_request == RANKING:
+		emit_signal('raking_fetched', error, result)
