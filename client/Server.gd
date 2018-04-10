@@ -74,5 +74,7 @@ func request_completed(error, result_code, response_code, headers, result):
 		emit_signal('level_fetched', error, result.level, result.map, result._id)
 	elif _last_request == SAVE_LEVEL:
 		emit_signal('level_saved', error)
+	elif _last_request == LEVEL_COMPLETION:
+		emit_signal('completion_saved', error)
 	elif _last_request == RANKING:
 		emit_signal('raking_fetched', error, result)
