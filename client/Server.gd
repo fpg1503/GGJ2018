@@ -54,7 +54,7 @@ func save_level(level, map, user, name, parent_level):
 	return client.post(url, body)
 	
 func set_level_completion(level, user, level_id, completed):
-	var url = base_url + '/levels/' + str(level) + '/id/' + level_id + '/attempt'
+	var url = base_url + '/levels/' + str(level) + '/version/' + level_id + '/attempt'
 	_last_request = LEVEL_COMPLETION
 	var body = {
 		'user': user,
