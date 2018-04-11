@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/Tutorial.gd" type="Script" id=1]
 [ext_resource path="res://assets/icon_back.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Grid.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/museu 2 blackout.png" type="Texture" id=4]
+[ext_resource path="res://assets/museu_2_blackout.png" type="Texture" id=4]
 [ext_resource path="res://scenes/Hud.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Shop.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Follow.tscn" type="PackedScene" id=7]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Sending.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/SuperMario256.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://assets/mariofont.tres" type="DynamicFontData" id=14]
+
 
 [sub_resource type="DynamicFont" id=1]
 

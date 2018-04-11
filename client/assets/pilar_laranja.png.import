@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background fundo.png-d4a28234a6a0ba2443c44520de008469.stex"
+path="res://.import/pilar_laranja.png-fdcdb191414d4b1ac9eaa4b3d1a809ff.stex"
 
 [deps]
 
-source_file="res://assets/background fundo.png"
-source_md5="e178f60464dfa6085a67151ee598a0e2"
+source_file="res://assets/pilar_laranja.png"
+source_md5="2f109033770ee6ff9e185003b2f6fae7"
 
-dest_files=[ "res://.import/background fundo.png-d4a28234a6a0ba2443c44520de008469.stex" ]
-dest_md5="e3ba316abf0c236e45d7a2556ef76466"
+dest_files=[ "res://.import/pilar_laranja.png-fdcdb191414d4b1ac9eaa4b3d1a809ff.stex" ]
+dest_md5="8f2401870f5ad8d3f94cf2e2965decf6"
 
 [params]
 

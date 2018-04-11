@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/museu sem sombra.png-f498df1bc4f342274cb04f1256575ec8.stex"
+path="res://.import/museu_sem_sombra.png-5c21a01332204fca173de18517902eee.stex"
 
 [deps]
 
-source_file="res://assets/museu sem sombra.png"
+source_file="res://assets/museu_sem_sombra.png"
 source_md5="6c589714a15122f0fd274839d6b9bd2d"
 
-dest_files=[ "res://.import/museu sem sombra.png-f498df1bc4f342274cb04f1256575ec8.stex" ]
+dest_files=[ "res://.import/museu_sem_sombra.png-5c21a01332204fca173de18517902eee.stex" ]
 dest_md5="e9659d0a4c0c7eda0059b19f393c1127"
 
 [params]

@@ -3,7 +3,7 @@ extends "Actor.gd"
 onready var active = true
 
 func deactivate():
-	$Sprite.texture = load("res://assets/broken alarm.png") #ugh
+	$Sprite.texture = load("res://assets/broken_alarm.png") #ugh
 	$AnimationPlayer.play("deactivate")
 	active = false
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pilar roxo.png-0140f0e8b9f94d755ce062f1c5929d63.stex"
+path="res://.import/background_frente.png-b05a83d6131f9995f21cd3e6b045eaa0.stex"
 
 [deps]
 
-source_file="res://assets/pilar roxo.png"
-source_md5="42a42ac6119a8bb4594185076adf5039"
+source_file="res://assets/background_frente.png"
+source_md5="edbdec3a984a9f53612752c3308a59f3"
 
-dest_files=[ "res://.import/pilar roxo.png-0140f0e8b9f94d755ce062f1c5929d63.stex" ]
-dest_md5="3935f2ba9e4b0e179765d429c7e5d185"
+dest_files=[ "res://.import/background_frente.png-b05a83d6131f9995f21cd3e6b045eaa0.stex" ]
+dest_md5="eef0f6949f9f9b56cf2b65b9042ddb15"
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/museu 2 blackout.png-62e7330317a8c0680d9a9cf5db691a3a.stex"
+path="res://.import/pilar_vermelho.png-7d9fdf69fd89723b4b949429a60937c8.stex"
 
 [deps]
 
-source_file="res://assets/museu 2 blackout.png"
-source_md5="bf1c12196ae60630f47f9071f6f62f2f"
+source_file="res://assets/pilar_vermelho.png"
+source_md5="73d5d203b028b4aa685711544d7382cd"
 
-dest_files=[ "res://.import/museu 2 blackout.png-62e7330317a8c0680d9a9cf5db691a3a.stex" ]
-dest_md5="b1c6636ac29cf5a0cbf33be0c37685d5"
+dest_files=[ "res://.import/pilar_vermelho.png-7d9fdf69fd89723b4b949429a60937c8.stex" ]
+dest_md5="b44b21f432c3d0c6a9044a345c919271"
 
 [params]
 

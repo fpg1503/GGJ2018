@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pilar vermelho.png-068bc161f7f004e28b33f0c0debb7ba4.stex"
+path="res://.import/pilar_azul.png-31c7f95e5728696ff3a857d50f9066d2.stex"
 
 [deps]
 
-source_file="res://assets/pilar vermelho.png"
-source_md5="73d5d203b028b4aa685711544d7382cd"
+source_file="res://assets/pilar_azul.png"
+source_md5="fa49a2ac60d9f0477dfa490840a90f9a"
 
-dest_files=[ "res://.import/pilar vermelho.png-068bc161f7f004e28b33f0c0debb7ba4.stex" ]
-dest_md5="b44b21f432c3d0c6a9044a345c919271"
+dest_files=[ "res://.import/pilar_azul.png-31c7f95e5728696ff3a857d50f9066d2.stex" ]
+dest_md5="726f0506b93aba6d187b6e9d21486cae"
 
 [params]
 

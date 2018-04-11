@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/milky way2.png-7b78a08e6c8c74c610ff5adb8def1a40.stex"
+path="res://.import/museu_2.png-f176b7c7c2f17419689131a3e163fcf0.stex"
 
 [deps]
 
-source_file="res://assets/milky way2.png"
-source_md5="5cb1fa40016d1d2cd83e5f83d3b1ae33"
+source_file="res://assets/museu_2.png"
+source_md5="cea770bc7697d27e930a63143eca0bc2"
 
-dest_files=[ "res://.import/milky way2.png-7b78a08e6c8c74c610ff5adb8def1a40.stex" ]
-dest_md5="a2a6e01c1b4481e84d1d6161ded9c579"
+dest_files=[ "res://.import/museu_2.png-f176b7c7c2f17419689131a3e163fcf0.stex" ]
+dest_md5="714cdaac0ffa0d4763cf791aec1cc91f"
 
 [params]
 

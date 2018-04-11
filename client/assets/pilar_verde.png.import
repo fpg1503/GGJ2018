@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/museu com combra.png-31d7e13ecb8475cc82a5a1d786792625.stex"
+path="res://.import/pilar_verde.png-aae2ede74775b3c6342fe3f11405c127.stex"
 
 [deps]
 
-source_file="res://assets/museu com combra.png"
-source_md5="dc47396a2880cd73664f5fb01caabd43"
+source_file="res://assets/pilar_verde.png"
+source_md5="b83cfcdec51760f7b5c58c505cee7b4d"
 
-dest_files=[ "res://.import/museu com combra.png-31d7e13ecb8475cc82a5a1d786792625.stex" ]
-dest_md5="7db0e2c775f2fe8a325bb0a7d03211ee"
+dest_files=[ "res://.import/pilar_verde.png-aae2ede74775b3c6342fe3f11405c127.stex" ]
+dest_md5="7b9ff92d50873120ec51dff25a81ef92"
 
 [params]
 

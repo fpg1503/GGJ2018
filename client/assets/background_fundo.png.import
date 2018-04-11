@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/broken alarm.png-4704318d72e602f14224f5b5dbbd9b3d.stex"
+path="res://.import/background_fundo.png-6c8420dec1e0a36b74fbd8156846ff5f.stex"
 
 [deps]
 
-source_file="res://assets/broken alarm.png"
-source_md5="fc948d7f83c6b7c77cd651bbbaed8728"
+source_file="res://assets/background_fundo.png"
+source_md5="e178f60464dfa6085a67151ee598a0e2"
 
-dest_files=[ "res://.import/broken alarm.png-4704318d72e602f14224f5b5dbbd9b3d.stex" ]
-dest_md5="989304a264ca93e72b0fc177911e78b3"
+dest_files=[ "res://.import/background_fundo.png-6c8420dec1e0a36b74fbd8156846ff5f.stex" ]
+dest_md5="e3ba316abf0c236e45d7a2556ef76466"
 
 [params]
 

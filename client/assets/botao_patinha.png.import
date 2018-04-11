@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pilar azul.png-5f6b76164c0c36016c27e372482f4354.stex"
+path="res://.import/botao_patinha.png-d31b276c9aca5b73f0c50e6c03352ef9.stex"
 
 [deps]
 
-source_file="res://assets/pilar azul.png"
-source_md5="fa49a2ac60d9f0477dfa490840a90f9a"
+source_file="res://assets/botao_patinha.png"
+source_md5="dbe8efbd6ecdfe3a5a20226cadc43487"
 
-dest_files=[ "res://.import/pilar azul.png-5f6b76164c0c36016c27e372482f4354.stex" ]
-dest_md5="726f0506b93aba6d187b6e9d21486cae"
+dest_files=[ "res://.import/botao_patinha.png-d31b276c9aca5b73f0c50e6c03352ef9.stex" ]
+dest_md5="6acfd59b2b028fd7c8be4049b3bd0a00"
 
 [params]
 

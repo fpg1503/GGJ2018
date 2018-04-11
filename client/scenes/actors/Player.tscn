@@ -1,9 +1,10 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/actors/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/milky way2.png" type="Texture" id=2]
+[ext_resource path="res://assets/milky_way2.png" type="Texture" id=2]
 [ext_resource path="res://scenes/actors/TrapsBalloon.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/mariofont.tres" type="DynamicFontData" id=4]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 

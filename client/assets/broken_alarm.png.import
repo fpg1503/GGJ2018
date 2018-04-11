@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pilar laranja.png-22bb833084864d7e7bde1256516bb27b.stex"
+path="res://.import/broken_alarm.png-b40fd9c8b5a96acd4946812ed6b05644.stex"
 
 [deps]
 
-source_file="res://assets/pilar laranja.png"
-source_md5="2f109033770ee6ff9e185003b2f6fae7"
+source_file="res://assets/broken_alarm.png"
+source_md5="fc948d7f83c6b7c77cd651bbbaed8728"
 
-dest_files=[ "res://.import/pilar laranja.png-22bb833084864d7e7bde1256516bb27b.stex" ]
-dest_md5="8f2401870f5ad8d3f94cf2e2965decf6"
+dest_files=[ "res://.import/broken_alarm.png-b40fd9c8b5a96acd4946812ed6b05644.stex" ]
+dest_md5="989304a264ca93e72b0fc177911e78b3"
 
 [params]
 

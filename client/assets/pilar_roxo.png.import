@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/milky way.png-02ef8fffaf2477d2ab70be3e95ca4e0a.stex"
+path="res://.import/pilar_roxo.png-384ec592137c792a941bf5459d4e4e59.stex"
 
 [deps]
 
-source_file="res://assets/milky way.png"
-source_md5="1cc7c7073959ebf324d36d6b5938f300"
+source_file="res://assets/pilar_roxo.png"
+source_md5="42a42ac6119a8bb4594185076adf5039"
 
-dest_files=[ "res://.import/milky way.png-02ef8fffaf2477d2ab70be3e95ca4e0a.stex" ]
-dest_md5="bc26ba3b6407bcdc3f0f19cba5025d5c"
+dest_files=[ "res://.import/pilar_roxo.png-384ec592137c792a941bf5459d4e4e59.stex" ]
+dest_md5="3935f2ba9e4b0e179765d429c7e5d185"
 
 [params]
 

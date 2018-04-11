@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/botão patinha.png-8a0505df27ede228443e04855fdf176c.stex"
+path="res://.import/shop_sign.png-c3dcb019c5eccf9a1bd4b96a71b8ace6.stex"
 
 [deps]
 
-source_file="res://assets/botão patinha.png"
-source_md5="dbe8efbd6ecdfe3a5a20226cadc43487"
+source_file="res://assets/shop_sign.png"
+source_md5="b57ea9b475205d0472a19c7d61bb2d60"
 
-dest_files=[ "res://.import/botão patinha.png-8a0505df27ede228443e04855fdf176c.stex" ]
-dest_md5="6acfd59b2b028fd7c8be4049b3bd0a00"
+dest_files=[ "res://.import/shop_sign.png-c3dcb019c5eccf9a1bd4b96a71b8ace6.stex" ]
+dest_md5="4d605c172b46ea00e3186591e5bbeeaf"
 
 [params]
 

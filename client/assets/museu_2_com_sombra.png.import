@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
+path="res://.import/museu_2_com_sombra.png-56844447917a6c46c22b19345d9746bb.stex"
 
 [deps]
 
-source_file="res://icon.png"
-source_md5="1e9de0973e03de0b91de2cf95372fedd"
+source_file="res://assets/museu_2_com_sombra.png"
+source_md5="d58fd0b58a1fdd5f0f7b577486e3c330"
 
-dest_files=[ "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex" ]
-dest_md5="2bacea8411132b8d1478bf5612cba3b9"
+dest_files=[ "res://.import/museu_2_com_sombra.png-56844447917a6c46c22b19345d9746bb.stex" ]
+dest_md5="c4f3fd6be198a2a46603fbc50f02675b"
 
 [params]
 
