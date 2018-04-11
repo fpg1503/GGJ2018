@@ -15,5 +15,8 @@ const LevelSchema = new Schema({
     numberOfAttempts: { type: Number, required: true, default: 0}
 })
 
+LevelSchema.index({ level: 1, lastEditedBy: 1, lastEditedAt: -1}, { unique: false, partialFilterExpression: { completed: false, 'map.0': {$exists: true} }, name: 'Random' })
+LevelSchema.index({ level: 1, numberOfAttempts: -1, creatorName: 1}, { name: 'Ranking' })
+
 const model = mongoose.model('Level', LevelSchema)
 module.exports = model

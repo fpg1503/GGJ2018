@@ -25,9 +25,10 @@ app.get('/levels', (req, res) => {
 
 app.get('/levels/:number/random', (req, res) => {
   Level.findOne(
-    { level: { $eq: req.params.number }, lastEditedBy: { $ne: req.query.userName }, completed: { $ne: true }, 'map.0': {$exists: true}},
+    { level: req.params.number, lastEditedBy: { $ne: req.query.userName }, completed: false, 'map.0': {$exists: true}},
     { __v: false },
     {sort: { 'lastEditedAt': -1 }})
+  .hint('Random')
   .then(result => {
     res.json(result)  
   })
@@ -35,7 +36,10 @@ app.get('/levels/:number/random', (req, res) => {
 })
 
 app.get('/levels/:number/ranking', (req, res) => {
-  Level.find( { level: { $eq: req.params.number } }, { creatorName: 1, numberOfAttempts: 1 }).sort({ numberOfAttempts: -1 }).limit(req.query.pageSize || 10)  
+  Level.find( { level: req.params.number }, { creatorName: 1, numberOfAttempts: 1 })
+  .hint('Ranking')
+  .sort({ numberOfAttempts: -1 })
+  .limit(req.query.pageSize || 10)
   .then(result => {
     const mapped = result.map ( values => {
       return { name: values.creatorName, ranking: values.numberOfAttempts}
@@ -57,23 +61,33 @@ app.post('/levels/:number/creation', (req, res) => {
     lastEditedAt: new Date(),
     attempts: []
   })
-  level.save()
-  .then(console.log)
-  .catch(console.error)
-  res.statusCode = 201
-  res.send()
-})
 
-app.post('/levels/:number/version/:versionId/attempt', (req, res) => {
-  const completed = req.body.completed
-  Level.findOneAndUpdate({ level: { $eq: req.params.number }, _id: { $eq: req.params.versionId} }, { $inc: { numberOfAttempts: 1 }, $set: { completed }, $push: { attempts: { userId: req.body.user, successful: completed } } })
+  level.save()
   .then(result => {
     console.log(result)
     res.statusCode = 201
     res.send()
   })
   .catch(error => {
-    console.error(error)
+    console.error(error.stack)
+    res.error(error)
+  })
+})
+
+app.post('/levels/:number/version/:versionId/attempt', (req, res) => {
+  const completed = req.body.completed
+  Level.findOneAndUpdate(
+    { level: req.params.number, _id: req.params.versionId }, 
+    { $inc: { numberOfAttempts: 1 }, $set: { completed }, $push: { attempts: { userId: req.body.user, successful: completed } } }
+  )
+  .hint({ _id : 1})
+  .then(result => {
+    console.log(result)
+    res.statusCode = 201
+    res.send()
+  })
+  .catch(error => {
+    console.error(error.stack)
     res.error(error)
   })
 })
