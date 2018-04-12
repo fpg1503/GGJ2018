@@ -70,17 +70,17 @@ app.post('/levels/:number/creation', (req, res) => {
   })
   .catch(error => {
     console.error(error.stack)
-    res.error(error)
+    res.statusCode = 500
+    res.json(error)
   })
 })
 
 app.post('/levels/:number/version/:versionId/attempt', (req, res) => {
   const completed = req.body.completed
   Level.findOneAndUpdate(
-    { level: req.params.number, _id: req.params.versionId }, 
+    { _id: req.params.versionId }, 
     { $inc: { numberOfAttempts: 1 }, $set: { completed }, $push: { attempts: { userId: req.body.user, successful: completed } } }
   )
-  .hint({ _id : 1})
   .then(result => {
     console.log(result)
     res.statusCode = 201
@@ -88,7 +88,8 @@ app.post('/levels/:number/version/:versionId/attempt', (req, res) => {
   })
   .catch(error => {
     console.error(error.stack)
-    res.error(error)
+    res.statusCode = 500
+    res.json(error)
   })
 })
 
